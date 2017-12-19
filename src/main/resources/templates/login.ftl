@@ -1,4 +1,4 @@
-<#include "header.ftl">
+<#include "themes/header.ftl">
 <div class="row">
   <div class="col-md-12 mt-1">
     <form action="/login-auth" method="POST" class="form-horizontal" role="form">
@@ -25,7 +25,7 @@
           <input type="password" class="form-control" id="password" name="password" placeholder="password">
         </div>
       </div>
-      <div class="form-group">
+      <!--div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
             <label>
@@ -33,15 +33,15 @@
             </label>
           </div>
         </div>
-      </div>
+      </div-->
       <div class="form-group">
 
 
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-primary">登录</button>
+          <button type="submit" class="basic-btn button">登录</button>
         </div>
       </div>
     </form>
   </div>
 </div>
-<#include "footer.ftl">
+<#include "themes/footer.ftl">

@@ -63,6 +63,7 @@ public class VertxRouter {
     Router router = Router.router(_defaultAction.getVertx());
 
     router.get("/static/*").handler(_defaultAction::staticHandler);
+    router.get("/assets/*").handler(_defaultAction::staticHandler);
 
     router.get("/").handler(rc -> {
       rc.response().setStatusCode(303);

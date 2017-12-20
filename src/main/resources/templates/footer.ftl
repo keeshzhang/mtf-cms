@@ -1,9 +1,17 @@
-  </div> <!-- .container -->
-  <script src="/static/jquery-3.2.1.min.js"></script>
-  <script src="/static/tether-1.3.7.min.js"></script>
-  <script src="/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
 
-  <div style="text-align: center;padding: .3em;color: gray;margin: 1em 0;
-    background-color: beige;margin-bottom: 0;margin-top: 40px;">Powerd by Vert.x</div>
+
+  <script type="text/javascript" src="/assets/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/assets/jquery/jquery-3.2.0.slim.min.js"></script>
+
+  <!-- web-animations: https://cdnjs.com/libraries/web-animations/2.2.2 -->
+  <script type="text/javascript"
+          src="/assets/libs/web-animations-2.2.2.min.js"></script>
+
+  <script type="text/javascript" src="/assets/inline.bundle.js"></script>
+  <script type="text/javascript" src="/assets/polyfills.bundle.js"></script>
+  <!-- script type="text/javascript" src="/assets/styles.bundle.js"></script -->
+  <script type="text/javascript" src="/assets/vendor.bundle.js"></script>
+  <script type="text/javascript" src="/assets/main.bundle.js"></script>
+
 </body>
 </html>

@@ -86,13 +86,14 @@ public class WikiDatabaseServiceVertxEBProxy implements WikiDatabaseService {
     return this;
   }
 
-  public WikiDatabaseService fetchPage(Long id, Handler<AsyncResult<JsonObject>> resultHandler) {
+  public WikiDatabaseService fetchPage(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
     if (closed) {
     resultHandler.handle(Future.failedFuture(new IllegalStateException("Proxy is closed")));
       return this;
     }
     JsonObject _json = new JsonObject();
     _json.put("id", id);
+    _json.put("articleName", articleName);
     DeliveryOptions _deliveryOptions = (_options != null) ? new DeliveryOptions(_options) : new DeliveryOptions();
     _deliveryOptions.addHeader("action", "fetchPage");
     _vertx.eventBus().<JsonObject>send(_address, _json, _deliveryOptions, res -> {

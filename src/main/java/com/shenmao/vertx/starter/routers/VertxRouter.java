@@ -80,14 +80,17 @@ public class VertxRouter {
     router.route("/access_token").handler(JWTAuthHandler.create(_jwtAuth));
 
 
-//    router.routeWithRegex("/index(.json|.html|.xml)?").handler(_authHandler);
+//    router.route("/articles/*").handler(_authHandler);
     router.route("/wiki/*").handler(_authHandler);
     router.route("/save/*").handler(_authHandler);
     router.route("/create/*").handler(_authHandler);
     router.route("/delete/*").handler(_authHandler);
     router.route("/backup/*").handler(_authHandler);
 
+
     router.routeWithRegex("/index(.json|.html|.xml)?").handler(_defaultAction::indexHandler);
+    router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);
+
     router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);
     router.post("/save").handler(_defaultAction::pageUpdateHandler);
     router.post("/create").handler(_defaultAction::pageCreateHandler);

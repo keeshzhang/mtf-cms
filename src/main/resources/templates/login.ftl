@@ -1,4 +1,4 @@
-<#include "themes/header.ftl">
+<#include "header.ftl">
 <div class="row">
   <div style="width: 100%;max-width: 450px;margin: auto;margin-top: 40px;    margin-top: 2em;">
     <form action="/login-auth" method="POST" class="form-horizontal" role="form">
@@ -43,4 +43,4 @@
     </form>
   </div>
 </div>
-<#include "themes/footer.ftl">
+<#include "footer.ftl">

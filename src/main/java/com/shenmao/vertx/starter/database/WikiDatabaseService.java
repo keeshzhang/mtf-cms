@@ -31,7 +31,7 @@ public interface WikiDatabaseService {
 
 
   @Fluent
-  WikiDatabaseService fetchPage(Long id, Handler<AsyncResult<JsonObject>> resultHandler);
+  WikiDatabaseService fetchPage(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler);
 
   @Fluent
   WikiDatabaseService createPage(String title, String markdown, Handler<AsyncResult<Long>> resultHandler);

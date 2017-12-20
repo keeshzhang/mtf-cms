@@ -1,7 +1,9 @@
 package com.shenmao.vertx.starter.database;
 
 import com.shenmao.vertx.starter.commons.files.FindFileVisitor;
+import com.shenmao.vertx.starter.commons.string.StringHelper;
 import com.shenmao.vertx.starter.configuration.SqlQueriesConfig;
+import com.sun.jmx.snmp.Timestamp;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -60,7 +62,9 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     FindFileVisitor findJavaVisitor = new FindFileVisitor(".xml");
 
 //    System.out.println(new String(Base64.encodeBase64("我的第2个文章".getBytes())) + ", base64");
-//    System.out.println(new String(Base64.encodeBase64("我的 第2 _ / # . asdf #$%^&**(!@#$%%)(*&`个文章".getBytes())) + ", base64");
+    System.out.println(new String(Base64.encodeBase64("我的第2 _ / # . asdf #$%^&**(!@#$%%)(*&`个文章".getBytes())) + ", base64");
+
+    System.out.println(new Timestamp(System.currentTimeMillis()).getDateTime() + ", new Timestamp(System.currentTimeMillis())");
 
     try {
 
@@ -69,24 +73,27 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       List<JsonObject> pages = findJavaVisitor.getFilenameList().stream()
           .filter(file -> {
             String _filename = file.replace(_USER_ARTICLES_FOLDER, "");
-
-            System.out.println(_filename + ", _filename");
             return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
           })
           .map(file -> {
 
             String _filename = file.replace(_USER_ARTICLES_FOLDER, "");
             String createdTimespan = _filename.substring(0, _filename.indexOf('_'));
-              String _file_name_base64 = _filename.substring(_filename.indexOf('_') + 1, _filename.indexOf('.'));
+            String _file_name_base64 = _filename.substring(_filename.indexOf('_') + 1, _filename.indexOf('.'));
             String _file_name_string = _file_name_base64;
 
             if (Base64.isBase64(_file_name_base64)) {
               _file_name_string = new String(Base64.decodeBase64(_file_name_base64));
             }
 
+            String _file_name_escape = StringHelper.escape(_file_name_string);
+            String _article_status = _filename.substring(_filename.indexOf('.') + 1, _filename.lastIndexOf('.'));
+
             return new JsonObject()
               .put("id", file.replace(_USER_ARTICLES_FOLDER, ""))
-              .put("url", "/articles/" + createdTimespan + "/" + _file_name_base64 + ".html")
+              .put("url", "/articles/" + createdTimespan + "/" + _file_name_escape)
+              .put("url_base64", "/articles/" + createdTimespan + "/" + _file_name_base64)
+              .put("file_path", "/articles/" + createdTimespan + "_" + _file_name_base64 + "."+_article_status+".xml")
               .put("name", _file_name_string)
               .put("content", file.replace(_USER_ARTICLES_FOLDER, ""));
           })
@@ -107,11 +114,26 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
 
   @Override
-  public WikiDatabaseService fetchPage(Long id, Handler<AsyncResult<JsonObject>> resultHandler) {
+  public WikiDatabaseService fetchPage(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
 
     JsonArray params = new JsonArray().add(id);
 
-    jdbcClient.queryWithParams(sqlQueries.get(SqlQueriesConfig.SqlQuery.GET_PAGE), params, fetch -> {
+    JsonObject response = new JsonObject();
+
+    String articleNameDecode = articleName;
+
+    if (Base64.isBase64(articleName)) {
+      articleNameDecode = new String(Base64.decodeBase64(articleName));
+    }
+
+    System.out.println(articleName + ", articleName");
+    System.out.println(articleNameDecode + ", articleNameDecode");
+
+    response.put("articleName", articleNameDecode);
+
+    resultHandler.handle(Future.succeededFuture(response));
+
+    /*jdbcClient.queryWithParams(sqlQueries.get(SqlQueriesConfig.SqlQuery.GET_PAGE), params, fetch -> {
 
       if (fetch.succeeded()) {
 
@@ -138,7 +160,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
         resultHandler.handle(Future.failedFuture(fetch.cause()));
       }
 
-    });
+    });*/
 
     return this;
 

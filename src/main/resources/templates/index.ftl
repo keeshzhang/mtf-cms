@@ -1,4 +1,4 @@
-<#include "themes/header.ftl">
+<#include "header.ftl">
 
 <div class="row">
 
@@ -25,9 +25,12 @@
     <#list context.content>
       <ul>
         <#items as page>
-        <li><a href="${page["url"]}">${page["name"]}, </a>
+        <li><a href="${page["url_base64"]}">${page["name"]}, </a>
           <br />
-          <span style="color: goldenrod;">${page["url"]}</span></li>
+          <span style="color: goldenrod;">${page["url"]}</span>
+          <br />
+          <span style="color: goldenrod;">${page["file_path"]}</span>
+        </li>
         </#items>
       </ul>
       <#else>
@@ -49,4 +52,4 @@
 
   </div>
 
-<#include "themes/footer.ftl">
+<#include "footer.ftl">

@@ -1,7 +1,7 @@
 <#include "../header.ftl">
 <div class="row">
 
-  <div class="col-md-12 mt-1" style="margin-top: 1em !important;">
+  <div style="width: 100%; margin-top: 1em !important;">
     <span class="float-xs-right">
       <a class="btn btn-outline-primary" href="/" role="button" aria-pressed="true">Home</a>
         <button class="btn btn-outline-warning" type="button"
@@ -14,11 +14,11 @@
     </h1>
   </div>
 
-  <div class="col-md-12 mt-1 clearfix" style="padding: 1em;    padding-bottom: .5em;">
+  <div class= clearfix" style="width: 100%;padding: 1em;    padding-bottom: .5em;">
   ${context.title}
   </div>
 
-  <div class="col-md-12 collapsable collapse clearfix" id="editor">
+  <div class=" clearfix" id="editor" style="width: 100%;">
 
     <form action="/save" method="post">
 
@@ -41,7 +41,7 @@
 
   </div>
 
-  <div class="col-md-12 mt-1">
+  <div style="width: 100%;">
     <hr class="mt-1">
     <p class="small">Rendered: ${context.timestamp}</p>
   </div>

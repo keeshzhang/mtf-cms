@@ -19,6 +19,9 @@ import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.ext.web.codec.BodyCodec;
 import io.vertx.ext.web.templ.FreeMarkerTemplateEngine;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +33,8 @@ public class DefaultAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(DefaultAction.class);
   private static final String wikiDbQueue = WikiDatabaseVerticle.CONFIG_WIKIDB_QUEUE;
 
+  private static final FreeMarkerTemplateEngine templateEngine = FreeMarkerTemplateEngine.create();
+  private static final String templateFolderName = "templates";
 
   private WikiDatabaseService dbService;
 
@@ -184,31 +189,59 @@ public class DefaultAction implements Action {
   @Override
   public void pageRenderingHandler(RoutingContext context) {
 
-    long _page_id = Long.parseLong(context.request().getParam("id"));
+    Long timestamp = Long.parseLong(context.request().getParam("date"));
 
-    dbService.fetchPage(_page_id, reply -> {
+    Timestamp createdAt = new Timestamp(timestamp);
+    String articleFileName = context.request().getParam("name");
+
+
+    DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+
+
+    dbService.fetchPage(timestamp, articleFileName, reply -> {
 
       if (reply.succeeded()) {
 
         JsonObject body = reply.result();
 
-        boolean found = body.getBoolean("found");
-        String rawContent = body.getString("rawContent", EMPTY_PAGE_MARKDOWN);
+//        context.put("content", reply.result());
+
+
+
+        boolean found = true; //body.getBoolean("found");
+        String rawContent = "rawContent"; //body.getString("rawContent", EMPTY_PAGE_MARKDOWN);
 
         context.put("newPage", found ? "no" : "yes");
         context.put("timestamp", new Date().toString());
 
         if (found) {
 
-          context.put("id", body.getInteger("id"));
-          context.put("title", body.getString("title"));
-          context.put("content", Processor.process(rawContent));
+          context.put("id", 1);//body.getInteger("id"));
+          context.put("title", "title"); //body.getString("title"));
+          context.put("content", "content"); // Processor.process(rawContent));
           context.put("rawContent", rawContent);
 
-          ContextResponse.write(context, "/pages/page_detail.ftl");
-        } else {
+//          ContextResponse.write(context, "/pages/page_detail.ftl");
 
-          ContextResponse.write(context, "/pages/page_detail.ftl", 404);
+          context.put("username", context.user() != null && !context.user().principal().getString("username").isEmpty() ? context.user().principal().getString("username") : "anonymous user");
+
+          templateEngine.render(context, templateFolderName, "/pages/page_detail.ftl", ar -> {
+
+            if (ar.succeeded()) {
+              context.response().putHeader("Content-Type", "text/html");
+              context.response().end(ar.result());
+//              context.response().end("1");
+            } else {
+              context.response().end("2");
+//              context.fail(ar.cause());
+            }
+
+          });
+
+
+        } else {
+          ContextResponse.write(context, "/pages/not-found.ftl", 404);
         }
 
       } else {

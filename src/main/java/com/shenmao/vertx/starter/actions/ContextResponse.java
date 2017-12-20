@@ -26,37 +26,46 @@ public class ContextResponse {
     write(context, statusCode == 404 ? "/not-found.ftl" : view);
   }
 
+
+  public static void write(RoutingContext context) {
+
+    JsonObject response = null;
+
+    try {
+      response = new JsonObject()
+        .put("success", true) .put("contents", (List<JsonObject>)context.get("content"));
+    } catch (Exception e) {
+      response = new JsonObject()
+        .put("success", true) .put("contents", (JsonObject)context.get("content"));
+    }
+
+    String result = response.encode();
+
+    if (original(context.request().uri()).endsWith(".xml")) {
+
+      context.response().putHeader("Content-Type", "application/xml");
+
+      try {
+        result = new JsonToXMLConverter().convertJsonToXml(result);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+    } else {
+
+      context.response().putHeader("Content-Type", "application/json");
+    }
+
+
+    context.response().end(result);
+
+  }
+
   public static void write(RoutingContext context, String view) {
 
     if (original(context.request().uri()).endsWith(".json") || original(context.request().uri()).endsWith(".xml")) {
-
-
-      JsonObject response = new JsonObject()
-        .put("success", true) .put("contents", (List<JsonObject>)context.get("content"));
-
-
-      String result = response.encode();
-
-      if (original(context.request().uri()).endsWith(".xml")) {
-
-        context.response().putHeader("Content-Type", "application/xml");
-
-        try {
-          result = new JsonToXMLConverter().convertJsonToXml(result);
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-
-      } else {
-
-        context.response().putHeader("Content-Type", "application/json");
-      }
-
-
-      context.response().end(result);
-
+      write(context);
       return;
-
     }
 
     context.put("username", context.user() != null && !context.user().principal().getString("username").isEmpty() ? context.user().principal().getString("username") : "anonymous user");

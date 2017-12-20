@@ -1,5 +1,7 @@
 <#include "header.ftl">
 
+<app-root></app-root>
+
 <div class="row">
 
   <div style="margin-top: 1em !important;width:100%;">

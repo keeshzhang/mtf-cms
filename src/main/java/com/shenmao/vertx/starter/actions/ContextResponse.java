@@ -33,15 +33,15 @@ public class ContextResponse {
 
     try {
       response = new JsonObject()
-        .put("success", true) .put("contents", (List<JsonObject>)context.get("content"));
+        .put("success", true) .put("data", (List<JsonObject>)context.get("content"));
     } catch (Exception e) {
       response = new JsonObject()
-        .put("success", true) .put("contents", (JsonObject)context.get("content"));
+        .put("success", true) .put("data", (JsonObject)context.get("content"));
     }
 
     String result = response.encode();
 
-    if (original(context.request().uri()).endsWith(".xml")) {
+    if (original(context.request().uri()).endsWith(".xml") && 1==2) {
 
       context.response().putHeader("Content-Type", "application/xml");
 

@@ -22,7 +22,9 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
@@ -91,11 +93,19 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
             return new JsonObject()
               .put("id", file.replace(_USER_ARTICLES_FOLDER, ""))
+              .put("name", _file_name_string)
+              .put("name_base64", _file_name_base64)
+
+              .put("file_name", createdTimespan + "_" + _file_name_base64 + "."+_article_status+".xml")
+
               .put("url", "/articles/" + createdTimespan + "/" + _file_name_escape)
               .put("url_base64", "/articles/" + createdTimespan + "/" + _file_name_base64)
               .put("file_path", "/articles/" + createdTimespan + "_" + _file_name_base64 + "."+_article_status+".xml")
-              .put("name", _file_name_string)
-              .put("content", file.replace(_USER_ARTICLES_FOLDER, ""));
+              .put("content", file.replace(_USER_ARTICLES_FOLDER, ""))
+              .put("created_at", createdTimespan)
+              .put("keywords", "keywords big data, cloud computing")
+              .put("type", "big data, cloud computing")
+              .put("tags", "aws, linux, vagrant, centos");
           })
           .collect(Collectors.toList());
 
@@ -111,14 +121,38 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   }
 
+  public WikiDatabaseService exists(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
 
+    System.out.println( articleName + ",, articleName");
+
+    this.fetchAllPages(result -> {
+
+      if (result.succeeded()) {
+
+        Stream<JsonObject> fileStream = result.result().stream().filter(article -> {
+          return article.getString("file_name").startsWith(id + "_" + articleName);
+        });
+
+        Optional<JsonObject> fileOptional = fileStream.findFirst();
+
+        try {
+          resultHandler.handle(Future.succeededFuture(fileOptional != null ? fileOptional.get() : null));
+        } catch (Exception e) {
+          resultHandler.handle(Future.failedFuture(e.getCause()));
+        }
+
+
+      } else {
+
+      }
+
+    });
+
+    return this;
+  }
 
   @Override
   public WikiDatabaseService fetchPage(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
-
-    JsonArray params = new JsonArray().add(id);
-
-    JsonObject response = new JsonObject();
 
     String articleNameDecode = articleName;
 
@@ -126,41 +160,16 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       articleNameDecode = new String(Base64.decodeBase64(articleName));
     }
 
-    System.out.println(articleName + ", articleName");
-    System.out.println(articleNameDecode + ", articleNameDecode");
+    this.exists(id, articleName, reply -> {
 
-    response.put("articleName", articleNameDecode);
+      if (reply.succeeded()) {
 
-    resultHandler.handle(Future.succeededFuture(response));
-
-    /*jdbcClient.queryWithParams(sqlQueries.get(SqlQueriesConfig.SqlQuery.GET_PAGE), params, fetch -> {
-
-      if (fetch.succeeded()) {
-
-        JsonObject response = new JsonObject();
-        ResultSet resultSet = fetch.result();
-
-        if (resultSet.getNumRows() == 0) {
-          response.put("found", false);
-        } else {
-
-          response.put("found", true);
-
-          JsonArray row = resultSet.getResults().get(0);
-
-          response.put("id", row.getInteger(0));
-          response.put("title", row.getString(1));
-          response.put("rawContent", row.getString(2));
-        }
-
-        resultHandler.handle(Future.succeededFuture(response));
-
+        resultHandler.handle(Future.succeededFuture(reply.result()));
       } else {
-        LOGGER.error("Database query error", fetch.cause());
-        resultHandler.handle(Future.failedFuture(fetch.cause()));
+        resultHandler.handle(Future.succeededFuture(null));
       }
 
-    });*/
+    });
 
     return this;
 

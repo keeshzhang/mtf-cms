@@ -89,6 +89,10 @@ public class VertxRouter {
 
 
     router.routeWithRegex("/index(.json|.html|.xml)?").handler(_defaultAction::indexHandler);
+
+    router.get("/articles/:date/:name.html").handler(_defaultAction::pageRenderingHandler);
+    router.get("/articles/:date/:name.json").handler(_defaultAction::pageRenderingHandler);
+    router.get("/articles/:date/:name.xml").handler(_defaultAction::pageRenderingHandler);
     router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);
 
     router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);

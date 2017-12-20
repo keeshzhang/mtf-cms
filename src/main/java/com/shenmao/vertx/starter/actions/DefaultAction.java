@@ -190,14 +190,7 @@ public class DefaultAction implements Action {
   public void pageRenderingHandler(RoutingContext context) {
 
     Long timestamp = Long.parseLong(context.request().getParam("date"));
-
-    Timestamp createdAt = new Timestamp(timestamp);
     String articleFileName = context.request().getParam("name");
-
-
-    DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-
 
     dbService.fetchPage(timestamp, articleFileName, reply -> {
 
@@ -205,39 +198,22 @@ public class DefaultAction implements Action {
 
         JsonObject body = reply.result();
 
-//        context.put("content", reply.result());
+        System.out.println(body.encode() + " , body.encode()");
 
 
 
-        boolean found = true; //body.getBoolean("found");
-        String rawContent = "rawContent"; //body.getString("rawContent", EMPTY_PAGE_MARKDOWN);
 
-        context.put("newPage", found ? "no" : "yes");
-        context.put("timestamp", new Date().toString());
 
-        if (found) {
+        if (true) {
 
-          context.put("id", 1);//body.getInteger("id"));
-          context.put("title", "title"); //body.getString("title"));
-          context.put("content", "content"); // Processor.process(rawContent));
-          context.put("rawContent", rawContent);
+          context.put("content", reply.result());
 
-//          ContextResponse.write(context, "/pages/page_detail.ftl");
+//          context.put("id", body.getString("url_base64"));//body.getInteger("id"));
+//          context.put("title", body.getString("name")); //body.getString("title"));
+//          context.put("content", body.getString("file_name")); // Processor.process(rawContent));
+//          context.put("rawContent", body.getString("file_path"));
 
-          context.put("username", context.user() != null && !context.user().principal().getString("username").isEmpty() ? context.user().principal().getString("username") : "anonymous user");
-
-          templateEngine.render(context, templateFolderName, "/pages/page_detail.ftl", ar -> {
-
-            if (ar.succeeded()) {
-              context.response().putHeader("Content-Type", "text/html");
-              context.response().end(ar.result());
-//              context.response().end("1");
-            } else {
-              context.response().end("2");
-//              context.fail(ar.cause());
-            }
-
-          });
+          ContextResponse.write(context, "/pages/page_detail.ftl");
 
 
         } else {

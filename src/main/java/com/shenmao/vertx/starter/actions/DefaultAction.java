@@ -43,8 +43,30 @@ public class DefaultAction implements Action {
   @Override
   public void indexHandler(RoutingContext context) {
 
+    if (context.user() != null) {
 
-    context.user().isAuthorized(ShiroRealm.Permission.CREATE.toString(),res -> {
+      context.user().isAuthorized(ShiroRealm.Permission.CREATE.toString(),res -> {
+
+        dbService.fetchAllPages(reply -> {
+
+          if (reply.succeeded()) {
+
+            context.put("title", "最新咨讯");
+            context.put("content", reply.result());
+            context.put("canCreatePage", res.succeeded() && res.result());
+
+            ContextResponse.write(context, "/index.ftl");
+
+          } else {
+            context.fail(reply.cause());
+          }
+
+        });
+
+
+      });
+
+    } else {
 
       dbService.fetchAllPages(reply -> {
 
@@ -52,7 +74,7 @@ public class DefaultAction implements Action {
 
           context.put("title", "Wiki Home");
           context.put("content", reply.result());
-          context.put("canCreatePage", res.succeeded() && res.result());
+          context.put("canCreatePage", false);
 
           ContextResponse.write(context, "/index.ftl");
 
@@ -62,24 +84,9 @@ public class DefaultAction implements Action {
 
       });
 
+    }
 
-    });
 
-//    dbService.fetchAllPages(reply -> {
-//
-//      if (reply.succeeded()) {
-//
-//        context.put("title", "Wiki Home");
-//        context.put("content", reply.result());
-//        context.put("canCreatePage", true);
-//
-//        ContextResponse.write(context, "/index.ftl");
-//
-//      } else {
-//        context.fail(reply.cause());
-//      }
-//
-//    });
 
 
 

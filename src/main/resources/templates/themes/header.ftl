@@ -60,4 +60,21 @@
 </head>
 <body>
 
+<div style="background-color: black;color: darkgray;">
+  <div class="container">
+    <div class="row" style="text-align: right">
+      <div style="padding: .3em 0;width: 100%;">
+
+      <#if context.username == "anonymous user" >
+        <a href="/login" style="color: whitesmoke;text-decoration: none;">登录</a>
+      </#if>
+
+      <#if context.username != "anonymous user" >
+        <a href="/logout" role="button" aria-pressed="true" style="color: whitesmoke;text-decoration: none;">${context.username}</a>
+      </#if>
+
+      </div>
+    </div>
+  </div>
+</div>
   <app-root></app-root>

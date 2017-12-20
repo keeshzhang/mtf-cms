@@ -1,12 +1,11 @@
 <#include "themes/header.ftl">
 <div class="row">
-  <div class="col-md-12 mt-1">
+  <div style="width: 100%;max-width: 450px;margin: auto;margin-top: 40px;    margin-top: 2em;">
     <form action="/login-auth" method="POST" class="form-horizontal" role="form">
 
       <#if context.error >
         <div class="form-group">
-          <div class="alert alert-danger"  style="margin: 0 15px;" role="alert">
-            登录失败: <br />
+          <div class="alert alert-danger"  style="font-size: .7em;padding: .3em 0.8em;background-color: brown;display: inline-block;margin-bottom: 1em;color: white;" role="alert">
             用户名或密码错误!
           </div>
         </div>
@@ -37,8 +36,8 @@
       <div class="form-group">
 
 
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="basic-btn button">登录</button>
+        <div style="text-align: right">
+          <button type="submit" class="basic-btn button" style="padding: .6em 1.35em .6em 1.35em;">登录</button>
         </div>
       </div>
     </form>

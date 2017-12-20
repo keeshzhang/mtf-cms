@@ -1,18 +1,18 @@
-<#include "header.ftl">
+<#include "themes/header.ftl">
 
 <div class="row">
 
-  <div class="col-md-12 mt-1" style="margin-top: 1em !important;">
+  <div style="margin-top: 1em !important;width:100%;">
 
   <#if context.canCreatePage>
     <div class="float-xs-right">
       <form class="form-inline" action="/create" method="post">
 
-        <div class="form-group">
+        <div class="form-group" style="width: 50%;float: left;    transform: translateY(1px);">
           <input type="text" class="form-control" id="name" name="name" placeholder="New page name">
         </div>
 
-        <button type="submit" class="btn btn-primary" style="margin-left: .8em;">Create</button>
+        <button type="submit" class="basic-btn button" style="margin-left: .8em;">Create</button>
       </form>
     </div>
   </#if>
@@ -20,26 +20,23 @@
     <h2 class="display-4" style="margin-top: .6em;font-size: 2em;">${context.title}</h2>
   </div>
 
-  <div class="col-md-12 mt-1">
+  <div style="width:100%;">
 
     <#list context.content>
-      <h2 style="font-size: 1.5em;
-    font-style: italic;
-    color: gray;">Pages:</h2>
       <ul>
         <#items as page>
-        <li><a href="/wiki/${page["id"]}">${page["name"]}, </a>
+        <li><a href="${page["url"]}">${page["name"]}, </a>
           <br />
-          <span style="color: goldenrod;">${page["content"]}</span></li>
+          <span style="color: goldenrod;">${page["url"]}</span></li>
         </#items>
       </ul>
       <#else>
       <p style="color: darkorchid">The wiki is currently empty!</p>
     </#list>
 
-      <a ="submit" href="/backup" class="btn btn-info">Gist Backup</a>
+    <a style="display: none;" ="submit" href="/backup" class="btn btn-info">Gist Backup</a>
 
-    <div style="padding: 1em;
+    <div style="display: none;padding: 1em;
     margin-top: 1em;
     background-color: burlywood;">
       <p style="margin-bottom: .3em;color: brown;">Successfully creatd a backup:</p>
@@ -48,8 +45,8 @@
       </a>
     </div>
 
-  </div>
+  </divs>
 
   </div>
 
-<#include "footer.ftl">
+<#include "themes/footer.ftl">

@@ -1,5 +1,6 @@
 package com.shenmao.vertx.starter.database;
 
+import com.shenmao.vertx.starter.commons.files.FindFileVisitor;
 import com.shenmao.vertx.starter.configuration.SqlQueriesConfig;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
@@ -10,7 +11,12 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.jdbc.JDBCClient;
 import io.vertx.ext.sql.ResultSet;
+import org.apache.commons.codec.binary.Base64;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +29,12 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries;
   private final JDBCClient jdbcClient;
 
+  private final String _USER_ARTICLES_FOLDER =
+    (WikiDatabaseServiceImpl.class.getClassLoader().getResource("") + "user_articles/").substring(5);
+
 
   public WikiDatabaseServiceImpl(JDBCClient jdbcClient, HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries, Handler<AsyncResult<WikiDatabaseService>> resultHandler) {
+
 
     this.jdbcClient = jdbcClient;
     this.sqlQueries = sqlQueries;
@@ -43,26 +53,55 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   @Override
   public WikiDatabaseService fetchAllPages(Handler<AsyncResult<List<JsonObject>>> resultHandler) {
 
-    jdbcClient.query(sqlQueries.get(SqlQueriesConfig.SqlQuery.ALL_PAGES), res -> {
+//    boolean path_exists = Files.exists(FileSystems.getDefault().getPath(_USER_ARTICLES_FOLDER),
+//                            new LinkOption[]{LinkOption.NOFOLLOW_LINKS});
 
-      if (res.succeeded()) {
+    Path startingDir = Paths.get(_USER_ARTICLES_FOLDER);
+    FindFileVisitor findJavaVisitor = new FindFileVisitor(".xml");
 
-        List<JsonObject> pages = res.result().getRows().stream()
-          .map(obj -> new JsonObject()
-            .put("id", obj.getInteger("ID"))
-            .put("name", obj.getString("NAME"))
-            .put("content", obj.getString("CONTENT")))
+//    System.out.println(new String(Base64.encodeBase64("我的第2个文章".getBytes())) + ", base64");
+//    System.out.println(new String(Base64.encodeBase64("我的 第2 _ / # . asdf #$%^&**(!@#$%%)(*&`个文章".getBytes())) + ", base64");
+
+    try {
+
+      Files.walkFileTree(startingDir, findJavaVisitor);
+
+      List<JsonObject> pages = findJavaVisitor.getFilenameList().stream()
+          .filter(file -> {
+            String _filename = file.replace(_USER_ARTICLES_FOLDER, "");
+
+            System.out.println(_filename + ", _filename");
+            return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
+          })
+          .map(file -> {
+
+            String _filename = file.replace(_USER_ARTICLES_FOLDER, "");
+            String createdTimespan = _filename.substring(0, _filename.indexOf('_'));
+              String _file_name_base64 = _filename.substring(_filename.indexOf('_') + 1, _filename.indexOf('.'));
+            String _file_name_string = _file_name_base64;
+
+            if (Base64.isBase64(_file_name_base64)) {
+              _file_name_string = new String(Base64.decodeBase64(_file_name_base64));
+            }
+
+            return new JsonObject()
+              .put("id", file.replace(_USER_ARTICLES_FOLDER, ""))
+              .put("url", "/articles/" + createdTimespan + "/" + _file_name_base64 + ".html")
+              .put("name", _file_name_string)
+              .put("content", file.replace(_USER_ARTICLES_FOLDER, ""));
+          })
           .collect(Collectors.toList());
 
         resultHandler.handle(Future.succeededFuture(pages));
-      } else {
-        LOGGER.error("Database query error", res.cause());
-        resultHandler.handle(Future.failedFuture(res.cause()));
-      }
 
-    });
+
+    } catch (IOException e) {
+      resultHandler.handle(Future.failedFuture(e.getCause()));
+    }
+
 
     return this;
+
   }
 
 

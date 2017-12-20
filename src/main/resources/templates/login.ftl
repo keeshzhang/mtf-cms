@@ -1,4 +1,44 @@
 <#include "themes/header.ftl">
+
+<span class="form-container email-component">
+  <!--a href="/login" id="goback">Go back</a-->
+
+  <h5 style="text-align: center;">用户登录</h5>
+
+  <!--span class="error" *ngIf="error" [@fallIn]="state">{{ error }}</span-->
+
+  <#if context.error >
+    <span class="error">用户名或密码错误!</span>
+  </#if>
+
+  <form action="/login-auth" method="POST" class="form-horizontal" role="form">
+
+    <div class="input-group">
+      <span class="input-group-label" style="padding: 0 .425rem;color:dimgray;">
+        <i class="material-icons">&#xE8D3;</i>
+      </span>
+      <input  type="text" id="username" name="username" class="input-group-field" placeholder="Email address">
+    </div>
+
+
+    <div class="input-group">
+      <span class="input-group-label" style="padding: 0 .425rem;color:dimgray;">
+        <i class="material-icons">&#xE897;</i>
+      </span>
+      <input  type="password" id="password" name="password" class="input-group-field" placeholder="Password">
+    </div>
+
+
+    <div style="text-align: center;">
+      <button type="submit" class="basic-btn button">登录</button>
+    </div>
+    <!--a href="/registry"  class="alc">Don's have an account</a-->
+
+  </form>
+
+</div>
+
+
 <div class="row">
   <div class="col-md-12 mt-1">
     <form action="/login-auth" method="POST" class="form-horizontal" role="form">

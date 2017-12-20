@@ -105,7 +105,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
               .put("created_at", createdTimespan)
               .put("keywords", "keywords big data, cloud computing")
               .put("type", "big data, cloud computing")
-              .put("tags", "aws, linux, vagrant, centos");
+              .put("tags", "aws, linux, vagrant, centos")
+              .put("description", "文章描述: some description here ");
           })
           .collect(Collectors.toList());
 

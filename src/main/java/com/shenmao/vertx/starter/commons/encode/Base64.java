@@ -32,7 +32,7 @@ public class Base64 {
 //      e.printStackTrace();
 //    }
 
-    return base64str.replaceAll("/", _SLASH_REPLACE);
+    return base64str.replaceAll("/", _SLASH_REPLACE).replaceAll("=+$", "");
   }
 
   public static Boolean isBase64(String str) {

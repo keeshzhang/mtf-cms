@@ -15,11 +15,16 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.jdbc.JDBCClient;
 import io.vertx.ext.sql.ResultSet;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.Node;
+import org.dom4j.*;
 import org.dom4j.io.SAXReader;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 
 import java.io.*;
 import java.net.URL;
@@ -61,32 +66,79 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   }
 
-  public void updateArticleXml(String url,String url_escape,String title, String file_path) {
+  public boolean updateArticleXml(JsonObject articleObject) {
+
+    String file_path = articleObject.getString("file_path");
 
     SAXReader reader = new SAXReader();
+    SAXBuilder builder = new SAXBuilder();
+
 
     try {
 
-      Document masterDocument = reader.read(_USER_ARTICLES_FOLDER + "/" + file_path);
+      org.jdom.Document doc = builder.build(_USER_ARTICLES_FOLDER + "/" + file_path);
+      org.jdom.Element root = doc.getRootElement();
+      List<org.jdom.Element> nodelist = root.getChildren();
 
-      Node articleUrlNode = masterDocument.selectSingleNode("//article/url");
-      Node articleUrlEscapeNode = masterDocument.selectSingleNode("//article/url_escape");
-      Node articleTitleNode = masterDocument.selectSingleNode("//article/title");
-      Node articleFilePathNode = masterDocument.selectSingleNode("//article/file_path");
+      for(org.jdom.Element ele: nodelist) {
 
-      articleUrlNode.setText(url);
-      articleUrlEscapeNode.setText(url_escape);
-      articleTitleNode.setText("<![CDATA[" + title + "]]>");
-      articleFilePathNode.setText(file_path);
+        switch (ele.getName()) {
 
-      try (FileWriter fw = new FileWriter(file_path, false)) {
-        masterDocument.write(fw);
-      } catch (IOException e) {
-        e.printStackTrace();
+          case "url":
+            ele.setContent(new org.jdom.Text(articleObject.getString("url")));
+            break;
+          case "url_escape":
+            ele.setContent(new org.jdom.Text(articleObject.getString("url_escape")));
+            break;
+          case "title":
+            ele.setContent(new org.jdom.CDATA(articleObject.getString("title")));
+            break;
+          case "file_path":
+            ele.setContent(new org.jdom.Text(articleObject.getString("file_path")));
+            break;
+          case "put_top":
+            ele.setContent(new org.jdom.Text("false"));
+            break;
+          default:
+
+        }
+
       }
 
-    } catch (DocumentException e) {
-      e.printStackTrace();
+      XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+      xmlOutputter.output(doc, new FileOutputStream(_USER_ARTICLES_FOLDER + "/" + file_path));
+      return true;
+
+//        Document masterDocument = reader.read(_USER_ARTICLES_FOLDER + "/" + file_path);
+//      Element rootElement = masterDocument.getRootElement();
+//
+//      Node articleUrlNode = masterDocument.selectSingleNode("//article/url");
+//      Node articleUrlEscapeNode = masterDocument.selectSingleNode("//article/url_escape");
+//      Node articleTitleNode = masterDocument.selectSingleNode("//article/title");
+//      Node articleFilePathNode = masterDocument.selectSingleNode("//article/file_path");
+//
+////      org.w3c.dom.Element articleTitleElement = doc.getElementById("title");
+////      System.out.println(doc.getFirstChild().getFirstChild().getNodeName() + ", articleTitleNode not a element");
+//
+//      articleUrlNode.setText(articleObject.getString("url"));
+//      articleUrlEscapeNode.setText(articleObject.getString("url_escape"));
+//      articleTitleNode.setText("<![CDATA[" + articleObject.getString("title") + "]]>");
+//
+//      articleFilePathNode.setText(file_path);
+//
+//      try (FileWriter fw = new FileWriter(_USER_ARTICLES_FOLDER + "/" + file_path, false)) {
+//        System.out.println(masterDocument.selectSingleNode("//article/file_path").getText() + ", articleFilePathNode.getText() 1");
+//        System.out.println(articleFilePathNode.getText() + ", articleFilePathNode.getText() 2");
+//        masterDocument.write(fw);
+//        return true;
+//      } catch (IOException e) {
+//        LOGGER.error("updateArticleXml##Writer xml file error", e.getCause());
+//        return false;
+//      }
+
+    } catch ( JDOMException | IOException e) {
+      LOGGER.error("updateArticleXml##Load xml file error", e.getCause());
+      return false;
     }
 
   }
@@ -220,7 +272,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
                                       String articleHtmlContent) {
 
     return new JsonObject()
-      .put("id", StringHelper.escape(articleTitle))
+      .put("id", articleUrl)
       .put("title", articleTitle)
       .put("name", StringHelper.escape(articleTitle))
       .put("name_base64", Base64.encode(StringHelper.escape(articleTitle)))
@@ -334,17 +386,19 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     JsonObject result = article.copy();
 
-    // update: url, url_escape, title, file_path
+    // update: url, url_escape, title, file_path, name, name_base64
+    String article_name = StringHelper.escape(article.getString("title"));
+    String url = "/articles/1513749666348/" + Base64.encode(article_name);
+    String url_escape = "/articles/1513749666348/" + article_name;
 
-    String url = "/articles/1513749666348/5oiR55qEX+esrDJfYXNkZlKeeshaAAaABCzzkuKrmlofnq6Bf";
-    String url_escape = "/articles/123123123/我的_第2_asdf_个文章";
-    String title = "666";//article.getString("title");
-    String file_path = "1513749666348_5oiR55qEX+esrDJfYXNkZlKeeshaAAaABCzzkuKrmlofnq6Bf.pending.xml";
-
+    result.put("id", url);
     result.put("url", url);
     result.put("url_escape", url_escape);
-    result.put("title", title);
-    result.put("file_path", file_path);
+    result.put("title", article.getString("title"));
+    result.put("name", article_name);
+    result.put("name_base64", Base64.encode(article_name));
+    result.put("file_path", "1513749666348_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
+    result.put("file_name", "1513749666348_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
 
     return result;
 
@@ -359,18 +413,10 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     String _new_article_name = StringHelper.escape(newArticle.getString("title"));
     String _new_article_name_base64 = Base64.encode(_new_article_name);
 
-
     Path _article_path = Paths.get(getFileFullName(timestamp, _article_file_name_base64, null));
     Path _new_filenpath = Paths.get(getFileFullName(timestamp, _new_article_name_base64, null));
 
-    _article_file_name = _article_file_name + "_";
-
-    System.out.println(_new_article_name_base64 + ", _new_article_name_base64");
-
     if (!_new_article_name.equals(_article_file_name)) {
-
-      System.out.println(_new_article_name + ", _new_article_name");
-      System.out.println(_article_file_name + ", _article_file_name");
 
       // 根据原文件复制新文件然后删除原文件
       try {
@@ -380,20 +426,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
         resultHandler.handle(Future.failedFuture(e.getCause()));
       }
 
-      if (Files.exists(_new_filenpath)) {
-
-//        JsonObject oldArticle = readArticleXml(_new_filenpath.toString());
-
-        // update: url, url_escape, title, file_path
-        JsonObject refreshdObject = refreshArticleObject(newArticle);
-
-        System.out.println(refreshdObject.encode() + ", refreshdObject");
-
-//        updateArticleXml(
-//          "/articles/1513749666348/5oiR55qEIOesrDIgXyAvICMgLiBhc2RmICMkJV4mKiooIUAjJCUlKSgqJmDkuKrmlofnq6A=.html",
-//          "", "", "");
-
-
 //        try {
 //          Files.delete(_article_path);
 //        } catch (IOException e) {
@@ -401,17 +433,26 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 //          resultHandler.handle(Future.failedFuture(e.getCause()));
 //        }
 
-      }
-
       _article_path = _new_filenpath;
       _article_file_name = _new_article_name;
       _article_file_name_base64 = _new_article_name_base64;
 
     }
 
-    File _the_update_file = _article_path.toFile();
+    if (Files.exists(_article_path)) {
 
-    if (!_the_update_file.exists()) {
+      // update: url, url_escape, title, file_path
+      JsonObject refreshdObject = refreshArticleObject(newArticle);
+
+      System.out.println(refreshdObject.encode() + ", refreshdObject");
+
+      if(!updateArticleXml(refreshdObject)) {
+        LOGGER.error("savePage##Update artile page failed");
+      } else {
+        System.out.println("update page success");
+      }
+
+    } else {
       resultHandler.handle(Future.succeededFuture(null));
       return this;
     }

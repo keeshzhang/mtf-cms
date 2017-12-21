@@ -7,7 +7,7 @@ export VERTX_CMD="run"
 
 # java -cp $(echo target/dependency/*.jar | tr ' ' ':'):"target/classes" io.vertx.core.Launcher run com.shenmao.vertx.starter.MainVerticle
 
-mvn compile dependency:copy-dependencies
+mvn clean compile dependency:copy-dependencies
 java \
   -cp  $(echo target/dependency/*.jar | tr ' ' ':'):"target/classes" \
   $LAUNCHER $VERTX_CMD $VERTICLE \

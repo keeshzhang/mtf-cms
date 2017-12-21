@@ -135,7 +135,7 @@ public class WikiDatabaseServiceVertxProxyHandler extends ProxyHandler {
           break;
         }
         case "savePage": {
-          service.savePage(json.getValue("id") == null ? null : (json.getLong("id").longValue()), (java.lang.String)json.getValue("title"), (java.lang.String)json.getValue("markdown"), createHandler(msg));
+          service.savePage(json.getValue("timestamp") == null ? null : (json.getLong("timestamp").longValue()), (java.lang.String)json.getValue("articleFileName"), (io.vertx.core.json.JsonObject)json.getValue("data"), createHandler(msg));
           break;
         }
         case "deletePage": {

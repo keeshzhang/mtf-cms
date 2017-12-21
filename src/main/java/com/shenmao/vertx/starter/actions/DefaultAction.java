@@ -100,29 +100,45 @@ public class DefaultAction implements Action {
   @Override
   public void pageUpdateHandler(RoutingContext context) {
 
-    String _page_id = context.request().getParam("id");
-    String _new_page = context.request().getParam("newPage");
+    Long timestamp = null;
+    String articleFileName = null;
 
-      JsonObject _params = new JsonObject()
-      .put("id", _page_id == null || _page_id.isEmpty() ? -1 : _page_id)
-      .put("title", context.request().getParam("title"))
-      .put("markdown", context.request().getParam("markdown"));
+    try {
+      timestamp = Long.parseLong(context.request().getParam("date"));
+      articleFileName = context.request().getParam("name");
+    } catch (Exception e) {
+      ContextResponse.notFound(context);
+      return;
+    }
 
 
-    Handler<AsyncResult<Long>> createHandler = reply -> {
+//    Handler<AsyncResult<Long>> createHandler = reply -> {
+//
+//      if (reply.succeeded()) {
+//
+//        if (reply.result() == null || reply.result() == -1L) {
+//          context.response().setStatusCode(400);
+//          // TODO should be going to error page
+//          //context.response().putHeader("Location", "/wiki/" + reply.result());
+//
+//          context.response().end();
+//        } else {
+//          ContextResponse.write(context, "/wiki/" + reply.result(), reply.result(), 301);
+//        }
+//
+//
+//      } else {
+//        context.fail(reply.cause());
+//      }
+//
+//    };
+//
+    Handler<AsyncResult<JsonObject>> updateHandler = reply -> {
 
       if (reply.succeeded()) {
 
-        if (reply.result() == null || reply.result() == -1L) {
-          context.response().setStatusCode(400);
-          // TODO should be going to error page
-          //context.response().putHeader("Location", "/wiki/" + reply.result());
-
-          context.response().end();
-        } else {
-          ContextResponse.write(context, "/wiki/" + reply.result(), reply.result(), 301);
-        }
-
+//        System.out.println(reply.result() + ", updateHandler");
+        ContextResponse.write(context, reply.result());
 
       } else {
         context.fail(reply.cause());
@@ -130,23 +146,12 @@ public class DefaultAction implements Action {
 
     };
 
-    Handler<AsyncResult<Void>> updateHandler = reply -> {
+    JsonObject data = new JsonObject();
 
-      if (reply.succeeded()) {
-
-        ContextResponse.write(context, "/wiki/" + _page_id, _page_id, 301);
-
-      } else {
-        context.fail(reply.cause());
-      }
-
-    };
-
-
-    if ("yes".equals(_new_page)) {
-      dbService.createPage(context.request().getParam("title"), context.request().getParam("markdown"), createHandler);
+    if (false) {
+//      dbService.createPage(articleFileName, context.request().getParam("markdown"), createHandler);
     } else {
-      dbService.savePage(Long.parseLong(_page_id), context.request().getParam("title"), context.request().getParam("markdown"), updateHandler);
+      dbService.savePage(timestamp, articleFileName, context.getBodyAsJson(), updateHandler);
     }
 
 
@@ -189,41 +194,30 @@ public class DefaultAction implements Action {
   @Override
   public void pageRenderingHandler(RoutingContext context) {
 
-    Long timestamp = Long.parseLong(context.request().getParam("date"));
-    String articleFileName = context.request().getParam("name");
+    Long timestamp = null;
+    String articleFileName = null;
+
+    try {
+      timestamp = Long.parseLong(context.request().getParam("date"));
+      articleFileName = context.request().getParam("name");
+    } catch (Exception e) {
+      ContextResponse.notFound(context);
+      return;
+    }
 
     dbService.fetchPage(timestamp, articleFileName, reply -> {
 
       if (reply.succeeded()) {
 
-        JsonObject body = reply.result();
-
-        System.out.println(body.encode() + " , body.encode()");
-
-
-
-
-
-        if (true) {
-
-          context.put("content", reply.result());
-
-//          context.put("id", body.getString("url_base64"));//body.getInteger("id"));
-//          context.put("title", body.getString("name")); //body.getString("title"));
-//          context.put("content", body.getString("file_name")); // Processor.process(rawContent));
-//          context.put("rawContent", body.getString("file_path"));
-
-          ContextResponse.write(context, "/pages/page_detail.ftl");
-
-
+        if (reply.result() != null) {
+          ContextResponse.write(context, reply.result(), "/pages/page_detail.ftl");
         } else {
-          ContextResponse.write(context, "/pages/not-found.ftl", 404);
+          ContextResponse.notFound(context);
         }
 
       } else {
         context.fail(reply.cause());
       }
-
 
     });
 

@@ -1,5 +1,6 @@
 package com.shenmao.vertx.starter.actions;
 
+import com.shenmao.vertx.starter.commons.encode.Base64;
 import com.shenmao.vertx.starter.database.WikiDatabaseService;
 import com.shenmao.vertx.starter.database.WikiDatabaseVerticle;
 import com.shenmao.vertx.starter.passport.JWTAuthenticated;
@@ -13,7 +14,6 @@ import io.vertx.ext.auth.User;
 import io.vertx.ext.auth.jwt.JWTAuth;
 import io.vertx.ext.auth.jwt.JWTOptions;
 import io.vertx.ext.web.RoutingContext;
-import org.apache.commons.codec.binary.Base64;
 
 public class NormalAction {
 

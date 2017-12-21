@@ -27,7 +27,7 @@
     <#list context.content>
       <ul>
         <#items as page>
-        <li><a href="${page["url_base64"]}">${page["name"]}, </a>
+        <li><a href="${page["url"]}">${page["name"]}, </a>
           <br />
           <span style="color: goldenrod;">${page["url"]}</span>
           <br />

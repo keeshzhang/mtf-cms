@@ -37,7 +37,7 @@ public interface WikiDatabaseService {
   WikiDatabaseService createPage(String title, String markdown, Handler<AsyncResult<Long>> resultHandler);
 
   @Fluent
-  WikiDatabaseService savePage(Long id, String title, String markdown, Handler<AsyncResult<Void>> resultHandler);
+  WikiDatabaseService savePage(Long timestamp, String articleFileName, JsonObject data, Handler<AsyncResult<JsonObject>> resultHandler);
 
   @Fluent
   WikiDatabaseService deletePage(Long id, Handler<AsyncResult<Void>> resultHandler);

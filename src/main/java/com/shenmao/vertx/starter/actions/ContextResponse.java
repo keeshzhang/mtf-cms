@@ -27,16 +27,23 @@ public class ContextResponse {
   }
 
 
+  public static void write(RoutingContext context, Object data) {
+    context.put("content", data);
+    write(context);
+  }
+
   public static void write(RoutingContext context) {
 
-    JsonObject response = null;
+    JsonObject response = new JsonObject().put("success", true);
 
-    try {
-      response = new JsonObject()
-        .put("success", true) .put("data", (List<JsonObject>)context.get("content"));
-    } catch (Exception e) {
-      response = new JsonObject()
-        .put("success", true) .put("data", (JsonObject)context.get("content"));
+    if (context.get("content") != null ) {
+      try {
+        response.put("data", (List<JsonObject>) context.get("content"));
+      } catch (Exception e) {
+        response.put("data", (JsonObject) context.get("content"));
+      }
+    } else {
+      response.put("data", new JsonObject());
     }
 
     String result = response.encode();
@@ -56,9 +63,16 @@ public class ContextResponse {
       context.response().putHeader("Content-Type", "application/json");
     }
 
-
     context.response().end(result);
 
+  }
+
+
+  public static void write(RoutingContext context, Object data, String view) {
+
+    context.put("content", data);
+
+    write(context, view);
   }
 
   public static void write(RoutingContext context, String view) {
@@ -89,6 +103,10 @@ public class ContextResponse {
     context.response().putHeader("Location", location);
     context.response().end(data + "");
 
+  }
+
+  public static void notFound(RoutingContext context) {
+    ContextResponse.write(context, "/pages/not-found.ftl", 404);
   }
 
 }

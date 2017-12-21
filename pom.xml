@@ -144,6 +144,20 @@
       <version>0.6.2</version>
     </dependency>
 
+    <!-- xml reader and writer -->
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <!-- xpath engine -->
+    <dependency>
+      <groupId>jaxen</groupId>
+      <artifactId>jaxen</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -173,6 +187,7 @@
               <arg>-AoutputDirectory=${project.basedir}/src/main</arg>
             </compilerArgs>
           </configuration>
+
         </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

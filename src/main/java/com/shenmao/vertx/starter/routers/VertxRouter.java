@@ -95,6 +95,8 @@ public class VertxRouter {
     router.get("/articles/:date/:name.xml").handler(_defaultAction::pageRenderingHandler);
     router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);
 
+    router.post("/articles/:date/:name.json").handler(_defaultAction::pageUpdateHandler);
+
     router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);
     router.post("/save").handler(_defaultAction::pageUpdateHandler);
     router.post("/create").handler(_defaultAction::pageCreateHandler);

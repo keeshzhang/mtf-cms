@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article>
 
-  <!-- 解码后的 url -->
+  <!-- base 64 编码后的 url -->
   <url>/articles/123123123/5oiR55qEIOesrDIgXyAvICMgLiBhc2RmICMkJV4mKiooIUAjJCUlKSgqJmDkuKrmlofnq6A=.html</url>
 
-  <!-- 编码后的 url -->
-  <url_base64>/articles/123123123/5oiR55qEIOesrDIgXyAvICMgLiBhc2RmICMkJV4mKiooIUAjJCUlKSgqJmDkuKrmlofnq6A=.html</url_base64>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/123123123/5oiR55qEIOesrDIgXyAvICMgLiBhc2RmICMkJV4mKiooIUAjJCUlKSgqJmDkuKrmlofnq6A=.html</url_escape>
 
   <!-- 文章标题 -->
   <title><![CDATA[我的 第2 _ / # . asdf #$%^&**(!@#$%%)(*&`个文章,]]></title>
+
+  <!--  原始文件路径 -->
+  <file_path>/articles/123123123_5oiR55qEIOesrDIgXyAvICMgLiBhc2RmICMkJV4mKiooIUAjJCUlKSgqJmDkuKrmlofnq6A=.pending.xml</file_path>
+
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
 
   <!-- 文章类型 -->
   <type>big data, cloud computing</type>
@@ -25,14 +31,8 @@
   <created_at>2018-12-20 13:12:00</created_at>
   <last_updated>2018-12-20 13:12:00</last_updated>
 
-  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
-  <article_status>pending</article_status>
-
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
   <channel>landing_page</channel>
-
-  <!--  原始文件路径 -->
-  <file_path>/articles/123123123_5oiR55qEIOesrDIgXyAvICMgLiBhc2RmICMkJV4mKiooIUAjJCUlKSgqJmDkuKrmlofnq6A=.pending.xml</file_path>
 
   <keywords>
     <![CDATA[ big data, cloud computing ]]>
@@ -40,7 +40,7 @@
   <description>
     <![CDATA[ Google's free service instantly translates words, phrases, and web pages between English and over 100 other languages ]]>
   </description>
-  <html>
+  <html_content>
     <![CDATA[ <h1>多语种即时在线翻译_百度翻译</h1> <div>some body here </div>]]>
-  </html>
+  </html_content>
 </article>

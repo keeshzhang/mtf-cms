@@ -36,10 +36,12 @@
 </head>
 <body>
 
+
+<#if context.isArticlePreview == "no" >
 <div style="background-color: black;color: darkgray;">
   <div class="container">
     <div class="row" style="text-align: right">
-      <div style="padding: .3em 0;width: 100%;">
+      <div style="padding: .625em 0;width: 100%;">
 
       <#if context.username == "anonymous user" >
         <a href="/login" style="color: whitesmoke;text-decoration: none;">登录</a>
@@ -53,6 +55,7 @@
     </div>
   </div>
 </div>
+</#if>
 
 <div class="row main_content" style="margin-top: 2.3em;">
 

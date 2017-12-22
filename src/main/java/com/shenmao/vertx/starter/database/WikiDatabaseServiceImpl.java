@@ -4,7 +4,7 @@ import com.shenmao.vertx.starter.commons.encode.Base64;
 import com.shenmao.vertx.starter.commons.files.FindFileVisitor;
 import com.shenmao.vertx.starter.commons.string.StringHelper;
 import com.shenmao.vertx.starter.configuration.SqlQueriesConfig;
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -29,10 +29,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,9 +44,9 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries;
   private final JDBCClient jdbcClient;
 
+  private static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
   private final String _USER_ARTICLES_FOLDER =
     (WikiDatabaseServiceImpl.class.getClassLoader().getResource("") + "user_articles/").substring(5);
-
 
   public WikiDatabaseServiceImpl(JDBCClient jdbcClient, HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries, Handler<AsyncResult<WikiDatabaseService>> resultHandler) {
 
@@ -113,7 +112,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
             ele.setContent(new org.jdom.Text(articleObject.getString("created_at")));
             break;
           case "last_updated":
-            ele.setContent(new org.jdom.Text(articleObject.getString("last_updated")));
+            ele.setContent(new org.jdom.Text(_DATE_FORMAT.format(Calendar.getInstance().getTime())));
             break;
           case "channel":
             ele.setContent(new org.jdom.Text(articleObject.getString("channel")));
@@ -414,10 +413,30 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     JsonObject result = article.copy();
 
+    final String _createAt = article.getString("created_at");
+
+
+    Date createAtDate = null;
+    Timestamp createAtTs = null;
+
+    try {
+      createAtDate = _DATE_FORMAT.parse(_createAt);
+      createAtTs = new Timestamp(createAtDate.getTime());
+    } catch (ParseException e) {
+
+      String defaultDate = "1970-01-01 00:00:00";
+
+      try {
+        createAtDate = _DATE_FORMAT.parse(defaultDate);
+        createAtTs = new Timestamp(createAtDate.getTime());
+      } catch (ParseException e1) { }
+
+    }
+
     // update: url, url_escape, title, file_path, name, name_base64
     String article_name = StringHelper.escape(article.getString("title"));
-    String url = "/articles/1513749666348/" + Base64.encode(article_name);
-    String url_escape = "/articles/1513749666348/" + article_name;
+    String url = "/articles/" + createAtTs.getTime() + "/" + Base64.encode(article_name);
+    String url_escape = "/articles/" + createAtTs.getTime() + "/" + article_name;
 
     result.put("id", url);
     result.put("url", url);
@@ -425,10 +444,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     result.put("title", article.getString("title"));
     result.put("name", article_name);
     result.put("name_base64", Base64.encode(article_name));
-    result.put("file_path", "1513749666348_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
-    result.put("file_name", "1513749666348_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
-
-    System.out.println(result.encode() + ", refreshArticleObject");
+    result.put("file_path", createAtTs.getTime() + "_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
+    result.put("file_name", createAtTs.getTime() + "_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
 
     return result;
 

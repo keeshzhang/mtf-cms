@@ -25,44 +25,13 @@
   <link href="/assets/stylessheets/font-awesome.min.css" rel="stylesheet">
   <link href="/assets/libs/codemirror-5.25.0.min.css" rel="stylesheet">
 
-  <style type="text/css">
+  <!-- site style -->
+  <link media="all" type="text/css" rel="stylesheet"
+        href="/assets/styles.css">
 
-    .button {
-      cursor: pointer;
-    }
-
-    .button, .button:hover, button:focus {
-      outline:0 !important;
-      -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-      -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
-    }
-
-    .button:active {
-      /*background-color: #3e8e41;*/
-      /*box-shadow: 0 5px #666;*/
-      transform: translateY(1px);
-      /*color:red !important;*/
-    }
-
-    /*a:link {color:#FF0000;}    !* unvisited link, same as regular 'a' *!*/
-    /*a:hover {color:#FF00FF;}   !* mouse over link *!*/
-    /*a:focus {color:#0000FF;}   !* link has focus *!*/
-    /*a:active {color:#0000FF;}  !* selected link *!*/
-    /*a:visited {color:#00FF00;} !* visited link *!*/
-
-
-
-    .error {
-      padding: .1em .5em;
-      margin-bottom: 0.5em;
-      background-color: burlywood;
-      color: brown;
-      display: inline-block;
-    }
-
-  </style>
+  <!-- angular bundle -->
   <link href="/assets/styles.bundle.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -83,4 +52,6 @@
     </div>
   </div>
 </div>
+
+<div class="row main_content" style="margin-top: 2.3em;">
 

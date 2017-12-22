@@ -18,6 +18,7 @@ import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.ext.web.codec.BodyCodec;
 import io.vertx.ext.web.templ.FreeMarkerTemplateEngine;
+import org.apache.xpath.operations.Bool;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -197,6 +198,8 @@ public class DefaultAction implements Action {
     Long timestamp = null;
     String articleFileName = null;
 
+    context.put("isArticlePreview", context.request().getParam("preview") != null ? "yes" : "no");
+
     try {
       timestamp = Long.parseLong(context.request().getParam("date"));
       articleFileName = context.request().getParam("name");
@@ -204,6 +207,7 @@ public class DefaultAction implements Action {
       ContextResponse.notFound(context);
       return;
     }
+
 
     dbService.fetchPage(timestamp, articleFileName, reply -> {
 

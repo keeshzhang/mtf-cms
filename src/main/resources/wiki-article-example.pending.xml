@@ -18,8 +18,8 @@
   <put_top>false</put_top>
   <!-- 是否置顶 -->
   <authors>keesh.zhang, chunhui2001</authors>
-  <created_at>2018-12-20 13:12:00</created_at>
-  <last_updated>2018-12-20 13:12:00</last_updated>
+  <created_at>1970-01-01 00:00:00</created_at>
+  <last_updated>1970-01-01 00:00:00</last_updated>
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
   <channel>landing_page</channel>
   <keywords><![CDATA[big data, cloud computing]]></keywords>

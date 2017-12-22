@@ -70,9 +70,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     String file_path = articleObject.getString("file_path");
 
-    SAXReader reader = new SAXReader();
     SAXBuilder builder = new SAXBuilder();
-
 
     try {
 
@@ -96,8 +94,38 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
           case "file_path":
             ele.setContent(new org.jdom.Text(articleObject.getString("file_path")));
             break;
+          case "article_status":
+            ele.setContent(new org.jdom.Text(articleObject.getString("article_status")));
+            break;
+          case "type":
+            ele.setContent(new org.jdom.Text(articleObject.getString("type")));
+            break;
+          case "tags":
+            ele.setContent(new org.jdom.Text(articleObject.getString("tags")));
+            break;
           case "put_top":
-            ele.setContent(new org.jdom.Text("false"));
+            ele.setContent(new org.jdom.Text(articleObject.getString("put_top")));
+            break;
+          case "authors":
+            ele.setContent(new org.jdom.Text(articleObject.getString("authors")));
+            break;
+          case "created_at":
+            ele.setContent(new org.jdom.Text(articleObject.getString("created_at")));
+            break;
+          case "last_updated":
+            ele.setContent(new org.jdom.Text(articleObject.getString("last_updated")));
+            break;
+          case "channel":
+            ele.setContent(new org.jdom.Text(articleObject.getString("channel")));
+            break;
+          case "keywords":
+            ele.setContent(new org.jdom.Text(articleObject.getString("keywords")));
+            break;
+          case "description":
+            ele.setContent(new org.jdom.Text(articleObject.getString("description")));
+            break;
+          case "html_content":
+            ele.setContent(new org.jdom.Text(articleObject.getString("html_content")));
             break;
           default:
 
@@ -400,6 +428,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     result.put("file_path", "1513749666348_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
     result.put("file_name", "1513749666348_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
 
+    System.out.println(result.encode() + ", refreshArticleObject");
+
     return result;
 
   }
@@ -418,7 +448,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     if (!_new_article_name.equals(_article_file_name)) {
 
-      // 根据原文件复制新文件然后删除原文件
+      // new article: 根据原文件复制新文件然后删除原文件
       try {
         Files.copy(_article_path, _new_filenpath, REPLACE_EXISTING);
       } catch (IOException e) {
@@ -426,12 +456,12 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
         resultHandler.handle(Future.failedFuture(e.getCause()));
       }
 
-//        try {
-//          Files.delete(_article_path);
-//        } catch (IOException e) {
-//          LOGGER.error("WikiDatabaseService savePage##Delete file error", e.getCause());
-//          resultHandler.handle(Future.failedFuture(e.getCause()));
-//        }
+      try {
+        Files.delete(_article_path);
+      } catch (IOException e) {
+        LOGGER.error("WikiDatabaseService savePage##Delete file error", e.getCause());
+        resultHandler.handle(Future.failedFuture(e.getCause()));
+      }
 
       _article_path = _new_filenpath;
       _article_file_name = _new_article_name;
@@ -443,8 +473,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
       // update: url, url_escape, title, file_path
       JsonObject refreshdObject = refreshArticleObject(newArticle);
-
-      System.out.println(refreshdObject.encode() + ", refreshdObject");
 
       if(!updateArticleXml(refreshdObject)) {
         LOGGER.error("savePage##Update artile page failed");

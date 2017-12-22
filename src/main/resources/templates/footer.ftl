@@ -9,8 +9,8 @@
 
   <script type="text/javascript" src="/assets/inline.bundle.js"></script>
   <script type="text/javascript" src="/assets/polyfills.bundle.js"></script>
-  <!-- script type="text/javascript" src="/assets/styles.bundle.js"></script -->
-  <script type="text/javascript" src="/assets/vendor.bundle.js"></script>
+  <#--<script type="text/javascript" src="/assets/vendor.bundle.js"></script>-->
+  <script type="text/javascript" src="/assets/scripts.bundle.js"></script>
   <script type="text/javascript" src="/assets/main.bundle.js"></script>
 
 </body>

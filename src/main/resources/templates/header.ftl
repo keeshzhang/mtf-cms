@@ -20,6 +20,10 @@
   <link media="all" type="text/css" rel="stylesheet"
         href="/assets/libs/foundation-flex-6.3.0.min.css">
 
+
+  <link href="/assets/stylessheets/froala_editor.pkgd.min.css" rel="stylesheet">
+  <link href="/assets/stylessheets/font-awesome.min.css" rel="stylesheet">
+
   <style type="text/css">
 
     .button {
@@ -57,6 +61,7 @@
     }
 
   </style>
+  <link href="/assets/styles.bundle.css" rel="stylesheet"/>
 </head>
 <body>
 

@@ -493,8 +493,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
       if(!updateArticleXml(refreshdObject)) {
         LOGGER.error("savePage##Update artile page failed");
-      } else {
-        System.out.println("update page success");
       }
 
     } else {

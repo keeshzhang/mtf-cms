@@ -78,7 +78,7 @@ public class DefaultAction implements Action {
 
         if (reply.succeeded()) {
 
-          context.put("title", "Wiki Home");
+          context.put("title", "最新咨讯");
           context.put("content", reply.result());
           context.put("canCreatePage", false);
 
@@ -212,6 +212,11 @@ public class DefaultAction implements Action {
     dbService.fetchPage(timestamp, articleFileName, reply -> {
 
       if (reply.succeeded()) {
+
+        context.put("seo", new JsonObject()
+                    .put("title", reply.result().getString("title"))
+                    .put("keywords", reply.result().getString("keywords"))
+                    .put("description", reply.result().getString("description")));
 
         if (reply.result() != null) {
           ContextResponse.write(context, reply.result(), "/pages/page_detail.ftl");

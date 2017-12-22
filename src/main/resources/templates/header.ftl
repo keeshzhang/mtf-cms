@@ -23,6 +23,7 @@
 
   <link href="/assets/stylessheets/froala_editor.pkgd.min.css" rel="stylesheet">
   <link href="/assets/stylessheets/font-awesome.min.css" rel="stylesheet">
+  <link href="/assets/libs/codemirror-5.25.0.min.css" rel="stylesheet">
 
   <style type="text/css">
 
@@ -61,7 +62,7 @@
     }
 
   </style>
-  <link href="/assets/styles.bundle.css" rel="stylesheet"/>
+  <link href="/assets/styles.bundle.css" rel="stylesheet">
 </head>
 <body>
 

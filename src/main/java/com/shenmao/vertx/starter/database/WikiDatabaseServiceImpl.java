@@ -119,13 +119,13 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
             ele.setContent(new org.jdom.Text(articleObject.getString("channel")));
             break;
           case "keywords":
-            ele.setContent(new org.jdom.Text(articleObject.getString("keywords")));
+            ele.setContent(new org.jdom.CDATA(articleObject.getString("keywords")));
             break;
           case "description":
-            ele.setContent(new org.jdom.Text(articleObject.getString("description")));
+            ele.setContent(new org.jdom.CDATA(articleObject.getString("description")));
             break;
           case "html_content":
-            ele.setContent(new org.jdom.Text(articleObject.getString("html_content")));
+            ele.setContent(new org.jdom.CDATA(articleObject.getString("html_content")));
             break;
           default:
 

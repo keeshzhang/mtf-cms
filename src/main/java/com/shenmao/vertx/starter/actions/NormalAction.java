@@ -43,8 +43,7 @@ public class NormalAction {
     context.put("title", "Login");
     context.put("error", error);
 
-    ContextResponse.write(context, "/login.ftl");
-
+    ContextResponse.write(context, new ActionView("/login.ftl"));
 
   }
 

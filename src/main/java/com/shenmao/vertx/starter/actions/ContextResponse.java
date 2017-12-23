@@ -8,6 +8,7 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.templ.FreeMarkerTemplateEngine;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContextResponse {
@@ -21,9 +22,9 @@ public class ContextResponse {
   private static final String templateFolderName = "templates";
 
 
-  public static void write(RoutingContext context, String view, Integer statusCode) {
+  public static void write(RoutingContext context, ActionView view, Integer statusCode) {
     context.response().setStatusCode(statusCode == null ? 200 : statusCode);
-    write(context, statusCode == 404 ? "/not-found.ftl" : view);
+    write(context, statusCode == 404 ? new ActionView("/not-found.ftl") : view);
   }
 
 
@@ -36,15 +37,7 @@ public class ContextResponse {
 
     JsonObject response = new JsonObject().put("success", true);
 
-    if (context.get("content") != null ) {
-      try {
-        response.put("data", (List<JsonObject>) context.get("content"));
-      } catch (Exception e) {
-        response.put("data", (JsonObject) context.get("content"));
-      }
-    } else {
-      response.put("data", new JsonObject());
-    }
+    response.put("data", context.get("content") != null ? (Object)context.get("content") : new JsonObject());
 
     String result = response.encode();
 
@@ -68,14 +61,19 @@ public class ContextResponse {
   }
 
 
-  public static void write(RoutingContext context, Object data, String view) {
+  public static void write(RoutingContext context, Object data, ActionView view) {
 
     context.put("content", data);
+
+    if (view == null) {
+      write(context);
+      return;
+    }
 
     write(context, view);
   }
 
-  public static void write(RoutingContext context, String view) {
+  public static void write(RoutingContext context, ActionView view) {
 
     if (original(context.request().uri()).endsWith(".json") || original(context.request().uri()).endsWith(".xml")) {
       write(context);
@@ -84,7 +82,7 @@ public class ContextResponse {
 
     context.put("username", context.user() != null && !context.user().principal().getString("username").isEmpty() ? context.user().principal().getString("username") : "anonymous user");
 
-    templateEngine.render(context, templateFolderName, view, ar -> {
+    templateEngine.render(context, templateFolderName, view.view(), ar -> {
 
       if (ar.succeeded()) {
         context.response().putHeader("Content-Type", "text/html");
@@ -97,6 +95,15 @@ public class ContextResponse {
 
   }
 
+
+  public static void redirect(RoutingContext context, String location, Integer statusCode) {
+
+    context.response().setStatusCode(statusCode == null ? 301 : statusCode);
+    context.response().putHeader("Location", location);
+    context.response().end();
+
+  }
+
   public static void write(RoutingContext context, String location, Object data, Integer statusCode) {
 
     context.response().setStatusCode(statusCode == null ? 301 : statusCode);
@@ -106,7 +113,7 @@ public class ContextResponse {
   }
 
   public static void notFound(RoutingContext context) {
-    ContextResponse.write(context, "/pages/not-found.ftl", 404);
+    ContextResponse.write(context, new ActionView("/pages/not-found.ftl"), 404);
   }
 
 }

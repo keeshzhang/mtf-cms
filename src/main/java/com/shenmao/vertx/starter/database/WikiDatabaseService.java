@@ -11,11 +11,15 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.jdbc.JDBCClient;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
 @ProxyGen
 public interface WikiDatabaseService {
+
+
+  public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
   static WikiDatabaseService create(JDBCClient jdbcClient, HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries, Handler<AsyncResult<WikiDatabaseService>> resultHandler) {
     return new WikiDatabaseServiceImpl(jdbcClient, sqlQueries, resultHandler);

@@ -10,10 +10,10 @@ public interface Action {
   }
   public void indexHandler(RoutingContext context);
   public void pageUpdateHandler(RoutingContext context);
+  public void pageModifyHandler(RoutingContext context, String action);
   public void pageDeletionHandler(RoutingContext context);
   public void pageCreateHandler(RoutingContext context);
   public void pageRenderingHandler(RoutingContext context);
-  public void backupHandler(RoutingContext context);
 
   public Vertx getVertx();
 

@@ -44,7 +44,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries;
   private final JDBCClient jdbcClient;
 
-  private static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  public static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
   private final String _USER_ARTICLES_FOLDER =
     (WikiDatabaseServiceImpl.class.getClassLoader().getResource("") + "user_articles/").substring(5);
 
@@ -114,6 +114,9 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
           case "last_updated":
             ele.setContent(new org.jdom.Text(_DATE_FORMAT.format(Calendar.getInstance().getTime())));
             break;
+          case "published_at":
+            ele.setContent(new org.jdom.Text(articleObject.getString("published_at")));
+            break;
           case "channel":
             ele.setContent(new org.jdom.Text(articleObject.getString("channel")));
             break;
@@ -134,34 +137,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
       XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
       xmlOutputter.output(doc, new FileOutputStream(_USER_ARTICLES_FOLDER + "/" + file_path));
-      return true;
 
-//        Document masterDocument = reader.read(_USER_ARTICLES_FOLDER + "/" + file_path);
-//      Element rootElement = masterDocument.getRootElement();
-//
-//      Node articleUrlNode = masterDocument.selectSingleNode("//article/url");
-//      Node articleUrlEscapeNode = masterDocument.selectSingleNode("//article/url_escape");
-//      Node articleTitleNode = masterDocument.selectSingleNode("//article/title");
-//      Node articleFilePathNode = masterDocument.selectSingleNode("//article/file_path");
-//
-////      org.w3c.dom.Element articleTitleElement = doc.getElementById("title");
-////      System.out.println(doc.getFirstChild().getFirstChild().getNodeName() + ", articleTitleNode not a element");
-//
-//      articleUrlNode.setText(articleObject.getString("url"));
-//      articleUrlEscapeNode.setText(articleObject.getString("url_escape"));
-//      articleTitleNode.setText("<![CDATA[" + articleObject.getString("title") + "]]>");
-//
-//      articleFilePathNode.setText(file_path);
-//
-//      try (FileWriter fw = new FileWriter(_USER_ARTICLES_FOLDER + "/" + file_path, false)) {
-//        System.out.println(masterDocument.selectSingleNode("//article/file_path").getText() + ", articleFilePathNode.getText() 1");
-//        System.out.println(articleFilePathNode.getText() + ", articleFilePathNode.getText() 2");
-//        masterDocument.write(fw);
-//        return true;
-//      } catch (IOException e) {
-//        LOGGER.error("updateArticleXml##Writer xml file error", e.getCause());
-//        return false;
-//      }
+      return true;
 
     } catch ( JDOMException | IOException e) {
       LOGGER.error("updateArticleXml##Load xml file error", e.getCause());
@@ -190,6 +167,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       String articleAuthors = null;
       String articleCreatedAt = null;
       String articleLastUpdated = null;
+      String articlePublishedAt = null;
       String articleChannel = null;
       String articleKeywords = null;
       String articleDescription = null;
@@ -206,6 +184,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       Node articleAuthorsNode = masterDocument.selectSingleNode("//article/authors");
       Node articlecreatedAtNode = masterDocument.selectSingleNode("//article/created_at");
       Node articleLastUpdatedNode = masterDocument.selectSingleNode("//article/last_updated");
+      Node articlePublishedNode = masterDocument.selectSingleNode("//article/published_at");
       Node articleChannelNode = masterDocument.selectSingleNode("//article/channel");
       Node articleKeywordsNode = masterDocument.selectSingleNode("//article/keywords");
       Node articledescriptionNode = masterDocument.selectSingleNode("//article/description");
@@ -222,15 +201,13 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       if(articleAuthorsNode != null) articleAuthors = articleAuthorsNode.getText();
       if(articlecreatedAtNode != null) articleCreatedAt = articlecreatedAtNode.getText();
       if(articleLastUpdatedNode != null) articleLastUpdated = articleLastUpdatedNode.getText();
+      if(articlePublishedNode != null) articlePublishedAt = articlePublishedNode.getText();
       if(articleChannelNode != null) articleChannel = articleChannelNode.getText();
       if(articleKeywordsNode != null) articleKeywords = articleKeywordsNode.getText();
       if(articledescriptionNode != null) articleDescription = articledescriptionNode.getText();
       if(articleHtmlContentNode != null) articleHtmlContent = articleHtmlContentNode.getText();
 
-      JsonObject restult = newArticleObject( articleUrl, articleUrlEscape, articleTitle, articleFilePath, articleStatus, articleType, articleTags, articlePutTop, articleAuthors, articleCreatedAt, articleLastUpdated, articleChannel, articleKeywords, articleDescription, articleHtmlContent);
-
-
-//      System.out.println(restult.encode() + ", readArticleXml##articleTitle");
+      JsonObject restult = newArticleObject( articleUrl, articleUrlEscape, articleTitle, articleFilePath, articleStatus, articleType, articleTags, articlePutTop, articleAuthors, articleCreatedAt, articleLastUpdated, articlePublishedAt, articleChannel, articleKeywords, articleDescription, articleHtmlContent);
 
       return restult;
 
@@ -242,11 +219,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   }
 
-  @Override
-  public WikiDatabaseService fetchAllPages(Handler<AsyncResult<List<JsonObject>>> resultHandler) {
+  private List<String> fetchAllArticleFiles() {
 
-//    boolean path_exists = Files.exists(FileSystems.getDefault().getPath(_USER_ARTICLES_FOLDER),
-//                            new LinkOption[]{LinkOption.NOFOLLOW_LINKS});
 
     Path startingDir = Paths.get(_USER_ARTICLES_FOLDER);
     FindFileVisitor findJavaVisitor = new FindFileVisitor(".xml");
@@ -259,24 +233,37 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
       Files.walkFileTree(startingDir, findJavaVisitor);
 
-      List<JsonObject> pages = findJavaVisitor.getFilenameList().stream()
-          .filter(file -> {
-            String _filename = file.replace(_USER_ARTICLES_FOLDER, "");
-            return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
-          }).map( file -> {
+      return findJavaVisitor.getFilenameList().stream()
+        .filter(file -> {
+          return 1==1;
+        })
+        .collect(Collectors.toList());
 
-            return readArticleXml(file);
-
-          })
-          .collect(Collectors.toList());
-
-        resultHandler.handle(Future.succeededFuture(pages));
 
 
     } catch (IOException e) {
-      resultHandler.handle(Future.failedFuture(e.getCause()));
+
     }
 
+    return null;
+
+  }
+
+  @Override
+  public WikiDatabaseService fetchAllPages(Handler<AsyncResult<List<JsonObject>>> resultHandler) {
+
+    List<JsonObject> pages = fetchAllArticleFiles().stream()
+      .filter(file -> {
+        String _filename = file.replace(_USER_ARTICLES_FOLDER, "");
+        return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
+      }).map( file -> {
+
+        return readArticleXml(file);
+
+      })
+      .collect(Collectors.toList());
+
+    resultHandler.handle(Future.succeededFuture(pages));
 
     return this;
 
@@ -293,6 +280,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
                                       String articleAuthors,
                                       String articleCreatedAt,
                                       String articleLastUpdated,
+                                      String articlePublishedNode,
                                       String articleChannel,
                                       String articleKeywords,
                                       String articledescription,
@@ -310,15 +298,18 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       .put("article_status", articleStatus)
       .put("put_top", articlePutTop)
       .put("authors", articleAuthors)
+      .put("created_at", articleCreatedAt)
       .put("last_updated", articleLastUpdated)
+      .put("published_at", articlePublishedNode)
       .put("channel", articleChannel)
       .put("html_content", articleHtmlContent)
-      .put("created_at", articleCreatedAt)
       .put("keywords", articleKeywords)
       .put("type", articleType)
       .put("tags", articleTags)
       .put("description", articledescription);
   }
+
+//  private B
 
   public WikiDatabaseService exists(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
 
@@ -334,7 +325,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
         Optional<JsonObject> fileOptional = fileStream.findFirst();
 
         try {
-          resultHandler.handle(Future.succeededFuture(fileOptional != null ? fileOptional.get() : null));
+          resultHandler.handle(Future.succeededFuture(fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null));
         } catch (Exception e) {
           resultHandler.handle(Future.failedFuture(e.getCause()));
         }
@@ -353,7 +344,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   public WikiDatabaseService fetchPage(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
 
     this.exists(id, articleName, reply -> {
-
       if (reply.succeeded()) {
         resultHandler.handle(Future.succeededFuture(reply.result()));
       } else {
@@ -398,11 +388,24 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   }
 
-  public String getFileFullName(Long timestamp, String articleFileName, String status) {
 
-    return _USER_ARTICLES_FOLDER + "/"
-          + timestamp + "_" + articleFileName + "."
-          + (status == null ? "pending" : status) + ".xml";
+  public String getFileFullName(Long timestamp, String articleFileName) {
+
+    Stream<String> fileStream = fetchAllArticleFiles().stream().filter(file -> {
+      return file.replaceAll(_USER_ARTICLES_FOLDER, "").startsWith(timestamp + "_" + articleFileName);
+    });
+
+    Optional<String> fileOptional = fileStream.findFirst();
+
+    String fileFullName = fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null;
+
+    return fileFullName;
+
+  }
+
+  public String getFileFullName(Long timestamp, String articleFileName, String status) {
+    return _USER_ARTICLES_FOLDER + "/" + timestamp + "_" +
+      (Base64.isBase64(articleFileName) ? articleFileName : Base64.encode(articleFileName)) + "." + status + ".xml";
   }
 
   public String getArticleUrl(Long timestamp, String articleFileNameBase64) {
@@ -446,6 +449,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     result.put("name_base64", Base64.encode(article_name));
     result.put("file_path", createAtTs.getTime() + "_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
     result.put("file_name", createAtTs.getTime() + "_" + Base64.encode(article_name) + "." + article.getString("article_status") + ".xml");
+    result.put("published_at", article.getString("published_at"));
 
     return result;
 
@@ -460,10 +464,13 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     String _new_article_name = StringHelper.escape(newArticle.getString("title"));
     String _new_article_name_base64 = Base64.encode(_new_article_name);
 
-    Path _article_path = Paths.get(getFileFullName(timestamp, _article_file_name_base64, null));
-    Path _new_filenpath = Paths.get(getFileFullName(timestamp, _new_article_name_base64, null));
+    Path _article_path = Paths.get(getFileFullName(timestamp, _article_file_name_base64));
+    Path _new_filenpath = Paths.get(getFileFullName(timestamp, _new_article_name_base64, newArticle.getString("article_status")));
 
-    if (!_new_article_name.equals(_article_file_name)) {
+    System.out.println(_article_path + ", _article_path");
+    System.out.println(_new_filenpath + ", _new_filenpath");
+
+    if (!_new_article_name.equals(_article_file_name) || !_article_path.equals(_new_filenpath)) {
 
       // new article: 根据原文件复制新文件然后删除原文件
       try {

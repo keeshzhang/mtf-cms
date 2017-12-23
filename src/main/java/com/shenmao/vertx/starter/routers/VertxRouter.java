@@ -93,15 +93,14 @@ public class VertxRouter {
     router.get("/articles/:date/:name.html").handler(_defaultAction::pageRenderingHandler);
     router.get("/articles/:date/:name.json").handler(_defaultAction::pageRenderingHandler);
     router.get("/articles/:date/:name.xml").handler(_defaultAction::pageRenderingHandler);
-    router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);
-
+    router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);    // must be under exetenion router
+//    router.get("/articles/:date/:name/c/:behaver").handler(_defaultAction::pageModifyHandler);
     router.post("/articles/:date/:name.json").handler(_defaultAction::pageUpdateHandler);
 
     router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);
     router.post("/save").handler(_defaultAction::pageUpdateHandler);
     router.post("/create").handler(_defaultAction::pageCreateHandler);
     router.post("/delete").handler(_defaultAction::pageDeletionHandler);
-    router.get("/backup").handler(_defaultAction::backupHandler);
 
     router.get("/login").handler(_normalAction::loginHandler);
     router.post("/login-auth").handler(new FormLoginHandlerImpl(_shiroAuth, "username", "password", "return_url", "/index"));

@@ -23,6 +23,8 @@ import org.apache.xpath.operations.Bool;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,7 +63,7 @@ public class DefaultAction implements Action {
             context.put("content", reply.result());
             context.put("canCreatePage", res.succeeded() && res.result());
 
-            ContextResponse.write(context, "/index.ftl");
+            ContextResponse.write(context, new ActionView("/index.ftl"));
 
           } else {
             context.fail(reply.cause());
@@ -82,7 +84,7 @@ public class DefaultAction implements Action {
           context.put("content", reply.result());
           context.put("canCreatePage", false);
 
-          ContextResponse.write(context, "/index.ftl");
+          ContextResponse.write(context, new ActionView("/index.ftl"));
 
         } else {
           context.fail(reply.cause());
@@ -92,9 +94,54 @@ public class DefaultAction implements Action {
 
     }
 
+  }
 
+  @Override
+  public void pageModifyHandler(RoutingContext context, String behaver) {
 
+    System.out.println(behaver + ", behaver 1");
+    if (!Arrays.asList(new String[] { "publish", "draft", "delete" }).contains(behaver)) {
+      ContextResponse.notFound(context);
+      return;
+    }
 
+    final Long timestamp = Long.parseLong(context.request().getParam("date"));
+    final String articleName = context.request().getParam("name");
+
+    dbService.fetchPage(timestamp, articleName, reply -> {
+
+      if (reply.succeeded() && reply.result() != null) {
+
+        String articleStatus = "pending";
+
+        switch (behaver) {
+          case "publish":
+            articleStatus = "published";
+            break;
+          case "draft":
+            articleStatus = "pending";
+            break;
+          case "delete":
+            articleStatus = "deleted";
+            break;
+          default:
+            articleStatus = "pending";
+        }
+
+        JsonObject artilce = reply.result();
+        artilce.put("article_status", articleStatus);
+        artilce.put("published_at", WikiDatabaseService.DATE_FORMAT.format(Calendar.getInstance().getTime()));
+
+        dbService.savePage(timestamp, articleName, artilce, res -> {
+          System.out.println(res.result().encode() + ", behaver");
+          ContextResponse.redirect(context, "/articles/" + timestamp + "/" + articleName, 301);
+        });
+
+      } else {
+        ContextResponse.notFound(context);
+      }
+
+    });
 
   }
 
@@ -112,51 +159,27 @@ public class DefaultAction implements Action {
       return;
     }
 
+    // dbService.createPage(articleFileName, context.request().getParam("markdown"), createHandler);
+    dbService.savePage(timestamp, articleFileName, context.getBodyAsJson(), updateHandler(context, null));
 
-//    Handler<AsyncResult<Long>> createHandler = reply -> {
-//
-//      if (reply.succeeded()) {
-//
-//        if (reply.result() == null || reply.result() == -1L) {
-//          context.response().setStatusCode(400);
-//          // TODO should be going to error page
-//          //context.response().putHeader("Location", "/wiki/" + reply.result());
-//
-//          context.response().end();
-//        } else {
-//          ContextResponse.write(context, "/wiki/" + reply.result(), reply.result(), 301);
-//        }
-//
-//
-//      } else {
-//        context.fail(reply.cause());
-//      }
-//
-//    };
-//
+  }
+
+  private Handler<AsyncResult<JsonObject>> updateHandler(RoutingContext context, ActionView view) {
+
     Handler<AsyncResult<JsonObject>> updateHandler = reply -> {
 
       if (reply.succeeded()) {
-
-//        System.out.println(reply.result() + ", updateHandler");
-        ContextResponse.write(context, reply.result());
-
+        ContextResponse.write(context, reply.result(), view);
       } else {
         context.fail(reply.cause());
       }
 
     };
 
-    JsonObject data = new JsonObject();
-
-    if (false) {
-//      dbService.createPage(articleFileName, context.request().getParam("markdown"), createHandler);
-    } else {
-      dbService.savePage(timestamp, articleFileName, context.getBodyAsJson(), updateHandler);
-    }
-
+    return updateHandler;
 
   }
+
 
   @Override
   public void pageDeletionHandler(RoutingContext context) {
@@ -198,7 +221,16 @@ public class DefaultAction implements Action {
     Long timestamp = null;
     String articleFileName = null;
 
-    context.put("isArticlePreview", context.request().getParam("preview") != null ? "yes" : "no");
+    String action = context.queryParams() != null && context.queryParams().contains("action") ? context.queryParams().get("action") : null;   // preview, pub, draft, del
+
+    System.out.println(action + ", action");
+
+    if (action != null && !action.equals("preview")) {
+      this.pageModifyHandler(context, action);
+      return;
+    }
+
+    context.put("isArticlePreview", action != null && action.equals("preview") ? "yes" : "no");
 
     try {
       timestamp = Long.parseLong(context.request().getParam("date"));
@@ -208,97 +240,25 @@ public class DefaultAction implements Action {
       return;
     }
 
-
     dbService.fetchPage(timestamp, articleFileName, reply -> {
 
-      if (reply.succeeded()) {
-
-        context.put("seo", new JsonObject()
-                    .put("title", reply.result().getString("title"))
-                    .put("keywords", reply.result().getString("keywords"))
-                    .put("description", reply.result().getString("description")));
-
-        if (reply.result() != null) {
-          ContextResponse.write(context, reply.result(), "/pages/page_detail.ftl");
-        } else {
-          ContextResponse.notFound(context);
-        }
-
-      } else {
-        context.fail(reply.cause());
+      if (!reply.succeeded() || reply.result() == null) {
+//        context.fail(reply.cause());
+        ContextResponse.notFound(context);
+        return;
       }
+
+      context.put("seo", new JsonObject()
+        .put("title", reply.result().getString("title"))
+        .put("keywords", reply.result().getString("keywords"))
+        .put("description", reply.result().getString("description")));
+
+      ContextResponse.write(context, reply.result(), new ActionView("/pages/page_detail.ftl"));
 
     });
 
   }
 
-  @Override
-  public void backupHandler(RoutingContext context) {
-
-    dbService.fetchAllPages(reply -> {
-
-      if (!reply.succeeded()) {
-        context.fail(reply.cause());
-      } else {
-
-        JsonObject filesListObject = new JsonObject();
-
-
-        JsonObject gistPayload = new JsonObject()
-              .put("files", filesListObject)
-              .put("description", "A wiki backup")
-              .put("public", true);
-
-        WebClient webClient = WebClient.create(_vertx,
-              new WebClientOptions().setSsl(true).setUserAgent("vert-x3"));
-
-        webClient.post(443, "api.github.com", "/gists")
-          .putHeader("Accept", "application/vnd.github.v3+json")
-          .putHeader("Content-Type", "application/json")
-          .as(BodyCodec.jsonObject())
-          .sendJsonObject(gistPayload, ar -> {
-
-          if (ar.succeeded()) {
-
-            HttpResponse<JsonObject> response = ar.result();
-
-            if (response.statusCode() == 201) {
-
-              context.put("backup_gist_url", response.body().getString("html_url"));
-
-              System.out.println(context.get("backup_gist_url") + " , backup_gist_url 777");
-              indexHandler(context);
-
-            } else {
-
-              StringBuilder message = new StringBuilder()
-                .append("Could not backup the wiki: ")
-                .append(response.statusMessage());
-
-              JsonObject body = response.body();
-
-              if (body != null) {
-                message.append(System.getProperty("line.separator")).append(body.encodePrettily());
-              }  {
-                LOGGER.error(message.toString());
-                context.fail(502);
-              }
-
-            }
-
-          } else {
-
-            LOGGER.error("Vert.x HTTP Client error", ar.cause());
-            context.fail(ar.cause());
-          }
-
-        });
-
-      }
-
-    });
-
-  }
 
 
   @Override

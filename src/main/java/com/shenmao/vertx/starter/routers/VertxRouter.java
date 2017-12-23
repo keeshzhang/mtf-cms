@@ -80,7 +80,7 @@ public class VertxRouter {
     router.route("/access_token").handler(JWTAuthHandler.create(_jwtAuth));
 
 
-//    router.route("/articles/*").handler(_authHandler);
+    router.route("/articles").handler(_authHandler);
     router.route("/wiki/*").handler(_authHandler);
     router.route("/save/*").handler(_authHandler);
     router.route("/create/*").handler(_authHandler);
@@ -95,6 +95,8 @@ public class VertxRouter {
     router.get("/articles/:date/:name.xml").handler(_defaultAction::pageRenderingHandler);
     router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);    // must be under exetenion router
 //    router.get("/articles/:date/:name/c/:behaver").handler(_defaultAction::pageModifyHandler);
+
+    router.post("/articles").handler(_defaultAction::pageCreateHandler);
     router.post("/articles/:date/:name.json").handler(_defaultAction::pageUpdateHandler);
 
     router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);

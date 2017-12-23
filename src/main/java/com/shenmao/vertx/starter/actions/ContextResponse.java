@@ -38,6 +38,7 @@ public class ContextResponse {
     JsonObject response = new JsonObject().put("success", true);
 
     response.put("data", context.get("content") != null ? (Object)context.get("content") : new JsonObject());
+    response.put("user", context.user() != null && !context.user().principal().getString("username").isEmpty() ? context.user().principal().getString("username") : null);
 
     String result = response.encode();
 
@@ -52,6 +53,7 @@ public class ContextResponse {
       }
 
     } else {
+
 
       context.response().putHeader("Content-Type", "application/json");
     }

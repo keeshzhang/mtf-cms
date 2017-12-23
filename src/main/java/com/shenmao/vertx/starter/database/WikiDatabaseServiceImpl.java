@@ -357,32 +357,34 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   }
 
   @Override
-  public WikiDatabaseService createPage(String title, String markdown, Handler<AsyncResult<Long>> resultHandler) {
+  public WikiDatabaseService createPage(String title, Handler<AsyncResult<JsonObject>> resultHandler) {
 
-    JsonArray _data = new JsonArray()
-      .add(title)
-      .add(markdown);
+    JsonObject _data = new JsonObject()
+      .put("name", StringHelper.escape(title))
+      .put("name_base64", Base64.encode(StringHelper.escape(title)));
 
-    jdbcClient.updateWithParams(sqlQueries.get(SqlQueriesConfig.SqlQuery.CREATE_PAGE), _data, res -> {
+    resultHandler.handle(Future.succeededFuture(_data));
 
-      if (res.succeeded()) {
-
-        fetchLastIncrementId( reply -> {
-          if (reply.succeeded())
-            resultHandler.handle(Future.succeededFuture(reply.result()));
-          else {
-            LOGGER.error("failed to get last increment id", reply.cause());
-            resultHandler.handle(Future.failedFuture(reply.cause()));
-          }
-        });
-
-      } else {
-
-        LOGGER.error("Database update error", res.cause());
-        resultHandler.handle(Future.failedFuture(res.cause()));
-      }
-
-    });
+//    jdbcClient.updateWithParams(sqlQueries.get(SqlQueriesConfig.SqlQuery.CREATE_PAGE), _data, res -> {
+//
+//      if (res.succeeded()) {
+//
+//        fetchLastIncrementId( reply -> {
+//          if (reply.succeeded())
+//            resultHandler.handle(Future.succeededFuture(reply.result()));
+//          else {
+//            LOGGER.error("failed to get last increment id", reply.cause());
+//            resultHandler.handle(Future.failedFuture(reply.cause()));
+//          }
+//        });
+//
+//      } else {
+//
+//        LOGGER.error("Database update error", res.cause());
+//        resultHandler.handle(Future.failedFuture(res.cause()));
+//      }
+//
+//    });
 
     return this;
 

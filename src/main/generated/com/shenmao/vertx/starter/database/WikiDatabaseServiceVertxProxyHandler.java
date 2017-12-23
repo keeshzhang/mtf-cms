@@ -131,7 +131,7 @@ public class WikiDatabaseServiceVertxProxyHandler extends ProxyHandler {
           break;
         }
         case "createPage": {
-          service.createPage((java.lang.String)json.getValue("title"), (java.lang.String)json.getValue("markdown"), createHandler(msg));
+          service.createPage((java.lang.String)json.getValue("title"), createHandler(msg));
           break;
         }
         case "savePage": {

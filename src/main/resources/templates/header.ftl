@@ -37,7 +37,7 @@
 <body>
 
 
-<#if !context.isArticlePreview?? || context.isArticlePreview == 'no' >
+<#if (!context.isArticlePreview?? || context.isArticlePreview == 'no') || 1==1 >
 <div style="background-color: black;color: darkgray;">
   <div class="container">
     <div class="row" style="text-align: right">

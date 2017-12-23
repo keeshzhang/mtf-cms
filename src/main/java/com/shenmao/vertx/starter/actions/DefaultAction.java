@@ -203,13 +203,15 @@ public class DefaultAction implements Action {
 
     String pageName = context.request().getParam("name");
 
-    dbService.createPage(pageName, EMPTY_PAGE_MARKDOWN, reply -> {
+    dbService.createPage(pageName, reply -> {
 
-      if (reply.succeeded()) {
-        ContextResponse.write(context, "/wiki/" + (long) reply.result(), (long) reply.result(), 301);
-      } else {
-        context.fail(reply.cause());
-      }
+      context.response().end(reply.result().encode());
+
+//      if (reply.succeeded()) {
+//        ContextResponse.write(context, "/wiki/" + (JsonObject) reply.result(), (long) reply.result(), 301);
+//      } else {
+//        context.fail(reply.cause());
+//      }
 
     });
 

@@ -8,11 +8,11 @@
   <div class="float-xs-right">
     <form class="form-inline" action="/create" method="post">
 
-      <div class="form-group" style="width: 50%;float: left;    transform: translateY(1px);">
-        <input type="text" class="form-control" id="name" name="name" placeholder="New page name">
+      <div class="form-group" style="width: 50%;float: left;">
+        <input style="    margin: 0;" type="text" class="form-control" id="name" name="name" placeholder="New page name">
       </div>
 
-      <button type="submit" class="basic-btn button" style="margin-left: .8em;">Create</button>
+      <button type="submit" class="basic-btn button" style="margin-left: .8em;margin-bottom: 0;">创建新文章</button>
     </form>
   </div>
 </#if>

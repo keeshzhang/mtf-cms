@@ -34,12 +34,17 @@
     <ul>
       <#items as page>
       <li>
-        <a style="color: black;" href="${page["url"]}">${page["title"]}, </a>
-
-        <#if context.username != "anonymous user" >
-          <span style="color: crimson;font-style: oblique;">${page["article_status_name"]}</span>
+        <#if page["article_status"] == "published" >
+          <span style="color: darkgoldenrod;font-size: .85em;">发布时间: ${page["published_at"]}, </span>
         </#if>
 
+        <#if context.username != "anonymous user" >
+          <span style="color: cadetblue;font-size: .85em;">最后更新时间: ${page["last_updated"]}</span>
+          <span style="color: crimson;font-style: oblique;font-size: .85em;">${page["article_status_name"]}</span>
+        </#if>
+
+        <br />
+        <a style="color: lightseagreen;font-size: 1.2em;font-weight: bold;" href="${page["url"]}">${page["title"]}</a>
 
         <br />
         <p style="color:dimgray;">${page["description"]}</p>

@@ -70,14 +70,11 @@ public class DefaultAction implements Action {
           })
           .filter(a -> {
 
-            Boolean isDisplay = null;
+            Boolean isDisplay = context.user() != null;
 
-            if (context.user() != null) {
-              isDisplay = true;
-            } else isDisplay = a.getString("article_status").equals("published");
-
-
-            System.out.println(isDisplay + ", isDisplay" + "a.getString(\"article_status\")");
+            if (!isDisplay) {
+              isDisplay = a.getString("article_status").equals("published");
+            }
 
             return isDisplay;
 
@@ -98,15 +95,7 @@ public class DefaultAction implements Action {
             }
 
             return a;
-          })
-          .collect(Collectors.toList());
-
-        System.out.print(list.size() + ", sie");
-
-
-        list.sort((a1, a2) ->  {
-          return a2.getString("last_updated").compareTo(a1.getString("last_updated"));
-        });
+          }).collect(Collectors.toList());
 
         list.forEach(o -> System.out.println(o.getString("last_updated") + "," + o.getString("title")));
 

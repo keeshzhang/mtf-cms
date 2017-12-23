@@ -39,7 +39,7 @@
 
 
       <div style="text-align: right">
-        <button type="submit" class="basic-btn button" style="padding: .6em 1.35em .6em 1.35em;">登录</button>
+        <button type="submit" class="basic-btn button" style="padding: .625em 1.625em .625em 1.625em">登录</button>
       </div>
     </div>
   </form>

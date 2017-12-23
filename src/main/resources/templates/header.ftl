@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="zh-CN">
 <head>
   <base href="/">
@@ -17,6 +18,9 @@
   </#if>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- cssset -->
+  <link media="all" type="text/css" rel="stylesheet"
+        href="/assets/libs/normalize-7.0.0.css">
   <link media="all" type="text/css" rel="stylesheet"
         href="/assets/libs/fonts-family-roboto.css">
   <!--Font Icons: https://material.io/icons/-->

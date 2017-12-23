@@ -349,6 +349,11 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   @Override
   public WikiDatabaseService createPage(Long timestamp, String title, Handler<AsyncResult<JsonObject>> resultHandler) {
 
+    if (title == null || title.isEmpty()) {
+      resultHandler.handle(Future.succeededFuture(null));
+      return null;
+    }
+
     String _new_filenpath_base64 = Paths.get(getFileFullName(timestamp, Base64.encode(StringHelper.escape(title)), "pending")).toFile().getPath();
 //    String _new_filenpath_escape = Paths.get(getFileFullName(timestamp, StringHelper.escape(title), "pending", false)).toFile().getPath();
 

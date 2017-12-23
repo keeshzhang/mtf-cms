@@ -40,16 +40,21 @@
 <#if (!context.isArticlePreview?? || context.isArticlePreview == 'no') || 1==1 >
 <div style="background-color: black;color: darkgray;">
   <div class="container">
-    <div class="row" style="text-align: right">
-      <div style="padding: .625em 0;width: 100%;">
+    <div class="row" style="position: relative;line-height: 2.5em;">
 
-      <#if context.username == "anonymous user" >
-        <a href="/login" style="color: whitesmoke;text-decoration: none;">登录</a>
-      </#if>
+      <div class="top-menu-left">
+        <a href="/" style="color: whitesmoke;text-decoration: none;display: inline-block;padding: 0 .5em;background-color: darkcyan;">首页</a>
+      </div>
 
-      <#if context.username != "anonymous user" >
-        <a href="/logout" role="button" aria-pressed="true" style="color: whitesmoke;text-decoration: none;">${context.username}</a>
-      </#if>
+      <div class="top-menu-right" style="right: 0;position: absolute;">
+
+        <#if context.username == "anonymous user" >
+          <a href="/login" style="color: whitesmoke;text-decoration: none;">登录</a>
+        </#if>
+
+        <#if context.username != "anonymous user" >
+          <a href="/logout" role="button" aria-pressed="true" style="color: whitesmoke;text-decoration: none;">${context.username}</a>
+        </#if>
 
       </div>
     </div>

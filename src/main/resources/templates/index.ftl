@@ -25,7 +25,7 @@
     </div>
   </#if>
 
-  <h2 class="display-4" style="margin-top: .6em;font-size: 2em;">${context.title}</h2>
+  <h2 class="display-4" style="margin-top: .6em;font-size: 2em;color: burlywood;font-style: oblique;">${context.title}</h2>
 </div>
 
 <div style="width:100%;">
@@ -33,11 +33,16 @@
   <#list context.content>
     <ul>
       <#items as page>
-      <li><a href="${page["url"]}">${page["name"]}, </a>
+      <li>
+        <a style="color: black;" href="${page["url"]}">${page["title"]}, </a>
+
+        <#if context.username != "anonymous user" >
+          <span style="color: crimson;font-style: oblique;">${page["article_status_name"]}</span>
+        </#if>
+
+
         <br />
-        <span style="color: goldenrod;">${page["url"]}</span>
-        <br />
-        <span style="color: goldenrod;">${page["file_path"]}</span>
+        <p style="color:dimgray;">${page["description"]}</p>
       </li>
       </#items>
     </ul>

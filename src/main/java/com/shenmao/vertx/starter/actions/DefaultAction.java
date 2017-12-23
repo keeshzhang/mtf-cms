@@ -23,10 +23,7 @@ import org.apache.xpath.operations.Bool;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.shenmao.vertx.starter.database.WikiDatabaseVerticle.EMPTY_PAGE_MARKDOWN;
@@ -56,54 +53,82 @@ public class DefaultAction implements Action {
     context.put("title", "最新咨讯");
     context.put("error", isError);
 
-    if (context.user() != null) {
-
-      context.user().isAuthorized(ShiroRealm.Permission.CREATE.toString(),res -> {
-
-        dbService.fetchAllPages(reply -> {
-
-          if (reply.succeeded()) {
-
-            context.put("content", reply.result());
-            context.put("canCreatePage", res.succeeded() && res.result());
-            context.put("error", isError);
-
-            ContextResponse.write(context, new ActionView("/index.ftl"));
-
-          } else {
-            context.fail(reply.cause());
-          }
-
-        });
-
-
-      });
-
-    } else {
-
-      dbService.fetchAllPages(reply -> {
-
-        if (reply.succeeded()) {
-
-          context.put("content", reply.result());
-          context.put("canCreatePage", false);
-
-          ContextResponse.write(context, new ActionView("/index.ftl"));
-
-        } else {
-          context.fail(reply.cause());
-        }
-
-      });
-
-    }
+    dbService.fetchAllPages(indexResponseHandler(context, new ActionView("/index.ftl")));
 
   }
+
+
+  private Handler<AsyncResult<List<JsonObject>>> indexResponseHandler(RoutingContext context, ActionView view) {
+
+    Handler<AsyncResult<List<JsonObject>>> updateHandler = reply -> {
+
+      if (reply.succeeded()) {
+
+        List<JsonObject> list = reply.result().stream()
+          .filter(a -> {
+            return !a.getString("article_status").equals("deleted");
+          })
+          .filter(a -> {
+
+            Boolean isDisplay = null;
+
+            if (context.user() != null) {
+              isDisplay = true;
+            } else isDisplay = a.getString("article_status").equals("published");
+
+
+            System.out.println(isDisplay + ", isDisplay" + "a.getString(\"article_status\")");
+
+            return isDisplay;
+
+          }).map(a -> {
+
+            switch (a.getString("article_status")) {
+              case "published":
+                a.put("article_status_name", "已发布");
+                break;
+              case "pending":
+                a.put("article_status_name", "未发布");
+                break;
+              case "deleted":
+                a.put("article_status_name", "已删除");
+                break;
+              default:
+                a.put("article_status_name", "未知");
+            }
+
+            return a;
+          })
+          .collect(Collectors.toList());
+
+        System.out.print(list.size() + ", sie");
+
+
+        list.sort((a1, a2) ->  {
+          return a2.getString("last_updated").compareTo(a1.getString("last_updated"));
+        });
+
+        list.forEach(o -> System.out.println(o.getString("last_updated") + "," + o.getString("title")));
+
+        context.put("content", list);
+        context.put("canCreatePage", context.user() != null);
+
+        ContextResponse.write(context, new ActionView("/index.ftl"));
+
+      } else {
+        context.fail(reply.cause());
+      }
+
+    };
+
+    return updateHandler;
+
+  }
+
 
   @Override
   public void pageModifyHandler(RoutingContext context, String behaver) {
 
-    System.out.println(behaver + ", behaver 1");
     if (!Arrays.asList(new String[] { "publish", "draft", "delete" }).contains(behaver)) {
       ContextResponse.notFound(context);
       return;
@@ -137,7 +162,6 @@ public class DefaultAction implements Action {
         artilce.put("published_at", WikiDatabaseService.DATE_FORMAT.format(Calendar.getInstance().getTime()));
 
         dbService.savePage(timestamp, articleName, artilce, res -> {
-          System.out.println(res.result().encode() + ", behaver");
           ContextResponse.redirect(context, "/articles/" + timestamp + "/" + articleName, 301);
         });
 
@@ -209,11 +233,9 @@ public class DefaultAction implements Action {
 
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-    dbService.createPage(timestamp.getTime(), pageName, reply -> {
+    dbService.createPage(timestamp.getTime(), pageName.trim(), reply -> {
 
-      System.out.println(reply.result() + ", pageCreateHandler");
-
-      if (reply.succeeded()) {
+      if (reply.succeeded() && reply.result() != null) {
         ContextResponse.redirect(context, reply.result().getString("url"), 301);
       } else {
         ContextResponse.redirect(context, "/index?error", 303);
@@ -239,8 +261,6 @@ public class DefaultAction implements Action {
     String articleFileName = null;
 
     String action = context.queryParams().contains("action") ? context.queryParams().get("action") : null;   // preview, pub, draft, del
-
-    System.out.println(action + ", action");
 
     if (action != null && !action.equals("preview")) {
       this.pageModifyHandler(context, action);

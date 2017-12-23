@@ -51,6 +51,11 @@ public class DefaultAction implements Action {
   @Override
   public void indexHandler(RoutingContext context) {
 
+    String isError = context.queryParams().contains("error") ? "yes" : "no";
+
+    context.put("title", "最新咨讯");
+    context.put("error", isError);
+
     if (context.user() != null) {
 
       context.user().isAuthorized(ShiroRealm.Permission.CREATE.toString(),res -> {
@@ -59,9 +64,9 @@ public class DefaultAction implements Action {
 
           if (reply.succeeded()) {
 
-            context.put("title", "最新咨讯");
             context.put("content", reply.result());
             context.put("canCreatePage", res.succeeded() && res.result());
+            context.put("error", isError);
 
             ContextResponse.write(context, new ActionView("/index.ftl"));
 
@@ -80,7 +85,6 @@ public class DefaultAction implements Action {
 
         if (reply.succeeded()) {
 
-          context.put("title", "最新咨讯");
           context.put("content", reply.result());
           context.put("canCreatePage", false);
 
@@ -203,9 +207,20 @@ public class DefaultAction implements Action {
 
     String pageName = context.request().getParam("name");
 
-    dbService.createPage(pageName, reply -> {
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-      context.response().end(reply.result().encode());
+    dbService.createPage(timestamp.getTime(), pageName, reply -> {
+
+      System.out.println(reply.result() + ", pageCreateHandler");
+
+      if (reply.succeeded()) {
+        ContextResponse.redirect(context, reply.result().getString("url"), 301);
+      } else {
+        ContextResponse.redirect(context, "/index?error", 303);
+      }
+
+//      context.response().end(reply.result().encode());
+
 
 //      if (reply.succeeded()) {
 //        ContextResponse.write(context, "/wiki/" + (JsonObject) reply.result(), (long) reply.result(), 301);
@@ -223,7 +238,7 @@ public class DefaultAction implements Action {
     Long timestamp = null;
     String articleFileName = null;
 
-    String action = context.queryParams() != null && context.queryParams().contains("action") ? context.queryParams().get("action") : null;   // preview, pub, draft, del
+    String action = context.queryParams().contains("action") ? context.queryParams().get("action") : null;   // preview, pub, draft, del
 
     System.out.println(action + ", action");
 

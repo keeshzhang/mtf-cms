@@ -19,7 +19,7 @@ import java.util.List;
 public interface WikiDatabaseService {
 
 
-  public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
   static WikiDatabaseService create(JDBCClient jdbcClient, HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries, Handler<AsyncResult<WikiDatabaseService>> resultHandler) {
     return new WikiDatabaseServiceImpl(jdbcClient, sqlQueries, resultHandler);
@@ -38,7 +38,7 @@ public interface WikiDatabaseService {
   WikiDatabaseService fetchPage(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler);
 
   @Fluent
-  WikiDatabaseService createPage(String title, Handler<AsyncResult<JsonObject>> resultHandler);
+  WikiDatabaseService createPage(Long timestamp, String title, Handler<AsyncResult<JsonObject>> resultHandler);
 
   @Fluent
   WikiDatabaseService savePage(Long timestamp, String articleFileName, JsonObject data, Handler<AsyncResult<JsonObject>> resultHandler);

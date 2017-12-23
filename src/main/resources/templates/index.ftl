@@ -4,18 +4,26 @@
 
 <div style="margin-top: 1em !important;width:100%;">
 
-<#if context.canCreatePage>
-  <div class="float-xs-right">
-    <form class="form-inline" action="/create" method="post">
-
-      <div class="form-group" style="width: 50%;float: left;">
-        <input style="    margin: 0;" type="text" class="form-control" id="name" name="name" placeholder="New page name">
+  <#if context.error == "yes">
+    <div class="form-group">
+      <div class="alert alert-danger"  style="font-size: .7em;padding: .3em 0.8em;background-color: brown;display: inline-block;margin-bottom: 1em;color: white;" role="alert">
+        错误: 文章名字不能为空、文章名字重复或文章名字太长!
       </div>
+    </div>
+  </#if>
 
-      <button type="submit" class="basic-btn button" style="margin-left: .8em;margin-bottom: 0;">创建新文章</button>
-    </form>
-  </div>
-</#if>
+  <#if context.canCreatePage>
+    <div class="float-xs-right">
+      <form class="form-inline" action="/create" method="post">
+
+        <div class="form-group" style="width: 50%;float: left;">
+          <input style="    margin: 0;" type="text" class="form-control" id="name" name="name" placeholder="New page name">
+        </div>
+
+        <button type="submit" class="basic-btn button" style="margin-left: .8em;margin-bottom: 0;">创建新文章</button>
+      </form>
+    </div>
+  </#if>
 
   <h2 class="display-4" style="margin-top: .6em;font-size: 2em;">${context.title}</h2>
 </div>

@@ -16,8 +16,12 @@ import java.util.List;
 
 public class HttpGets {
 
-
   public static HttpResult execute(String url) {
+    return execute(url, "utf-8");
+  }
+
+
+  public static HttpResult execute(String url, String encode) {
 
     HttpResult result = new HttpResult() ;
 
@@ -28,8 +32,9 @@ public class HttpGets {
 
       HttpResponse httpResponse = httpClient.execute(httpGet);
 
+
       BufferedReader rd = new BufferedReader(
-        new InputStreamReader(httpResponse.getEntity().getContent()));
+        new InputStreamReader(httpResponse.getEntity().getContent(), encode));
 
       StringBuffer buffer = new StringBuffer();
 

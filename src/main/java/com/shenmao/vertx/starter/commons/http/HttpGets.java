@@ -1,40 +1,35 @@
-package com.shenmao.vertx.starter.commons;
+package com.shenmao.vertx.starter.commons.http;
 
-import org.apache.http.*;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
-public class HttpPosts {
+public class HttpGets {
 
-  public static HttpResult execute(String url, BasicNameValuePair... params) {
+  public static HttpResult execute(String url) {
+    return execute(url, "utf-8");
+  }
+
+
+  public static HttpResult execute(String url, String encode) {
 
     HttpResult result = new HttpResult() ;
 
     try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
 
-      List<NameValuePair> urlParameters = new ArrayList<>();
 
-      for (BasicNameValuePair p : params) {
-        urlParameters.add(p);
-      }
+      HttpGet httpGet = new HttpGet(url);
 
+      HttpResponse httpResponse = httpClient.execute(httpGet);
 
-      org.apache.http.client.methods.HttpPost httpPost = new org.apache.http.client.methods.HttpPost(url);
-
-      httpPost.setEntity(new UrlEncodedFormEntity(urlParameters));
-      HttpResponse httpResponse = httpClient.execute(httpPost);
 
       BufferedReader rd = new BufferedReader(
-        new InputStreamReader(httpResponse.getEntity().getContent()));
+        new InputStreamReader(httpResponse.getEntity().getContent(), encode));
 
       StringBuffer buffer = new StringBuffer();
 
@@ -55,6 +50,5 @@ public class HttpPosts {
     return result;
 
   }
-
 
 }

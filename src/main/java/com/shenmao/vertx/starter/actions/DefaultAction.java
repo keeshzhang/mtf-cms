@@ -97,7 +97,7 @@ public class DefaultAction implements Action {
             return a;
           }).collect(Collectors.toList());
 
-        list.forEach(o -> System.out.println(o.getString("last_updated") + "," + o.getString("title")));
+//        list.forEach(o -> System.out.println(o.getString("last_updated") + "," + o.getString("title")));
 
         context.put("content", list);
         context.put("canCreatePage", context.user() != null);
@@ -218,11 +218,20 @@ public class DefaultAction implements Action {
   @Override
   public void pageCreateHandler(RoutingContext context) {
 
-    String pageName = context.request().getParam("name");
+    JsonObject articleObject = new JsonObject()
+            .put("title", context.request().getParam("article_title"))
+            .put("keywords", context.request().getParam("article_keywords"))
+            .put("description", context.request().getParam("article_description"))
+            .put("html_content", context.request().getParam("article_html_content"))
+            .put("source_from", context.request().getParam("source_from"))
+            .put("article_from_url", context.request().getParam("article_from_url"));
+
+    System.out.println(articleObject.encode() + ", pageCreateHandler");
+
 
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-    dbService.createPage(timestamp.getTime(), pageName.trim(), reply -> {
+    dbService.createPage(timestamp.getTime(), articleObject, reply -> {
 
       if (reply.succeeded() && reply.result() != null) {
         ContextResponse.redirect(context, reply.result().getString("url"), 301);

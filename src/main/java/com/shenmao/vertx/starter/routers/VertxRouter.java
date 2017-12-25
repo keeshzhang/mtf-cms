@@ -93,16 +93,22 @@ public class VertxRouter {
     router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);    // must be under exetenion router
 //    router.get("/articles/:date/:name/c/:behaver").handler(_defaultAction::pageModifyHandler);
 
-    router.post("/articles").handler(_defaultAction::pageCreateHandler);
-    router.post("/articles/:date/:name.json").handler(_defaultAction::pageUpdateHandler);
+    // curl -X POST -v -u keesh:keesh -F name=666 http://localhost:9180/create.json
+    router.post("/articles.json").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
+    router.post("/articles").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
 
-    router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);
-    router.post("/save").handler(_defaultAction::pageUpdateHandler);
+    // curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:9180/save.json
+    router.post("/articles/:date/:name.json").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageUpdateHandler);
 
-    // curl -X POST -v -u keesh:keesh -F name=666 http://localhost:9180/create
-    router.post("/create").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
+//    router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);
 
-    router.post("/delete").handler(_defaultAction::pageDeletionHandler);
+//    router.post("/save.json").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageUpdateHandler);
+//    router.post("/save").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageUpdateHandler);
+//
+//    router.post("/create.json").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
+//    router.post("/create").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
+
+//    router.post("/delete").handler(_defaultAction::pageDeletionHandler);
 
     router.get("/login").handler(_normalAction::loginHandler);
 

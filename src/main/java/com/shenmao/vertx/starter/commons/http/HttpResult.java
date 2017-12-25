@@ -1,4 +1,4 @@
-package com.shenmao.vertx.starter.commons;
+package com.shenmao.vertx.starter.commons.http;
 
 public class HttpResult {
 

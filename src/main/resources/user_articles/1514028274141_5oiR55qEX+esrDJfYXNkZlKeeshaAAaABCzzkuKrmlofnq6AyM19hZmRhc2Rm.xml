@@ -26,6 +26,10 @@
   <published_at />
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
   <channel />
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
   <keywords><![CDATA[我的_第2_asdf_个文章23,]]></keywords>
   <description><![CDATA[我的_第2_asdf_个文章23,]]></description>
   <html_content><![CDATA[<h2>我的_第2_asdf_个文章23,</h2>]]></html_content>

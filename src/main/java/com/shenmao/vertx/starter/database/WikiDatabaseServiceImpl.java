@@ -122,6 +122,12 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
           case "channel":
             ele.setContent(new org.jdom.Text(articleObject.getString("channel")));
             break;
+          case "source_from":
+            ele.setContent(new org.jdom.Text(articleObject.getString("source_from")));
+            break;
+          case "article_from_url":
+            ele.setContent(new org.jdom.Text(articleObject.getString("article_from_url")));
+            break;
           case "keywords":
             ele.setContent(new org.jdom.CDATA(articleObject.getString("keywords")));
             break;
@@ -171,6 +177,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       String articleLastUpdated = null;
       String articlePublishedAt = null;
       String articleChannel = null;
+      String articleSourceFrom = null;
+      String articleArticleFromUrl = null;
       String articleKeywords = null;
       String articleDescription = null;
       String articleHtmlContent = null;
@@ -188,6 +196,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       Node articleLastUpdatedNode = masterDocument.selectSingleNode("//article/last_updated");
       Node articlePublishedNode = masterDocument.selectSingleNode("//article/published_at");
       Node articleChannelNode = masterDocument.selectSingleNode("//article/channel");
+      Node articleSourceFromNode = masterDocument.selectSingleNode("//article/source_from");
+      Node articleArticleFromUrlNode = masterDocument.selectSingleNode("//article/article_from_url");
       Node articleKeywordsNode = masterDocument.selectSingleNode("//article/keywords");
       Node articledescriptionNode = masterDocument.selectSingleNode("//article/description");
       Node articleHtmlContentNode = masterDocument.selectSingleNode("//article/html_content");
@@ -205,11 +215,13 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       if(articleLastUpdatedNode != null) articleLastUpdated = articleLastUpdatedNode.getText();
       if(articlePublishedNode != null) articlePublishedAt = articlePublishedNode.getText();
       if(articleChannelNode != null) articleChannel = articleChannelNode.getText();
+      if(articleSourceFromNode != null) articleSourceFrom = articleSourceFromNode.getText();
+      if(articleArticleFromUrlNode != null) articleArticleFromUrl = articleArticleFromUrlNode.getText();
       if(articleKeywordsNode != null) articleKeywords = articleKeywordsNode.getText();
       if(articledescriptionNode != null) articleDescription = articledescriptionNode.getText();
       if(articleHtmlContentNode != null) articleHtmlContent = articleHtmlContentNode.getText();
 
-      JsonObject restult = newArticleObject( articleUrl, articleUrlEscape, articleTitle, articleFilePath, articleStatus, articleType, articleTags, articlePutTop, articleAuthors, articleCreatedAt, articleLastUpdated, articlePublishedAt, articleChannel, articleKeywords, articleDescription, articleHtmlContent);
+      JsonObject restult = newArticleObject( articleUrl, articleUrlEscape, articleTitle, articleFilePath, articleStatus, articleType, articleTags, articlePutTop, articleAuthors, articleCreatedAt, articleLastUpdated, articlePublishedAt, articleChannel, articleKeywords, articleDescription, articleHtmlContent, articleSourceFrom, articleArticleFromUrl);
 
       return restult;
 
@@ -274,7 +286,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
                                       String articleChannel,
                                       String articleKeywords,
                                       String articledescription,
-                                      String articleHtmlContent) {
+                                      String articleHtmlContent, String sourceFrom, String articleFromUrl) {
 
     return new JsonObject()
       .put("id", articleUrl)
@@ -292,6 +304,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       .put("last_updated", articleLastUpdated)
       .put("published_at", articlePublishedNode)
       .put("channel", articleChannel)
+      .put("source_from", sourceFrom)
+      .put("article_from_url", articleFromUrl)
       .put("html_content", articleHtmlContent)
       .put("keywords", articleKeywords)
       .put("type", articleType)
@@ -347,7 +361,10 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   }
 
   @Override
-  public WikiDatabaseService createPage(Long timestamp, String title, Handler<AsyncResult<JsonObject>> resultHandler) {
+  public WikiDatabaseService createPage(Long timestamp, JsonObject articleObject, Handler<AsyncResult<JsonObject>> resultHandler) {
+
+    String title = articleObject.getString("title").trim();
+
 
     if (title == null || title.isEmpty()) {
       resultHandler.handle(Future.succeededFuture(null));
@@ -355,7 +372,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     }
 
     String _new_filenpath_base64 = Paths.get(getFileFullName(timestamp, Base64.encode(StringHelper.escape(title)), "pending")).toFile().getPath();
-//    String _new_filenpath_escape = Paths.get(getFileFullName(timestamp, StringHelper.escape(title), "pending", false)).toFile().getPath();
 
     String articleUrl = "/articles/" + timestamp + "/" + Base64.encode(StringHelper.escape(title));
     String articleUrlEscape = "/articles/" + timestamp + "/" + StringHelper.escape(title);
@@ -370,12 +386,13 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     String articleLastUpdated = articleCreatedAt;
     String articlePublishedAt = "";
     String articleChannel = "";
-    String articleKeywords = title;
-    String articleDescription = title;
-    String articleHtmlContent = "<h2>" + title + "</h2>";
+    String source_from = articleObject.getString("source_from") == null || articleObject.getString("source_from").trim().isEmpty() ? "" : articleObject.getString("source_from").trim();
+    String article_from_url = articleObject.getString("article_from_url") == null || articleObject.getString("article_from_url").trim().isEmpty() ? "" : articleObject.getString("article_from_url").trim();
+    String articleKeywords = articleObject.getString("keywords") == null || articleObject.getString("keywords").trim().isEmpty() ? title : articleObject.getString("keywords").trim();
+    String articleDescription = articleObject.getString("description") == null || articleObject.getString("description").trim().isEmpty() ? title : articleObject.getString("description").trim();
+    String articleHtmlContent = articleObject.getString("html_content") == null || articleObject.getString("html_content").trim().isEmpty() ? title : articleObject.getString("html_content").trim();
 
-    JsonObject restult = newArticleObject( articleUrl, articleUrlEscape, articleTitle, articleFilePath, articleStatus, articleType, articleTags, articlePutTop, articleAuthors, articleCreatedAt, articleLastUpdated, articlePublishedAt, articleChannel, articleKeywords, articleDescription, articleHtmlContent);
-
+    JsonObject restult = newArticleObject( articleUrl, articleUrlEscape, articleTitle, articleFilePath, articleStatus, articleType, articleTags, articlePutTop, articleAuthors, articleCreatedAt, articleLastUpdated, articlePublishedAt, articleChannel, articleKeywords, articleDescription, articleHtmlContent, source_from, article_from_url);
 
     copyFile(_USER_ARTICLES_FOLDER + "/" + "wiki-article-example.pending.xml.simple",_USER_ARTICLES_FOLDER + "/" + restult.getString("file_name"));
 

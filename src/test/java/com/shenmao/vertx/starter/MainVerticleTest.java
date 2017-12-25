@@ -1,21 +1,12 @@
 package com.shenmao.vertx.starter;
 
-import com.shenmao.vertx.starter.commons.HttpGets;
-import com.shenmao.vertx.starter.commons.HttpPosts;
-import com.shenmao.vertx.starter.commons.HttpResult;
 import com.shenmao.vertx.starter.configuration.ApplicationConfig;
-import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpClient;
-import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
 
-import io.vertx.ext.web.client.HttpResponse;
-import io.vertx.ext.web.client.WebClient;
-import io.vertx.ext.web.client.WebClientOptions;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.message.BasicNameValuePair;
 import org.junit.*;
 import org.junit.runner.RunWith;
 
@@ -23,8 +14,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 
 @RunWith(VertxUnitRunner.class)
 public class MainVerticleTest {

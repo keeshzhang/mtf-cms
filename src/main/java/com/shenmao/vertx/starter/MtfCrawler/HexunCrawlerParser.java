@@ -1,12 +1,15 @@
 package com.shenmao.vertx.starter.MtfCrawler;
 
-import com.shenmao.vertx.starter.commons.HttpGets;
-import com.shenmao.vertx.starter.commons.HttpResult;
+import com.shenmao.vertx.starter.commons.encode.Base64;
+import com.shenmao.vertx.starter.commons.http.HttpGets;
+import com.shenmao.vertx.starter.commons.http.HttpPosts;
+import com.shenmao.vertx.starter.commons.http.HttpResult;
 import com.shenmao.vertx.starter.commons.files.JavaGrep;
 import com.shenmao.vertx.starter.commons.files.MyFileWriter;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
+import org.apache.http.message.BasicNameValuePair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,8 +17,6 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +25,10 @@ public class HexunCrawlerParser {
 
   private static Logger LOGGER = LoggerFactory.getLogger(HexunCrawlerParser.class);
 
-  // http://forex.hexun.com/fxobservation/index-1246.html
+  private static final String _MTF_API_ENDPOINT = "http://localhost:9180";
+  private static final String _MTF_API_USERNAME = "keesh";
+  private static final String _MTF_API_PASSWORD = "keesh";
+
   private static final String _PAGE_ENCODE = "GB2312";
   private static final String _PAGE_INDEX_URL = "http://forex.hexun.com/fxobservation";
   private static final String _PAGE_SAVE_FOLDER = "crawler_pages/hexun_pages";
@@ -81,20 +85,57 @@ public class HexunCrawlerParser {
       .map(a -> a.attr("href"))
       .filter(a -> {
         return a.equals("http://forex.hexun.com/2017-12-24/192069228.html");
+//        return 1==1;
       })
       .filter(a -> {
         // 查看当前页面是否已经爬取过， 如果已经爬取过则跳过
         return !cachedAndWriteArticleUrl(a);
       })
-      .map(link -> parseArticleContent(link))
-      .forEach(article -> System.out.println(article.encode()));
+      .map(link -> {
+        JsonObject articleObject = parseArticleContent(link);
+        articleObject.put("article_from_url", link);
+        return articleObject;
+      })
+      .map(articleObject -> writeArticlePage(articleObject))
+      .forEach(result -> System.out.println(result.getContent()));
 
   }
 
-  private void writeArticlePage(JsonObject articleObject) {
+  private HttpResult writeArticlePage(JsonObject articleObject) {
 
-    // curl -X POST -v -u keesh:keesh -F name=666 http://localhost:9180/create
+    // curl -X POST -v -u keesh:keesh -F name=666 http://localhost:9180/articles
+
+    BasicNameValuePair paramTitle = new BasicNameValuePair("article_title", articleObject.getString("article_title"));
+    BasicNameValuePair paramKeywords = new BasicNameValuePair("article_keywords", articleObject.getString("article_keywords"));
+    BasicNameValuePair paramDesc = new BasicNameValuePair("article_description", articleObject.getString("article_description"));
+    BasicNameValuePair paramHtml = new BasicNameValuePair("article_html_content", articleObject.getString("artilce_html"));
+    BasicNameValuePair paramSourceFrom = new BasicNameValuePair("source_from", articleObject.getString("article_source_from"));
+    BasicNameValuePair paramFromUrl = new BasicNameValuePair("article_from_url", articleObject.getString("article_from_url"));
+
+    // create
+    HttpResult createArticleHttpRestult = HttpPosts.execute(
+      _MTF_API_ENDPOINT + "/articles.json", _MTF_API_USERNAME, _MTF_API_PASSWORD
+        , paramTitle, paramKeywords, paramDesc, paramHtml, paramSourceFrom, paramFromUrl);
+
+    String urlPattern = "/(\\d{13})/([a-z-A-Z0-9+]+)(.html|.json|.htm|.xml)?\"";
+
+    Matcher urlMatcher = Pattern.compile(urlPattern).matcher(createArticleHttpRestult.getContent());
+
+    String timestamp = null;
+    String articleName = null;
+
+    if (urlMatcher.find()) {
+      timestamp = urlMatcher.group(1);
+      articleName = urlMatcher.group(2);
+    }
+
     // update
+
+    System.out.println(timestamp);
+    System.out.println(articleName);
+    System.out.println(Base64.decodeBase64(articleName));
+
+    return createArticleHttpRestult;
 
   }
 
@@ -165,8 +206,8 @@ public class HexunCrawlerParser {
       .put("article_description", artilceDescription)
       .put("article_pubdate", artilcePubdate)
       .put("artilce_html", articleHtml)
-      .put("article_source_from", "hexun")
-      .put("article_from_url", _from);
+      .put("article_source_from", "hexun");
+//      .put("article_from_url", _from);
 
     return article;
 

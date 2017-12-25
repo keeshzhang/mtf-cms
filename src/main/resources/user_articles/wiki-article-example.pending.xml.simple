@@ -26,6 +26,10 @@
   <published_at>1970-01-01 00:00:00.000</published_at>
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
   <channel>landing_page</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
   <keywords><![CDATA[big data, cloud computing]]></keywords>
   <description><![CDATA[2 Google's free service instantly translates words, phrases, and web pages between English and over 100 other languages]]></description>
   <html_content><![CDATA[<h1>多语种即时在线翻译_百度翻译</h1> <div>some body here </div>]]></html_content>

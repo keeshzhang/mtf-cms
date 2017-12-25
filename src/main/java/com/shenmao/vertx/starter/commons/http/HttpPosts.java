@@ -1,9 +1,10 @@
-package com.shenmao.vertx.starter.commons;
+package com.shenmao.vertx.starter.commons.http;
 
+import com.shenmao.vertx.starter.commons.encode.Base64;
+import org.apache.http.*;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
@@ -14,27 +15,37 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HttpGets {
+public class HttpPosts {
 
-  public static HttpResult execute(String url) {
-    return execute(url, "utf-8");
+
+  public static HttpResult execute(String url, BasicNameValuePair... params) {
+    return execute(url, null, null, params);
   }
 
-
-  public static HttpResult execute(String url, String encode) {
+  public static HttpResult execute(String url, String username, String password, BasicNameValuePair... params) {
 
     HttpResult result = new HttpResult() ;
 
     try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
 
+      List<NameValuePair> urlParameters = new ArrayList<>();
 
-      HttpGet httpGet = new HttpGet(url);
+      for (BasicNameValuePair p : params) {
+        urlParameters.add(p);
+      }
 
-      HttpResponse httpResponse = httpClient.execute(httpGet);
 
+      HttpPost httpPost = new HttpPost(url);
+
+      if (username != null && password != null) {
+        httpPost.setHeader("Authorization", "Basic " + Base64.encode(username + ":" + password));
+      }
+
+      httpPost.setEntity(new UrlEncodedFormEntity(urlParameters, "utf-8"));
+      HttpResponse httpResponse = httpClient.execute(httpPost);
 
       BufferedReader rd = new BufferedReader(
-        new InputStreamReader(httpResponse.getEntity().getContent(), encode));
+        new InputStreamReader(httpResponse.getEntity().getContent()));
 
       StringBuffer buffer = new StringBuffer();
 
@@ -55,5 +66,6 @@ public class HttpGets {
     return result;
 
   }
+
 
 }

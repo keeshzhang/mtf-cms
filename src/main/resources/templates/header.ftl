@@ -45,7 +45,7 @@
     <div class="row" style="position: relative;line-height: 2.5em;">
 
       <div class="top-menu-left">
-        <a href="/" style="color: whitesmoke;text-decoration: none;display: inline-block;padding: 0 .5em;background-color: darkcyan;">首页</a>
+        <a href="/" style="color: whitesmoke;text-decoration: none;display: inline-block;padding: 0 1.5em;background-color: darkcyan;">首页</a>
       </div>
 
       <div class="top-menu-right" style="right: 0;position: absolute;">

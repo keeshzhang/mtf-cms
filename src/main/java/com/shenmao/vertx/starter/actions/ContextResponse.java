@@ -33,6 +33,11 @@ public class ContextResponse {
     write(context);
   }
 
+  private static boolean isRestful(RoutingContext context) {
+    return original(context.request().uri()).endsWith(".xml") ||
+      original(context.request().uri()).endsWith(".json");
+  }
+
   public static void write(RoutingContext context) {
 
     JsonObject response = new JsonObject().put("success", true);
@@ -77,7 +82,7 @@ public class ContextResponse {
 
   public static void write(RoutingContext context, ActionView view) {
 
-    if (original(context.request().uri()).endsWith(".json") || original(context.request().uri()).endsWith(".xml")) {
+    if (isRestful(context)) {
       write(context);
       return;
     }
@@ -99,6 +104,13 @@ public class ContextResponse {
 
 
   public static void redirect(RoutingContext context, String location, Integer statusCode) {
+
+    if (isRestful(context)) {
+      JsonObject response = new JsonObject().put("success", true);
+      response.put("data", location);
+      context.response().end(response.encode());
+      return;
+    }
 
     context.response().setStatusCode(statusCode == null ? 301 : statusCode);
     context.response().putHeader("Location", location);

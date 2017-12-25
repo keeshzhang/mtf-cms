@@ -65,27 +65,24 @@ public class VertxRouter {
     router.get("/static/*").handler(_defaultAction::staticHandler);
     router.get("/assets/*").handler(_defaultAction::staticHandler);
 
-    router.get("/").handler(rc -> {
-      rc.response().setStatusCode(303);
-      rc.response().putHeader("Location", "/index");
-      rc.response().end();
-    });
-
     router.route().handler(CookieHandler.create());
     router.route().handler(BodyHandler.create());
     router.route().handler(SessionHandler.create(LocalSessionStore.create(_vertx)));
     router.route().handler(UserSessionHandler.create(_shiroAuth));
 
 
-    router.route("/access_token").handler(JWTAuthHandler.create(_jwtAuth));
-
-
     router.route("/articles").handler(_authHandler);
     router.route("/wiki/*").handler(_authHandler);
     router.route("/save/*").handler(_authHandler);
-    router.route("/create/*").handler(_authHandler);
+//    router.route("/create/*").handler(_authHandler);
     router.route("/delete/*").handler(_authHandler);
     router.route("/backup/*").handler(_authHandler);
+
+    router.get("/").handler(rc -> {
+      rc.response().setStatusCode(303);
+      rc.response().putHeader("Location", "/index");
+      rc.response().end();
+    });
 
 
     router.routeWithRegex("/index(.json|.html|.xml)?").handler(_defaultAction::indexHandler);
@@ -101,11 +98,19 @@ public class VertxRouter {
 
     router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);
     router.post("/save").handler(_defaultAction::pageUpdateHandler);
-    router.post("/create").handler(_defaultAction::pageCreateHandler);
+
+    // curl -X POST -v -u keesh:keesh -F name=666 http://localhost:9180/create
+    router.post("/create").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
+
     router.post("/delete").handler(_defaultAction::pageDeletionHandler);
 
     router.get("/login").handler(_normalAction::loginHandler);
+
+    // curl -v -d "username=keesh&password=keesh" http://localhost:9180/index
     router.post("/login-auth").handler(new FormLoginHandlerImpl(_shiroAuth, "username", "password", "return_url", "/index"));
+
+
+    //router.route("/access_token").handler(JWTAuthHandler.create(_jwtAuth));
     router.get("/access_token").handler(_normalAction::accessTokenHandler);
 
     router.get("/logout").handler(context -> {

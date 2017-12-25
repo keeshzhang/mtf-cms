@@ -47,14 +47,62 @@ public class NormalAction {
 
   }
 
+  public void userAuthHandler(RoutingContext context) {
+
+    // curl -v -u zch:zch http://localhost:9180/access_token
+    // curl -k -u zch:zch https://localhost:9180/access_token # ssl
+    // http --auth zch:zch --auth-type basic --verbose --verify no GET https://localhost:9180/access_token # ssl
+
+    final String _authString = context.request().getHeader("Authorization");
+    final String _base64AuthStr = _authString == null || _authString.isEmpty() ? "" : _authString.split(" ")[1];
+
+    System.out.println(_authString + ", accessTokenHandler 1");
+    System.out.println(_base64AuthStr + ", accessTokenHandler 2");
+
+    if (_authString == null || _authString.isEmpty()
+      || !_authString.split(" ")[0].equals("Basic")
+      || !Base64.isBase64(_base64AuthStr)) {
+
+      return;
+    }
+
+    final String _usernameAndPasswd = new String(Base64.decodeBase64(_base64AuthStr));
+
+    JsonObject creds = new JsonObject()
+      .put("username", _usernameAndPasswd.split(":")[0])
+      .put("password", _usernameAndPasswd.split(":")[1]);
+
+    AuthProvider auth = ShiroAuthenticate.newInstance(_vertx);
+
+    auth.authenticate(creds, authResult -> {
+
+      if (authResult.succeeded()) {
+
+        User user = authResult.result();
+
+        System.out.println((context.user() != null) + ", user authed");
+
+      } else {
+
+        System.out.println((context.user() != null) + ", user not authed");
+      }
+
+    });
+
+
+  }
+
   public void accessTokenHandler(RoutingContext context) {
 
     // curl -v -u zch:zch http://localhost:9180/access_token
     // curl -k -u zch:zch https://localhost:9180/access_token # ssl
-    // http --auth zch:zch --auth-type basic --verbose --verify no GET https://localhost:9180/access_token
+    // http --auth zch:zch --auth-type basic --verbose --verify no GET https://localhost:9180/access_token # ssl
 
     final String _authString = context.request().getHeader("Authorization");
     final String _base64AuthStr = _authString == null || _authString.isEmpty() ? "" : _authString.split(" ")[1];
+
+    System.out.println(_authString + ", accessTokenHandler 1");
+    System.out.println(_base64AuthStr + ", accessTokenHandler 2");
 
     if (_authString == null || _authString.isEmpty()
       || !_authString.split(" ")[0].equals("Basic")
@@ -85,16 +133,17 @@ public class NormalAction {
 
             user.isAuthorized("update", canUpdate -> {
 
-              String token = JWTAuthenticated.jwtAuth().generateToken(
-                    new JsonObject()
-                      .put("username", _usernameAndPasswd.split(":")[0])
-                      .put("canCreate", canCreate.succeeded() && canCreate.result())
-                      .put("canDelete", canDelete.succeeded() && canDelete.result())
-                      .put("canUpdate", canUpdate.succeeded() && canUpdate.result()),
-                      new JWTOptions() .setSubject("Wiki API") .setIssuer("Vert.x")
-              );
+//              String token = JWTAuthenticated.jwtAuth().generateToken(
+//                    new JsonObject()
+//                      .put("username", _usernameAndPasswd.split(":")[0])
+//                      .put("canCreate", canCreate.succeeded() && canCreate.result())
+//                      .put("canDelete", canDelete.succeeded() && canDelete.result())
+//                      .put("canUpdate", canUpdate.succeeded() && canUpdate.result()),
+//                      new JWTOptions() .setSubject("Wiki API") .setIssuer("Vert.x")
+//              );
 
-                context.response().putHeader("Content-Type", "text/plain").end(token);
+              context.response().putHeader("Content-Type", "text/plain").end("new token should be generated");
+
             });
 
           });

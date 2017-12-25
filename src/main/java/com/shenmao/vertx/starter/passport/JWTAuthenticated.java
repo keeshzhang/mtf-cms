@@ -33,26 +33,18 @@ public class JWTAuthenticated {
   // keytool -genkey -alias test -keyalg RSA -keystore server-keystore.jks -keysize 2048 -validity 360 -dname CN=localhost -keypass secret -storepass secret
   public static JWTAuth newInstance(Vertx vertx) {
 
-
-//    return JWTAuth.create(vertx, new JsonObject() .put("keyStore", new JsonObject()
-//      .put("path", "ssh_keys/keystore.jceks")
-//      .put("type", "jceks")
-//      .put("password", "secret")));
-
     if (jwtAuth == null) {
-//      jwtAuth = JWTAuth.create(vertx, new JWTAuthOptions()
-//        .setKeyStore(new KeyStoreOptions()
-////        .setPath("ssh_keys/keystore.jceks")
-//          .setPath("ssh_keys/server-keystore.jks")
-//          .setType("jceks")
-//          .setPassword("secret")));
 
+      /*
       jwtAuth = new JWTAuthProviderImpl(vertx, new JWTAuthOptions()
         .setKeyStore(new KeyStoreOptions()
 //        .setPath("ssh_keys/keystore.jceks")
           .setPath("ssh_keys/server-keystore.jks")
           .setType("jceks")
           .setPassword("secret")));
+      */
+
+      jwtAuth = new JWTAuthProviderImpl(vertx, new JWTAuthOptions());
 
     }
 

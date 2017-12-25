@@ -12,6 +12,7 @@ import io.vertx.ext.auth.User;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.Session;
 import io.vertx.ext.web.handler.FormLoginHandler;
+import io.vertx.ext.web.handler.BasicAuthHandler;
 
 public class FormLoginHandlerImpl implements FormLoginHandler {
 

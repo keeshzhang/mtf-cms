@@ -2,7 +2,10 @@ package com.shenmao.vertx.starter.database;
 
 import com.shenmao.vertx.starter.commons.encode.Base64;
 import com.shenmao.vertx.starter.commons.files.FindFileVisitor;
+import com.shenmao.vertx.starter.commons.files.MyFileWriter;
+import com.shenmao.vertx.starter.commons.files.MyFindFileVisitor;
 import com.shenmao.vertx.starter.commons.string.StringHelper;
+import com.shenmao.vertx.starter.configuration.ApplicationConfig;
 import com.shenmao.vertx.starter.configuration.SqlQueriesConfig;
 import java.sql.Timestamp;
 import java.sql.Date;
@@ -47,11 +50,14 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final JDBCClient jdbcClient;
 
   public static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-  private final String _USER_ARTICLES_FOLDER =
-    (WikiDatabaseServiceImpl.class.getClassLoader().getResource("") + "user_articles/").substring(5);
+  public static final String _USER_ARTICLE_STORE_FOLDER = "db_storage/user_articles";
+  private static final String _USER_ARTICLES_FOLDER = (ApplicationConfig.getAppRoot() + _USER_ARTICLE_STORE_FOLDER + "/");
+
+  static {
+
+  }
 
   public WikiDatabaseServiceImpl(JDBCClient jdbcClient, HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries, Handler<AsyncResult<WikiDatabaseService>> resultHandler) {
-
 
     this.jdbcClient = jdbcClient;
     this.sqlQueries = sqlQueries;
@@ -235,8 +241,10 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   private List<String> fetchAllArticleFiles() {
 
+    System.out.println(_USER_ARTICLES_FOLDER + ",_USER_ARTICLES_FOLDER");
+
     Path startingDir = Paths.get(_USER_ARTICLES_FOLDER);
-    FindFileVisitor findJavaVisitor = new FindFileVisitor(".xml");
+    MyFindFileVisitor findJavaVisitor = new MyFindFileVisitor(".xml");
 
     try {
 

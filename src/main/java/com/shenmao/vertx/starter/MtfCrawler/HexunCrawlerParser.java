@@ -31,7 +31,7 @@ public class HexunCrawlerParser {
 
   private static final String _PAGE_ENCODE = "GB2312";
   private static final String _PAGE_INDEX_URL = "http://forex.hexun.com/fxobservation";
-  private static final String _PAGE_SAVE_FOLDER = "crawler_pages/hexun_pages";
+  public static final String _PAGE_SAVE_FOLDER = "db_storage/crawler_pages/hexun_pages";
   private static final String _ARTICLE_CACHED_FILE = "articles.url.txt";
 
   private String _htmlContent;

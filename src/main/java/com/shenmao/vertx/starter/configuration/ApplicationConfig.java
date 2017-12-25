@@ -1,11 +1,37 @@
 package com.shenmao.vertx.starter.configuration;
 
+import com.shenmao.vertx.starter.MtfCrawler.HexunCrawlerParser;
+import com.shenmao.vertx.starter.commons.files.MyFileWriter;
+import com.shenmao.vertx.starter.database.WikiDatabaseServiceImpl;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Properties;
 
 public class ApplicationConfig {
+
+  static {
+    MyFileWriter.getAppResource(WikiDatabaseServiceImpl._USER_ARTICLE_STORE_FOLDER);
+    MyFileWriter.getAppResource(HexunCrawlerParser._PAGE_SAVE_FOLDER);
+  }
+
+  public static String getAppRoot () {
+
+    URL appResource =  ApplicationConfig.class.getClassLoader().getResource("");
+    String appResourceString = null;
+
+    if (appResource == null) {
+      appResourceString = Paths.get(ApplicationConfig.class.getProtectionDomain().getCodeSource().getLocation().toString()).getParent().getParent() + "";
+    } else {
+
+      appResourceString = Paths.get(appResource + "").getParent().getParent().toString() + "";
+    }
+
+    return appResourceString.substring(5) + "/";
+  }
 
   public enum AppConfig {
     APP_PORT,

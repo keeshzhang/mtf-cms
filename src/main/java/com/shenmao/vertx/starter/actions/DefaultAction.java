@@ -98,6 +98,8 @@ public class DefaultAction implements Action {
             }
 
             return a;
+          }).sorted((a1, a2) -> {
+            return a2.getString("last_updated").compareTo(a1.getString("last_updated"));
           }).collect(Collectors.toList());
 
         context.put("content", list);
@@ -127,7 +129,6 @@ public class DefaultAction implements Action {
     final Long timestamp = Long.parseLong(context.request().getParam("date"));
     final String articleName = context.request().getParam("name");
 
-    System.out.println(articleName + ", 1");
     dbService.fetchPage(timestamp, articleName, reply -> {
 
       if (reply.succeeded() && reply.result() != null) {

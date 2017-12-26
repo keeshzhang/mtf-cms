@@ -7,9 +7,9 @@
   <!-- 文章标题 -->
   <title><![CDATA[澳元2018年何去何从？分析师如何解读-外汇频道]]></title>
   <!--  原始文件路径 -->
-  <file_path>1514264529964_5r6z5YWDMjAxOOW5tOS9leWOu+S9leS7jlKeeshaAAaABCzzliIbmnpDluIjlpoLkvZXop6Por7tf5aSW5rGH6aKR6YGT.pending.xml</file_path>
+  <file_path>1514264529964_5r6z5YWDMjAxOOW5tOS9leWOu+S9leS7jlKeeshaAAaABCzzliIbmnpDluIjlpoLkvZXop6Por7tf5aSW5rGH6aKR6YGT.published.xml</file_path>
   <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
-  <article_status>pending</article_status>
+  <article_status>published</article_status>
   <!-- 文章类型 -->
   <type />
   <!-- 文章标签 -->
@@ -21,9 +21,9 @@
   <!-- 创建时间 -->
   <created_at>2017-12-26 13:02:09.964</created_at>
   <!-- 最后更新时间 -->
-  <last_updated>2017-12-26 13:03:01.270</last_updated>
+  <last_updated>2017-12-26 13:24:26.148</last_updated>
   <!-- 发布时间 -->
-  <published_at />
+  <published_at>2017-12-26 13:24:26.144</published_at>
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
   <channel />
   <!-- 文章来源 -->

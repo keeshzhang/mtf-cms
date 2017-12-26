@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article>
   <!-- base 64 编码后的 url -->
-  <url>/articles/20171226/1514260815539/RlhTdHJlZXTpppbluK1f576O5YWDX+aXpeWFgzEy5pyIMjbml6XotbDlirKeeshaAAaABCzzliIbmnpBf5aSW5rGH6aKR6YGTX+WSjOiur+e9kQ</url>
+  <url>/articles/20171226/1514264533305/RlhTdHJlZXTpppbluK1f576O5YWDX+aXpeWFgzEy5pyIMjbml6XotbDlirKeeshaAAaABCzzliIbmnpBf5aSW5rGH6aKR6YGTX+WSjOiur+e9kQ</url>
   <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
-  <url_escape>/articles/20171226/1514260815539/FXStreet首席_美元_日元12月26日走势分析_外汇频道_和讯网</url_escape>
+  <url_escape>/articles/20171226/1514264533305/FXStreet首席_美元_日元12月26日走势分析_外汇频道_和讯网</url_escape>
   <!-- 文章标题 -->
   <title><![CDATA[FXStreet首席：美元/日元12月26日走势分析-外汇频道-和讯网]]></title>
   <!--  原始文件路径 -->
-  <file_path>1514260815539_RlhTdHJlZXTpppbluK1f576O5YWDX+aXpeWFgzEy5pyIMjbml6XotbDlirKeeshaAAaABCzzliIbmnpBf5aSW5rGH6aKR6YGTX+WSjOiur+e9kQ.pending.xml</file_path>
+  <file_path>1514264533305_RlhTdHJlZXTpppbluK1f576O5YWDX+aXpeWFgzEy5pyIMjbml6XotbDlirKeeshaAAaABCzzliIbmnpBf5aSW5rGH6aKR6YGTX+WSjOiur+e9kQ.pending.xml</file_path>
   <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
   <article_status>pending</article_status>
   <!-- 文章类型 -->
@@ -19,9 +19,9 @@
   <!-- 是否置顶 -->
   <authors />
   <!-- 创建时间 -->
-  <created_at>2017-12-26 12:00:15.539</created_at>
+  <created_at>2017-12-26 13:02:13.305</created_at>
   <!-- 最后更新时间 -->
-  <last_updated>2017-12-26 12:00:15.541</last_updated>
+  <last_updated>2017-12-26 13:02:13.311</last_updated>
   <!-- 发布时间 -->
   <published_at />
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->

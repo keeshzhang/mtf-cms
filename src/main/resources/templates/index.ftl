@@ -34,7 +34,7 @@
     <ul>
       <#items as page>
       <li>
-        <a style="color: lightseagreen;font-size: 1.2em;font-weight: bold;" href="${page["url"]}">${page["title"]}</a>
+        <a style="color: lightseagreen;font-size: 1.2em;font-weight: bold;" href="${page["url_escape"]}">${page["title"]}</a>
 
         <br />
         <#if page["article_status"] == "published" >

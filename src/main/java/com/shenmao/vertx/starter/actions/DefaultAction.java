@@ -1,6 +1,7 @@
 package com.shenmao.vertx.starter.actions;
 
 import com.github.rjeschke.txtmark.Processor;
+import com.shenmao.vertx.starter.commons.encode.Base64;
 import com.shenmao.vertx.starter.database.WikiDatabaseService;
 import com.shenmao.vertx.starter.database.WikiDatabaseVerticle;
 import com.shenmao.vertx.starter.passport.ShiroRealm;
@@ -126,6 +127,7 @@ public class DefaultAction implements Action {
     final Long timestamp = Long.parseLong(context.request().getParam("date"));
     final String articleName = context.request().getParam("name");
 
+    System.out.println(articleName + ", 1");
     dbService.fetchPage(timestamp, articleName, reply -> {
 
       if (reply.succeeded() && reply.result() != null) {
@@ -151,7 +153,9 @@ public class DefaultAction implements Action {
         artilce.put("published_at", WikiDatabaseService.DATE_FORMAT.format(Calendar.getInstance().getTime()));
 
         dbService.savePage(timestamp, articleName, artilce, res -> {
-          ContextResponse.redirect(context, "/articles/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + timestamp + "/" + articleName, 301);
+          String articleNameBase64 = !Base64.isBase64(articleName) ? Base64.encode(articleName) : articleName;
+          ContextResponse.redirect(context,
+            "/articles/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + timestamp + "/" + articleNameBase64, 301);
         });
 
       } else {
@@ -268,6 +272,7 @@ public class DefaultAction implements Action {
     try {
       timestamp = Long.parseLong(context.request().getParam("date"));
       articleFileName = context.request().getParam("name");
+
     } catch (Exception e) {
       ContextResponse.notFound(context);
       return;

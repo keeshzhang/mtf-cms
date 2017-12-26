@@ -323,13 +323,14 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   public WikiDatabaseService exists(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
 
+    String articleNameBase = Base64.isBase64(articleName) ? articleName : Base64.encode(articleName);
 
     this.fetchAllPages(result -> {
 
       if (result.succeeded()) {
 
         Stream<JsonObject> fileStream = result.result().stream().filter(article -> {
-          return article.getString("file_name").startsWith(id + "_" + articleName);
+          return article.getString("file_name").startsWith(id + "_" + articleNameBase);
         });
 
         Optional<JsonObject> fileOptional = fileStream.findFirst();

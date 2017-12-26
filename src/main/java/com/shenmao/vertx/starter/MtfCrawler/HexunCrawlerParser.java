@@ -119,21 +119,9 @@ public class HexunCrawlerParser {
 
     String urlPattern = "/(\\d{13})/([a-z-A-Z0-9+]+)(.html|.json|.htm|.xml)?\"";
 
-    Matcher urlMatcher = Pattern.compile(urlPattern).matcher(createArticleHttpRestult.getContent());
-
-    String timestamp = null;
-    String articleName = null;
-
-    if (urlMatcher.find()) {
-      timestamp = urlMatcher.group(1);
-      articleName = urlMatcher.group(2);
+    if (createArticleHttpRestult.getStatusCode() < 200 && createArticleHttpRestult.getStatusCode() > 300) {
+//      throw new IllegalAccessException("");
     }
-
-    // update
-
-    System.out.println(timestamp);
-    System.out.println(articleName);
-    System.out.println(Base64.decodeBase64(articleName));
 
     return createArticleHttpRestult;
 

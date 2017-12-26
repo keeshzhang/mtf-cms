@@ -31,7 +31,7 @@ public class HexunCrawlerParser {
 
   private static final String _PAGE_ENCODE = "GB2312";
   private static final String _PAGE_INDEX_URL = "http://forex.hexun.com/fxobservation";
-  public static final String _PAGE_SAVE_FOLDER = "db_storage/crawler_pages/hexun_pages";
+  public static final String _PAGE_SAVE_FOLDER = "db_storage/crawler_pages_url";
   private static final String _ARTICLE_CACHED_FILE = "articles.url.txt";
 
   private String _htmlContent;
@@ -84,8 +84,8 @@ public class HexunCrawlerParser {
     articleUrlListElement.stream()
       .map(a -> a.attr("href"))
       .filter(a -> {
-        return a.equals("http://forex.hexun.com/2017-12-24/192069228.html");
-//        return 1==1;
+//        return a.equals("http://forex.hexun.com/2017-12-24/192069228.html");
+        return 1==1;
       })
       .filter(a -> {
         // 查看当前页面是否已经爬取过， 如果已经爬取过则跳过

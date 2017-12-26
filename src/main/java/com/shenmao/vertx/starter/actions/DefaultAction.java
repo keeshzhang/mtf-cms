@@ -226,8 +226,6 @@ public class DefaultAction implements Action {
             .put("source_from", context.request().getParam("source_from"))
             .put("article_from_url", context.request().getParam("article_from_url"));
 
-    System.out.println(articleObject.encode() + ", pageCreateHandler");
-
 
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 

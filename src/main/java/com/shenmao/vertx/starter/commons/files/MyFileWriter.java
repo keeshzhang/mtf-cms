@@ -33,11 +33,7 @@ public class MyFileWriter {
     try {
 
       Path p = Paths.get(to);
-
       writeFile(readFile(from), p.getParent().toString(), p.toFile().getName());
-
-      System.out.println(from);
-      System.out.println(to);
 
     } catch (IOException e) {
       e.printStackTrace();

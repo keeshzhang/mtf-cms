@@ -241,8 +241,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   private List<String> fetchAllArticleFiles() {
 
-    System.out.println(_USER_ARTICLES_FOLDER + ",_USER_ARTICLES_FOLDER");
-
     Path startingDir = Paths.get(_USER_ARTICLES_FOLDER);
     MyFindFileVisitor findJavaVisitor = new MyFindFileVisitor(".xml");
 

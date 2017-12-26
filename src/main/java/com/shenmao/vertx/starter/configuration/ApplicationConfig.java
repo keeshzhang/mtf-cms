@@ -4,6 +4,7 @@ import com.shenmao.vertx.starter.MtfCrawler.HexunCrawlerParser;
 import com.shenmao.vertx.starter.commons.files.MyFileWriter;
 import com.shenmao.vertx.starter.database.WikiDatabaseServiceImpl;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
@@ -15,9 +16,6 @@ public class ApplicationConfig {
 
   static {
 
-    MyFileWriter.getAppResource(WikiDatabaseServiceImpl._USER_ARTICLE_STORE_FOLDER);
-    MyFileWriter.getAppResource(HexunCrawlerParser._PAGE_SAVE_FOLDER);
-//    MyFileWriter.getAppResource("properties");
 
   }
 
@@ -37,6 +35,7 @@ public class ApplicationConfig {
   }
 
   public enum AppConfig {
+    APP_ENV,
     APP_PORT,
     APP_HOST
   }
@@ -62,15 +61,16 @@ public class ApplicationConfig {
 
   private ApplicationConfig(String configfile) throws FileNotFoundException {
 
-    InputStream queriesInputStream = null;
+    InputStream appEnvInputStream = null;
 
     try {
 
-      queriesInputStream = getClass().getResourceAsStream(configfile);
+//      appEnvInputStream = getClass().getResourceAsStream(configfile);
+      appEnvInputStream = new FileInputStream(configfile);
 
       appProps = new Properties();
-      appProps.load(queriesInputStream);
-      queriesInputStream.close();
+      appProps.load(appEnvInputStream);
+      appEnvInputStream.close();
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -86,6 +86,10 @@ public class ApplicationConfig {
 
     appConfig.put(AppConfig.APP_PORT, appProps.getProperty("app_port"));
     appConfig.put(AppConfig.APP_HOST, appProps.getProperty("app_host"));
+    appConfig.put(AppConfig.APP_ENV, appProps.getProperty("app_env"));
+
+    System.out.println(appConfig.get(AppConfig.APP_ENV) + ", AppConfig.APP_ENV 2");
+
 
   }
 

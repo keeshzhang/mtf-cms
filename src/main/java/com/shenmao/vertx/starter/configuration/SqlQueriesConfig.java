@@ -48,7 +48,8 @@ public class SqlQueriesConfig {
 
     try {
 
-      queriesInputStream = getClass().getResourceAsStream(configfile);
+//      queriesInputStream = getClass().getResourceAsStream(configfile);
+      queriesInputStream = new FileInputStream(configfile);
 
 
       queriesProps = new Properties();

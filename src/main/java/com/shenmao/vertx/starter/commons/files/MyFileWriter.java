@@ -1,5 +1,6 @@
 package com.shenmao.vertx.starter.commons.files;
 
+import com.shenmao.vertx.starter.Application;
 import com.shenmao.vertx.starter.configuration.ApplicationConfig;
 import org.apache.commons.io.FileUtils;
 
@@ -16,11 +17,10 @@ import java.util.stream.Collectors;
 public class MyFileWriter {
 
 //  private static String _dbStorageFolder = "db_storage";
-  private final String _appRoot;
+  private static final String _appRoot = Application.getApplicationRoot();
   private final String _folder;
 
   public MyFileWriter(String folder) {
-    this._appRoot =  ApplicationConfig.getAppRoot();
     this._folder = _appRoot + "/" + folder;
   }
 
@@ -28,12 +28,12 @@ public class MyFileWriter {
     return new String(Files.readAllBytes(Paths.get(filefullname)));
   }
 
-  public static void moveFile(String from, String to) {
+  public static void moveFile(String from, String to, boolean replace) {
 
     try {
 
       Path p = Paths.get(to);
-      writeFile(readFile(from), p.getParent().toString(), p.toFile().getName());
+      writeFile(readFile(from), p.getParent().toString(), p.toFile().getName(), replace);
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -49,14 +49,12 @@ public class MyFileWriter {
     }
   }
 
-  public static void getAppResource(String folder_name) {
-
-    System.out.println(folder_name + ", getAppResource");
+  public static void getAppResource(String folder_name, boolean replace) {
 
     // 将 resouce 下的同名文件下的所有内容递归复制到 app_root 下, 避免在 mvn clean 的时候删除 resource 的内容
 
-    String resourceFolder = ApplicationConfig.getAppRoot() + "/target/classes" + folder_name;
-    String rootFolder = ApplicationConfig.getAppRoot() + folder_name;
+    String resourceFolder = _appRoot + "/target/classes" + folder_name;
+    String rootFolder = _appRoot + folder_name;
 
     MyFindFileVisitor findJavaVisitor = new MyFindFileVisitor("*");
 
@@ -69,7 +67,7 @@ public class MyFileWriter {
       Files.walkFileTree(p, findJavaVisitor);
 
       findJavaVisitor.getFilenameList().stream().forEach(from -> {
-        moveFile(from, rootFolder + from.replace(resourceFolder, ""));
+        moveFile(from, rootFolder + from.replace(resourceFolder, ""), replace);
       });
 
       deleteFolder(resourceFolder);
@@ -92,7 +90,7 @@ public class MyFileWriter {
     return f;
   }
 
-  public static File writeFile(String content, String foldername, String fileName) {
+  public static File writeFile(String content, String foldername, String fileName, boolean replace) {
 
     Path file_path = Paths.get(foldername + "/" + fileName);
     File f = file_path.toFile();
@@ -108,7 +106,7 @@ public class MyFileWriter {
 
       if(!f.exists()){
         f.createNewFile();
-      } else {
+      } else if (!replace) {
         return f;
       }
 
@@ -127,10 +125,5 @@ public class MyFileWriter {
 
   }
 
-  public File write(String content, String filename) {
-
-    return writeFile(content, _folder, filename);
-
-  }
 
 }

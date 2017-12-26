@@ -16,11 +16,13 @@ public class Application {
 
   static {
 
-//    System.out.println(ApplicationConfig.getAppRoot() + "/properties/db-queries.properties");
 
-//    ApplicationConfig.getAppRoot()
-    SqlQueriesConfig.setConfigFile("/properties/db-queries.properties");
-    ApplicationConfig.setConfigFile("/properties/application.properties");
+    MyFileWriter.getAppResource(WikiDatabaseServiceImpl._USER_ARTICLE_STORE_FOLDER, false);
+    MyFileWriter.getAppResource(HexunCrawlerParser._PAGE_SAVE_FOLDER, false);
+    MyFileWriter.getAppResource("/properties", true);
+
+    SqlQueriesConfig.setConfigFile(ApplicationConfig.getAppRoot() +"/properties/db-queries.properties");
+    ApplicationConfig.setConfigFile(ApplicationConfig.getAppRoot() +"/properties/application.properties");
 
     try {
       applicationConfig = ApplicationConfig.newInstance();
@@ -43,6 +45,10 @@ public class Application {
   public static HashMap<SqlQueriesConfig.SqlQuery, String> getSqlQueriesConfig() {
     return sqlQueriesConfig.getQueries();
 
+  }
+
+  public static String getApplicationRoot() {
+    return ApplicationConfig.getAppRoot();
   }
 
 }

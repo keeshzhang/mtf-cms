@@ -1,5 +1,6 @@
 package com.shenmao.vertx.starter.passport;
 
+import com.shenmao.vertx.starter.configuration.ApplicationConfig;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.auth.AuthProvider;
 import io.vertx.ext.auth.shiro.ShiroAuthOptions;
@@ -25,7 +26,7 @@ import java.util.stream.Collectors;
 public class ShiroRealm {
 
   public static boolean ENABLE_REALM = true;
-  public static final String _SHIRO_INI_FILE = "classpath:properties/web-users.properties";
+  public static final String _SHIRO_INI_FILE = ApplicationConfig.getAppRoot() + "/properties/web-users.properties";
 
   public enum UserRoles {
     ADMIN, EDITER, WRITER

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article>
   <!-- base 64 编码后的 url -->
-  <url>/articles/20171226/1514264535523/5Zu95a625aSW5rGH566h55CG5bGA5YWs5biDMjAxN+W5tDEx5pyI5Lit5Zu95aSW5rGH5biC5Zy65Lqk5piT5qaC5Ya15pWw5o2uX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE</url>
+  <url>/articles/20171226/1514270454136/5Zu95a625aSW5rGH566h55CG5bGA5YWs5biDMjAxN+W5tDEx5pyI5Lit5Zu95aSW5rGH5biC5Zy65Lqk5piT5qaC5Ya15pWw5o2uX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE</url>
   <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
-  <url_escape>/articles/20171226/1514264535523/国家外汇管理局公布2017年11月中国外汇市场交易概况数据_外汇频道_和讯网</url_escape>
+  <url_escape>/articles/20171226/1514270454136/国家外汇管理局公布2017年11月中国外汇市场交易概况数据_外汇频道_和讯网</url_escape>
   <!-- 文章标题 -->
   <title><![CDATA[国家外汇管理局公布2017年11月中国外汇市场交易概况数据-外汇频道-和讯网]]></title>
   <!--  原始文件路径 -->
-  <file_path>1514264535523_5Zu95a625aSW5rGH566h55CG5bGA5YWs5biDMjAxN+W5tDEx5pyI5Lit5Zu95aSW5rGH5biC5Zy65Lqk5piT5qaC5Ya15pWw5o2uX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE.published.xml</file_path>
+  <file_path>1514270454136_5Zu95a625aSW5rGH566h55CG5bGA5YWs5biDMjAxN+W5tDEx5pyI5Lit5Zu95aSW5rGH5biC5Zy65Lqk5piT5qaC5Ya15pWw5o2uX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE.pending.xml</file_path>
   <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
-  <article_status>published</article_status>
+  <article_status>pending</article_status>
   <!-- 文章类型 -->
   <type />
   <!-- 文章标签 -->
@@ -19,11 +19,11 @@
   <!-- 是否置顶 -->
   <authors />
   <!-- 创建时间 -->
-  <created_at>2017-12-26 13:02:15.523</created_at>
+  <created_at>2017-12-26 14:40:54.136</created_at>
   <!-- 最后更新时间 -->
-  <last_updated>2017-12-26 13:15:10.740</last_updated>
+  <last_updated>2017-12-26 14:40:54.141</last_updated>
   <!-- 发布时间 -->
-  <published_at>2017-12-26 13:15:10.716</published_at>
+  <published_at />
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
   <channel />
   <!-- 文章来源 -->

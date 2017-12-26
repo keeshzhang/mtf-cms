@@ -14,8 +14,11 @@ import java.util.Properties;
 public class ApplicationConfig {
 
   static {
+
     MyFileWriter.getAppResource(WikiDatabaseServiceImpl._USER_ARTICLE_STORE_FOLDER);
     MyFileWriter.getAppResource(HexunCrawlerParser._PAGE_SAVE_FOLDER);
+//    MyFileWriter.getAppResource("properties");
+
   }
 
   public static String getAppRoot () {
@@ -30,7 +33,7 @@ public class ApplicationConfig {
       appResourceString = Paths.get(appResource + "").getParent().getParent().toString() + "";
     }
 
-    return appResourceString.substring(5) + "/";
+    return appResourceString.substring(5);
   }
 
   public enum AppConfig {

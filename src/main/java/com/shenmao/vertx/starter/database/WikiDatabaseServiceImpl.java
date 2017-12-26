@@ -50,8 +50,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final JDBCClient jdbcClient;
 
   public static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-  public static final String _USER_ARTICLE_STORE_FOLDER = "db_storage/user_articles";
-  private static final String _USER_ARTICLES_FOLDER = (ApplicationConfig.getAppRoot() + _USER_ARTICLE_STORE_FOLDER + "/");
+  public static final String _USER_ARTICLE_STORE_FOLDER = "/db_storage/user_articles";
+  private static final String _USER_ARTICLES_FOLDER = (ApplicationConfig.getAppRoot() + _USER_ARTICLE_STORE_FOLDER);
 
   static {
 
@@ -262,7 +262,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     List<JsonObject> pages = fetchAllArticleFiles().stream()
       .filter(file -> {
-        String _filename = file.replace(_USER_ARTICLES_FOLDER + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) +  "/" , "");
+        String _filename = file.replace(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) +  "/" , "");
         return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
       }).map( file -> {
 
@@ -416,7 +416,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   public String getFileFullName(Long timestamp, String articleFileName) {
 
     Stream<String> fileStream = fetchAllArticleFiles().stream().filter(file -> {
-      return file.replaceAll(_USER_ARTICLES_FOLDER + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/", "").startsWith(timestamp + "_" + articleFileName);
+      return file.replaceAll(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/", "").startsWith(timestamp + "_" + articleFileName);
     });
 
     Optional<String> fileOptional = fileStream.findFirst();

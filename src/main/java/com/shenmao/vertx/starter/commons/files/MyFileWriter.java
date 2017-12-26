@@ -51,10 +51,12 @@ public class MyFileWriter {
 
   public static void getAppResource(String folder_name) {
 
+    System.out.println(folder_name + ", getAppResource");
+
     // 将 resouce 下的同名文件下的所有内容递归复制到 app_root 下, 避免在 mvn clean 的时候删除 resource 的内容
 
-    String resourceFolder = ApplicationConfig.getAppRoot() + "target/classes/" + folder_name;
-    String rootFolder = ApplicationConfig.getAppRoot() + "/" + folder_name;
+    String resourceFolder = ApplicationConfig.getAppRoot() + "/target/classes" + folder_name;
+    String rootFolder = ApplicationConfig.getAppRoot() + folder_name;
 
     MyFindFileVisitor findJavaVisitor = new MyFindFileVisitor("*");
 

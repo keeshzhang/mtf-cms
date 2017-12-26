@@ -9,8 +9,16 @@ public class MainCrawlerApp {
 
   public static void main(String[] args) {
 
+    String port = Application.applicationConfigInstance().getConfig().get(ApplicationConfig.AppConfig.APP_PORT);
+    System.out.println(port + ", port");
     System.out.println(Application.getApplicationRoot() + ", ApplicationConfig.getAppRoot()");
-    HexunCrawlerParser.run();
+
+    HexunCrawlerParser.run(null);
+
+    for (int i=1234; i>1000; i--) {
+      HexunCrawlerParser.run(i);
+    }
+
 
   }
 

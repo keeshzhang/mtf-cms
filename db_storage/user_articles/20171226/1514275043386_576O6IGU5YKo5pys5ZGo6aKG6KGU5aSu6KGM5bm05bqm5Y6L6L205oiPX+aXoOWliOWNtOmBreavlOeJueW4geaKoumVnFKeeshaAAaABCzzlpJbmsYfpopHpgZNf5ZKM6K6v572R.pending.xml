@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275043386/576O6IGU5YKo5pys5ZGo6aKG6KGU5aSu6KGM5bm05bqm5Y6L6L205oiPX+aXoOWliOWNtOmBreavlOeJueW4geaKoumVnFKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275043386/美联储本周领衔央行年度压轴戏_无奈却遭比特币抢镜_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[美联储本周领衔央行年度压轴戏 无奈却遭比特币抢镜-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275043386_576O6IGU5YKo5pys5ZGo6aKG6KGU5aSu6KGM5bm05bqm5Y6L6L205oiPX+aXoOWliOWNtOmBreavlOeJueW4geaKoumVnFKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 15:57:23.386</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 15:57:23.390</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-12-11/191937343.html</article_from_url>
+  <keywords><![CDATA[比特币]]></keywords>
+  <description><![CDATA[美联储本周领衔央行年度压轴戏 无奈却遭比特币抢镜-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　<a href="http://news.hexun.com/usa/index.html" target="_blank">美国</a>方面上周五(12月8日)发布的11月非农就业<a href="http://forex.hexun.com/rmbsj/" target="_blank">数据</a>在摆脱了飓风的后继影响之后再度变得中规中矩：就业人数增幅以略超预期的速度稳步增长，总体失业率维持在4.1%的多年低位水平，但与此同时，整体薪资增速却依然令人皱眉……这些状况与年内稍早时候相比并没有显著的变化。因此市场反应也相对冷淡，非农数据出炉后<a href="http://forex.hexun.com/usd" target="_blank">美元</a>指数仍在94关口徘徊，无论是进一步上攻，还是掉头回落，都显得动能不足。市场依旧陷于观望气氛，这一格局在周一(12月11日)开盘时分依旧没有改观。</p>
+ <p>　　而在基本消化了无甚意外的非农数据之后，本周<a href="http://forex.hexun.com/fed" target="_blank">美联储</a>将携手<a href="http://forex.hexun.com/ecb" target="_blank">欧洲央行</a>和<a href="http://forex.hexun.com/boe" target="_blank">英国央行</a>掀起年内央行政策大戏的压轴高潮，并藉此定下2018年全年的政策基调。其中，美联储预期之中的年内最后一次<a href="http://news.hexun.com/2011/2011jx3/" target="_blank">加息</a>行动势必将是各方瞩目的重中之重。不过，在近期以非农为首的美国经济数据并无意外，且美国政府再度幸免停摆的背景下，美联储如预期加息并无悬念，市场也早已预计到了这一状况。因此总体来看，汇市走势暂时波澜不惊，而近期以来持续走强，不断刷新新高的比特币及其领衔的虚拟货币市场，却转而吸引走了投资者的相当一部分注意力。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" alt="美联储压轴决议来袭，耶伦“谢幕演出”颇受期待" src="http://i4.hexun.com/2017-12-11/191937339.jpg" width="500" height="311">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">美联储压轴决议来袭，耶伦“谢幕演出”颇受期待</font>
+ </div>
+ <p>　　美联储将在本周二至周三(12月12-13日)召开年内最后一次政策会议，并将宣布利率政策决定。而事实上，早在9月份的那次美联储政策会议宣布启动“缩表”，并因而暂缓了加息之后，投资者就已经纷纷押注12月的这次会议将是加息的最好时机。而上周的市场调查也现实，投资者对于美联储在本周会议上加息的押注概率已经高达97%，这意味着升息25个基点将是大势所趋。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" alt="美联储压轴决议来袭，耶伦“谢幕演出”颇受期待" src="http://i6.hexun.com/2017-12-11/191937340.jpg" width="500" height="248">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(美联储12月加息概率变化图)</font>
+ </div>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" alt="美联储压轴决议来袭，耶伦“谢幕演出”颇受期待" src="http://i3.hexun.com/2017-12-11/191937341.jpg" width="500" height="161">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(美联储加息概率一览表)</font>
+ </div>
+ <p>　　虽然，此前美国遭遇了罕见的飓风灾害，而<a href="http://renwu.hexun.com/figure_3451.shtml" target="_blank">特朗普</a>总统所力推的减税法案遭遇的阻力以及政府预算协议再度到期的状况，都似乎可能对美联储年底继续加息的前景造成冲击，但好在上述潜在的意外影响事件最终都有惊无险得到了化解。反过来看，就业市场活动持于高水平，消费信心继续高企，以及通胀率表现出现的企稳迹象，都使得本周美联储继续加息基本成为定局。而即将离任的美联储主席耶伦，也会以如此一次“完美”的政策行动，为自己的生涯画上圆满的句号。</p>
+ <p>　　因此，相比起美联储利率决议本身，大家本周更关注的将是美联储发布的季度经济展望报告，以及耶伦在任内最后一次的美联储记者招待会对于未来政策的前瞻性看法。鉴于大家普遍人为美联储新主席鲍<a href="http://renwu.hexun.com/figure_4625.shtml" target="_blank">威尔</a>将会继续执行耶伦所制定好的既定政策路线，所以，耶伦奶奶临走之前的政策嘱托，也就变得尤为关键。</p>
+ <p>　　但即使美联储本周确实透露出强力的紧缩预期，美元却也很难录得乐观人士预想中的“戏剧性涨幅”，因为就在美联储决议后不到24小时，<a href="http://news.hexun.com/britain/index.html" target="_blank">英国</a>央行和欧洲央行年内末次会议也将在周四(12月14日)一并来袭，而其对于2018年政策前景也将不约而同地祭出走向“正常化”地基调，从而紧随美联储地紧缩方向，令<a href="http://forex.hexun.com/gbp" target="_blank">英镑</a>和<a href="http://forex.hexun.com/eur" target="_blank">欧元</a>在<a href="http://quote.hexun.com/forex/forex.aspx?type=3" target="_blank">汇率</a>方面不至于被美元甩开太多。于是，年底之际，全球汇市可能继续维持胶着格局。</p>
+ <p>　　比特币<a href="http://futures.hexun.com" target="_blank">期货</a>华丽上市，疯狂走势还尚能饭否？</p>
+ <p>　　而在本周汇市开盘稍显平淡之余，投资者的更多眼光早已转向更加“壮阔激烈”的虚拟货币市场。数字货币龙头老大比特币上周加速暴涨，最高触及近2万美元一枚，这一涨幅已经“吓坏了”观众，因为早在年初之际，比特币价格刚刚还只有1000美元时，投资界就已经惊呼其中泡沫巨大，而后，在比特币涨到4000美元时，摩根大通CEO戴蒙更是斥之为“毫无意义的骗局”，但这却不足以阻挡比特币价格最终华丽地进入“五位数时代”。一年暴涨十余倍的表现，更是令所有传统投资品都相形见绌。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" alt="美联储压轴决议来袭，耶伦“谢幕演出”颇受期待" src="http://i1.hexun.com/2017-12-11/191937342.jpg" width="500" height="305">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(据彭博报价，以美元计价的比特币年初至今已经涨逾15%)</font>
+ </div>
+ <p>　　而芝加哥期权交易所(CBOE)本周上市比特币期货的“大事件”，更是吸引了全球投资界的目光。芝加哥期权交易所(Cboe)开始在纽约时间12月10日18:00点(北京时间12月11日7:00)开始提供比特币期货合约。由此引发的“强力围观”一度甚至令CBOE官网发生了瘫痪，而一周之后，芝加哥商品交易所(CME)的比特币期货也将挂牌交易。</p>
+ <p>　　比特币期货上市这一里程碑式的事件标志着数字货币终于已经吸引了“主流金融市场”的足够关注和重视，而不再只是一小撮小众玩家在地下非公开市场秘密交易的“灰色资产”。但反过来，着也意味着比特币从“原始股”的身份转向了“公开上市”，其价格波动将开始受到市场机制的制约，此前的疯狂暴涨浪潮或需也就成为在此后被永久尘封的历史。这究竟是好事还是坏事，恐怕大家还需要观望上一阵子才能知晓。</p>
+ <p>　　无论如何，比特币及其他数字货币引发的市场狂热已经吸走了相当部分的资金，并在关联市场上导致了“贫血”局面。上周五，国际<a href="http://xianhuo.hexun.com/" target="_blank">现货</a>黄金价格跌破1250美元/盎司。一方面是因为朝鲜问题再度出现了有望通过和谈解决的转机，同时美国政府关门危机得到化解，另一方面也是因为近期以来黄金市场的资金不断地流失到市场生态位相近的虚拟货币市场。所以，在风险情绪高涨时，金价一如既往下跌，但在避险回潮时，黄金涨幅却受到压制。而在比特币期货化规范化交易之后，伴随着波动性的受限，其在避险市场上的竞争力会进一步增强，这对于黄金多头显然更不是个好消息。</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：王治强 HF013）
+ </div> 
+</div>]]></html_content>
+</article>
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275056581/57yp6KGo6L+b6KGM5pe2X+e+juiBlOWCqOi1hOS6p+inhOaooemZjeiHs+S4ieW5tOacgOS9jlKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275056581/缩表进行时_美联储资产规模降至三年最低_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[缩表进行时！美联储资产规模降至三年最低-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275056581_57yp6KGo6L+b6KGM5pe2X+e+juiBlOWCqOi1hOS6p+inhOaooemZjeiHs+S4ieW5tOacgOS9jlKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 15:57:36.581</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 15:57:36.587</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-12-10/191935609.html</article_from_url>
+  <keywords><![CDATA[资产规模]]></keywords>
+  <description><![CDATA[缩表进行时！美联储资产规模降至三年最低-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　随着<a href="http://forex.hexun.com/fed" target="_blank">美联储</a>的缩表行动进行到第二个月，其效果正逐渐显现。</p>
+ <p>　　截至12月6日，美联储的资产负债表规模降至44370亿<a href="http://forex.hexun.com/usd" target="_blank">美元</a>，为2014年9月17日以来最低水平。而在缩表开始之前的10月底，规模为44560亿美元。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" align="middle" src="http://i5.hexun.com/2017-12-11/191935605.jpg">
+  </div>
+ </div>
+ <p>　　整体来看，由于每月缩表规模仅100亿美元，因此，如果将时间线拉长到2008年至今，美联储资产负债表的收缩幅度并不明显。换句话说，缩表行动在启动之初只迈出了一小步，它是循序渐进的。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" align="middle" src="http://i5.hexun.com/2017-12-11/191935606.jpg">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">国债</font>
+ </div>
+ <p>　　作为缩表的一个部分，美联储还不再滚动续作一些到期的国债。</p>
+ <p>　　当10月31日85亿美元国债到期之时，美联储将其中的25亿美元进行了再投资，其余60亿美元则移出表外。</p>
+ <p>　　11月，先后有规模分别为约110亿美元、约79亿美元的国债到期，美联储合计令大约59亿美元国债自然到期兑付，从而将它们移出了表外。</p>
+ <p>　　截至11月底，美联储持有的国债数额从10月25日创纪录的24657亿美元，降至24545亿美元，为2014年10月8日以来的最低水平。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" align="middle" src="http://i3.hexun.com/2017-12-11/191935607.jpg">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">MBS</font>
+ </div>
+ <p>　　抵押贷款支持证券（MBS）规模在10月初为17682亿美元，当月底降至17706亿美元，11月进一步降低至17670亿美元，创出今年3月8日以来最低。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" align="middle" src="http://i7.hexun.com/2017-12-11/191935608.jpg">
+  </div>
+ </div>
+ <p>　　如果美联储按照既定计划继续实施缩表计划，那么，缩表行动将使得美联储在实施QE期间增加的3.6万亿美元规模全部移除。</p>
+ <p>　　随着这一过程的持续，以及资产负债表规模明显降低，其对金融市场更加广泛的影响也将逐步体现出来。</p>
+ <p>　　华尔街见闻此前提及，美联储准主席鲍<a href="http://renwu.hexun.com/figure_4625.shtml" target="_blank">威尔</a>上月底在听证会后称，他们并不确切地知道资产负债表最终会达到怎样的规模。市场尚未对美联储缩表做出反应。</p>
+ <p>　　鲍威尔还表示，美联储预计将“在一定程度上进一步<a href="http://news.hexun.com/2011/2011jx3/" target="_blank">加息</a>”，会逐步缩表。目标是维持强劲的劳动力市场，让通胀逐步升向美联储目标水平2%。</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：王治强 HF013）
+ </div> 
+</div>]]></html_content>
+</article>
+

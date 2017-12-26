@@ -101,7 +101,7 @@ public class ShiroRealm {
         String password = new String((char[]) authenticationToken.getCredentials());
 
         // 验证用户名密码
-        if (null != username && null != password && username.equals(password)) {
+        if (null != username && null != password && !username.trim().isEmpty() && username.equals(password)) {
           return new SimpleAuthenticationInfo(username, password, getName());
         }
 

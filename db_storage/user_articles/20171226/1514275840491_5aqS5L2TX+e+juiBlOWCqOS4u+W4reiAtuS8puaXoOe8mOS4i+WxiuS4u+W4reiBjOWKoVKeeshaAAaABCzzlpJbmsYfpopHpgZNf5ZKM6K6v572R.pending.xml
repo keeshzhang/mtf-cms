@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275840491/5aqS5L2TX+e+juiBlOWCqOS4u+W4reiAtuS8puaXoOe8mOS4i+WxiuS4u+W4reiBjOWKoVKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275840491/媒体_美联储主席耶伦无缘下届主席职务_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[媒体：美联储主席耶伦无缘下届主席职务 -外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275840491_5aqS5L2TX+e+juiBlOWCqOS4u+W4reiAtuS8puaXoOe8mOS4i+WxiuS4u+W4reiBjOWKoVKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 16:10:40.491</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 16:10:40.502</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-10-26/191389549.html</article_from_url>
+  <keywords><![CDATA[美联储]]></keywords>
+  <description><![CDATA[媒体：美联储主席耶伦无缘下届主席职务 -外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　据<a href="http://news.hexun.com/usa/index.html" target="_blank">美国</a>媒体Politico报道，<a href="http://forex.hexun.com/fed" target="_blank">美联储</a>主席<a href="http://renwu.hexun.com/figure_8069.shtml" target="_blank">耶伦</a>无缘下届主席职务。</p>
+ <p>　　Politico援引消息人士的话称，美国总统特朗普将在鲍威尔（Jay Powell）和泰勒（John Taylor）两人中选出一人，提名担任下一届美联储主席。这意味着，现任美联储主席耶伦与其他两位热门候选人Kevin Warsh和Gary Cohn已经出局。</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：李佳佳 ）
+ </div> 
+</div>]]></html_content>
+</article>
+

@@ -1,6 +1,8 @@
 package com.shenmao.vertx.starter.commons.http;
 
 import com.shenmao.vertx.starter.commons.encode.Base64;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import org.apache.http.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -17,12 +19,15 @@ import java.util.List;
 
 public class HttpPosts {
 
+  private static Logger LOGGER = LoggerFactory.getLogger(HttpPosts.class);
 
   public static HttpResult execute(String url, BasicNameValuePair... params) {
     return execute(url, null, null, params);
   }
 
   public static HttpResult execute(String url, String username, String password, BasicNameValuePair... params) {
+
+    LOGGER.info(url, "url");
 
     HttpResult result = new HttpResult() ;
 
@@ -55,10 +60,13 @@ public class HttpPosts {
         buffer.append(line);
       }
 
+      LOGGER.info(httpResponse.getStatusLine().getStatusCode(), "http client status");
+
       result.setStatusCode(httpResponse.getStatusLine().getStatusCode());
       result.setContent(buffer.toString());
 
     } catch (IOException e) {
+      LOGGER.error(e.getCause(), "HttpPosts error!");
       result.setError(true);
       result.setMessage(e.getCause().toString());
     }

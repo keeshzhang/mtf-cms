@@ -1,5 +1,6 @@
 package com.shenmao.vertx.starter.MtfCrawler;
 
+import com.shenmao.vertx.starter.Application;
 import com.shenmao.vertx.starter.commons.encode.Base64;
 import com.shenmao.vertx.starter.commons.http.HttpGets;
 import com.shenmao.vertx.starter.commons.http.HttpPosts;
@@ -25,7 +26,7 @@ public class HexunCrawlerParser {
 
   private static Logger LOGGER = LoggerFactory.getLogger(HexunCrawlerParser.class);
 
-  private static final String _MTF_API_ENDPOINT = "http://localhost:9180";
+  private static final String _MTF_API_ENDPOINT = Application.getAppEndpoint();
   private static final String _MTF_API_USERNAME = "keesh";
   private static final String _MTF_API_PASSWORD = "keesh";
 
@@ -53,15 +54,15 @@ public class HexunCrawlerParser {
     return _PAGE_INDEX_URL + "/index-" + pagenumber + ".html";
   }
 
-  private static String download(String url) {
-    HttpResult httpResultHexun = HttpGets.execute(getParseUrl(null), _PAGE_ENCODE);
+  private static String download(Integer pagenumber) {
+    HttpResult httpResultHexun = HttpGets.execute(getParseUrl(pagenumber), _PAGE_ENCODE);
     return httpResultHexun.getContent();
   }
 
-  public static void run() {
+  public static void run(Integer pagenumber) {
 
-    String indexPageUrl = getParseUrl(null);
-    String indexPageContent = download(indexPageUrl);
+    String indexPageUrl = getParseUrl(pagenumber);
+    String indexPageContent = download(pagenumber);
     HexunCrawlerParser indexCrawlerParser = new HexunCrawlerParser(indexPageContent, indexPageUrl);
 
     int maxPageNumber = indexCrawlerParser.getMaxPageNumber();
@@ -84,7 +85,6 @@ public class HexunCrawlerParser {
     articleUrlListElement.stream()
       .map(a -> a.attr("href"))
       .filter(a -> {
-//        return a.equals("http://forex.hexun.com/2017-12-24/192069228.html");
         return 1==1;
       })
       .filter(a -> {
@@ -184,8 +184,14 @@ public class HexunCrawlerParser {
       }
     }
 
-    artilcePubdate = articleDocument.select("span.pr20").first().text();
-    articleHtml = articleDocument.select("div.art_contextBox").first().outerHtml();
+    try {
+
+      artilcePubdate = articleDocument.select("span.pr20").first().text();
+      articleHtml = articleDocument.select("div.art_contextBox").first().outerHtml();
+    } catch (Exception e) {
+      LOGGER.error(articlePageUrl, e.getCause());
+    }
+
 
     JsonObject article = new JsonObject()
       .put("article_link", artilceLink)

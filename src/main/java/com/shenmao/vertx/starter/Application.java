@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 public class Application {
 
+  static String _APP_ENV = "prod";
   static SqlQueriesConfig sqlQueriesConfig;
   static ApplicationConfig applicationConfig;
 
@@ -21,8 +22,13 @@ public class Application {
     MyFileWriter.getAppResource(HexunCrawlerParser._PAGE_SAVE_FOLDER, false);
     MyFileWriter.getAppResource("/properties", true);
 
+    if (System.getenv().containsKey("MTF_APP_ENV")) {
+      _APP_ENV = System.getenv().get("MTF_APP_ENV");
+    }
+
+
     SqlQueriesConfig.setConfigFile(ApplicationConfig.getAppRoot() +"/properties/db-queries.properties");
-    ApplicationConfig.setConfigFile(ApplicationConfig.getAppRoot() +"/properties/application.properties");
+    ApplicationConfig.setConfigFile(ApplicationConfig.getAppRoot() +"/properties/application_" + _APP_ENV + ".properties");
 
     try {
       applicationConfig = ApplicationConfig.newInstance();
@@ -49,6 +55,12 @@ public class Application {
 
   public static String getApplicationRoot() {
     return ApplicationConfig.getAppRoot();
+  }
+
+  public static String getAppEndpoint() {
+    return ("true".equals(applicationConfig.getConfig().get(ApplicationConfig.AppConfig.APP_SSL_ENABLED)) ? "https" : "http")
+            + "://" + applicationConfig.getConfig().get(ApplicationConfig.AppConfig.APP_HOST) + ":"
+            +  applicationConfig.getConfig().get(ApplicationConfig.AppConfig.APP_PORT);
   }
 
 }

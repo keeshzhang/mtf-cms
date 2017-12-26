@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514274925988/5oiQ6Iy1X+aKgOacr+S4ree6p+evh1KeeshaAAaABCzzpmLvlipvnmoTkuIDnp43liKTmlq3mlrnms5Vf5oiQ5Lqk6YeP6aqM6K+BX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514274925988/成茵_技术中级篇_阻力的一种判断方法_成交量验证_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[成茵：技术中级篇---阻力的一种判断方法(成交量验证)-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514274925988_5oiQ6Iy1X+aKgOacr+S4ree6p+evh1KeeshaAAaABCzzpmLvlipvnmoTkuIDnp43liKTmlq3mlrnms5Vf5oiQ5Lqk6YeP6aqM6K+BX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 15:55:25.988</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 15:55:25.993</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-12-18/192012063.html</article_from_url>
+  <keywords><![CDATA[技术，阻力，判断]]></keywords>
+  <description><![CDATA[成茵：技术中级篇---阻力的一种判断方法(成交量验证)-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　一、成交量的概念</p>
+ <p>　　在讲阻力判断之前，先引入一个概念，成交量。大家都知道，我们在证券或者<a href="http://futures.hexun.com" target="_blank">期货</a>交易中，通过成交量观察市场主力进出的蛛丝马迹，可以对市场的走向进行预测和掌握，但在外汇市场这样一个几乎“无限大”的市场中，没有机构能够有效、准确的统计出交易量，因为外汇市场的交易角色太多，上至国家、央行，下至个人，且全球各地都在进行交易，交易量是非常巨大的，一般都是国际清算银行粗略的统计日均交易量在4万亿<a href="http://forex.hexun.com/usd" target="_blank">美元</a>以上。</p>
+ <p>　　大家都在讨论说在外汇领域中研究成交量是完全没有必要的，那我们到底有没有一个方法通过观察一个平台的成交量来判断盘面的阻力呢？</p>
+ <p>　　二、成交量指标的原理</p>
+ <p>　　Volumes成交量指标上的数值反映某商品市场建仓的头寸变化，体现市场关注程度的高低。</p>
+ <p>　　在MT4中Volumes指标代表的是一定时间内价格变动的次数，它在一定程度上反映交易活跃度或交易者在当前价格附近入场交易的信心。</p>
+ <p>　　MT4的Volumes成交量的原理就是交易越活跃价格跳动就会越频繁，我们的方法就是找出交易最活跃价格跳动最频繁的那根K线，这根K线说明市场参与的人最多，里面包含的信息量也最大如资金的做多做空博弈、阻力的验证等等。</p>
+ <p>　　三、成交量指标如何使用</p>
+ <p>　　在所有的MT4平台中都有这个指标，指标名称为”Volumns”，打开MT4如下图所示：</p>
+ <p></p>
+ <p align="center"><img title="点击看大图" style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #000 1px solid; MARGIN: 4px auto" alt="成茵：技术中级篇---阻力的一种判断方法(成交量验证)" src="http://i0.hexun.com/2017-12-18/192012058.png" align="middle"><br><font style="FONT-SIZE: 12px; TEXT-DECORATION: none; COLOR: #000000; TEXT-ALIGN: center"></font></p>
+ <p align="center">图1-1</p>
+ <p>　　Volumns中有两个值一个是价格上升和价值下降，阻力判断只需要大家看价值上升这个参数。</p>
+ <p></p>
+ <p align="center"><img title="点击看大图" style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #000 1px solid; MARGIN: 4px auto" alt="成茵：技术中级篇---阻力的一种判断方法(成交量验证)" src="http://i3.hexun.com/2017-12-18/192012059.png" align="middle"><br><font style="FONT-SIZE: 12px; TEXT-DECORATION: none; COLOR: #000000; TEXT-ALIGN: center"></font></p>
+ <p align="center">图1-2</p>
+ <p><strong>　　四、K线（影线）的概念</strong></p>
+ <p>　　K线（影线）的定义：具有代表性的一种表现形式就十字星，这是一种只有上下影线，没有实体的图形。开盘价即是收盘价，表示在交易中，股价出现高于或低于开盘价成交，但收盘价与开盘价相等，说明买方与卖方几乎势均力敌。其中：上影线越长，表示卖压越重。下影线越长，表示买方旺盛。上下影线看似等长的十字线，可称为转机线，在高价位或低价位，意味着出现反转。</p>
+ <p>　　K线（影线）的本质来说就已经能告诉我们，上下影线越长说明卖买压力越大，换句话说的MT4盘面上K线形态（上影线）之上附近是空头区域或空单阻力区域，下影线之下附近是多头区域或多单阻力区域。</p>
+ <p>　　那我们把盘面上的影线结合成交量会有什么样的结论呢？</p>
+ <p><strong>　　五、影线结合成交量</strong></p>
+ <p>　　将成交量和影线相结合，意味着什么呢？大家可以从市场的本质想一想？</p>
+ <p>　　举个例子，当<a href="http://quote.forex.hexun.com/forexrate.aspx" target="_blank">行情</a>发生基本面时，基金经理们会对这个基本面的看法作出判断如看多，他们就会向市场投入上万亿的资金做多，但到了上方的一定区域遇到了大量的做空资金或大量平仓。试想一下那这个区域的点位告诉我们什么，是不是阻力？我在这里要告诉你们的是，是阻力，而且这种是市场用资金验证过的阻力。下面是在盘面上找的几种表现形式，方便大家理解。</p>
+ <p>　　1、上影线之上是阻力，行情突破上去后，再次回来做多。</p>
+ <p></p>
+ <p align="center"><img title="点击看大图" style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #000 1px solid; MARGIN: 4px auto" alt="成茵：技术中级篇---阻力的一种判断方法(成交量验证)" src="http://i3.hexun.com/2017-12-18/192012060.png" align="middle"><br><font style="FONT-SIZE: 12px; TEXT-DECORATION: none; COLOR: #000000; TEXT-ALIGN: center"></font></p>
+ <p>　　2、下影线之下是阻力，行情突破向下，再次回来做空。</p>
+ <p></p>
+ <p align="center"><img title="点击看大图" style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #000 1px solid; MARGIN: 4px auto" alt="成茵：技术中级篇---阻力的一种判断方法(成交量验证)" src="http://i9.hexun.com/2017-12-18/192012061.png" align="middle"><br><font style="FONT-SIZE: 12px; TEXT-DECORATION: none; COLOR: #000000; TEXT-ALIGN: center"></font></p>
+ <p>　　3、当前盘面突破验证的上影线阻力后会遇到空头资金与当前多头资金进行博弈，如下图。</p>
+ <p></p>
+ <p align="center"><img title="点击看大图" style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #000 1px solid; MARGIN: 4px auto" alt="成茵：技术中级篇---阻力的一种判断方法(成交量验证)" src="http://i6.hexun.com/2017-12-18/192012062.png" align="middle"><br><font style="FONT-SIZE: 12px; TEXT-DECORATION: none; COLOR: #000000; TEXT-ALIGN: center"></font></p>
+ <p>　　大家可以用这个方法到盘面找一找影线验证的阻力，你能找对吗？不妨试着从市场资金的本质去理解理解影线的特点，同时这套理论可以写成EA系统。</p>
+ <p>　　大家可以关注成茵工作室的每日交易操作策略：</p>
+ <p>　　<a href="http://fc.hexun.com/bbs/forum.php?mod=forumdisplay&amp;fid=172">http://fc.hexun.com/bbs/forum.php?mod=forumdisplay&amp;fid=172</a></p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：何美铃 HF117）
+ </div> 
+</div>]]></html_content>
+</article>
+

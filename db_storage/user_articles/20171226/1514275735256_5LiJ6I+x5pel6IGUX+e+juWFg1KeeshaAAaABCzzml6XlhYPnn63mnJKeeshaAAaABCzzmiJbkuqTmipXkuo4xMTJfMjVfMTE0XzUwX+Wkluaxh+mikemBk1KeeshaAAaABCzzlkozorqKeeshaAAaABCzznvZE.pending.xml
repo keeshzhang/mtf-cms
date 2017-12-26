@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275735256/5LiJ6I+x5pel6IGUX+e+juWFg1KeeshaAAaABCzzml6XlhYPnn63mnJKeeshaAAaABCzzmiJbkuqTmipXkuo4xMTJfMjVfMTE0XzUwX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275735256/三菱日联_美元_日元短期或交投于112_25_114_50_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[三菱日联：美元/日元短期或交投于112.25/114.50-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275735256_5LiJ6I+x5pel6IGUX+e+juWFg1KeeshaAAaABCzzml6XlhYPnn63mnJKeeshaAAaABCzzmiJbkuqTmipXkuo4xMTJfMjVfMTE0XzUwX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 16:08:55.256</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 16:08:55.264</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-11-12/191604060.html</article_from_url>
+  <keywords><![CDATA[112.25]]></keywords>
+  <description><![CDATA[三菱日联：美元/日元短期或交投于112.25/114.50-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　本周<a href="http://forex.hexun.com/usd" target="_blank">美元</a>/<a href="http://forex.hexun.com/jpy" target="_blank">日元</a>收跌，主要受<a href="http://news.hexun.com/usa/index.html" target="_blank">美国</a>税改不确定引发市场担忧影响。</p>
+ <p>　　针对该<a href="http://quote.forex.hexun.com/forexrate.aspx" target="_blank">汇价</a>未来几周的前景，东京三菱日联银行(BTMU)外汇策略研究团队撰文如下：</p>
+ <p>　　该行维持中性立场，预计该汇价在超短期内将交投在112.25/114.50区间内。</p>
+ <p>　　<a href="http://forex.hexun.com/ecb" target="_blank">欧洲央行</a>和<a href="http://forex.hexun.com/boe" target="_blank">英国央行</a>已经开始准备进行利率正常化，但最近一直在稳定。与此同时，<a href="http://news.hexun.com/saudi/index.html" target="_blank">沙特</a>的反腐风暴震惊市场。日元放缓近期的疲势，进行一定程度的修正。</p>
+ <p>　　上述因素令美元/日元承压于115水平附近。</p>
+ <p>　　美元未能大幅上涨来提振美元/日元。美国税改能否被批准依旧是待解之谜。</p>
+ <p>　　CFTC<a href="http://forex.hexun.com/rmbsj/" target="_blank">数据</a>显示，投机客一直在建立日元多仓，但这不足以令美元/日元突破115水平。</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：王治强 HF013）
+ </div> 
+</div>]]></html_content>
+</article>
+

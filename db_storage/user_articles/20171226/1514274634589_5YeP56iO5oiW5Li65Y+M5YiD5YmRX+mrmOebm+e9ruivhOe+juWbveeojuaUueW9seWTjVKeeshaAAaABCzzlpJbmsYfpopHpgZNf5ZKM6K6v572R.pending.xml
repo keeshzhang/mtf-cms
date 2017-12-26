@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514274634589/5YeP56iO5oiW5Li65Y+M5YiD5YmRX+mrmOebm+e9ruivhOe+juWbveeojuaUueW9seWTjVKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514274634589/减税或为双刃剑_高盛置评美国税改影响_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[减税或为双刃剑！高盛置评美国税改影响-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514274634589_5YeP56iO5oiW5Li65Y+M5YiD5YmRX+mrmOebm+e9ruivhOe+juWbveeojuaUueW9seWTjVKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 15:50:34.589</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 15:50:34.593</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-12-22/192052857.html</article_from_url>
+  <keywords><![CDATA[双刃剑]]></keywords>
+  <description><![CDATA[减税或为双刃剑！高盛置评美国税改影响-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　高盛(Goldman Sachs)分析师周五(12月22日)就<a href="http://news.hexun.com/usa/index.html" target="_blank">美国</a>税改法案对该国GDP的影响进行评估分析，具体内容如下：</p>
+ <p>　　该行指出，预计税改计划将在2018年提升GDP 0.3%，在2019年额外提升GDP 0.3%。</p>
+ <p>　　该行分别上调美国2018年GDP预期0.3%至2.6%，上调2019年GDP预期0.2%至1.7%。</p>
+ <p>　　高盛称，金融环境的渐进宽松，以及持续强劲的经济势头将在年底结束。</p>
+ <p>　　此外，该行将美国2018年年末的失业率预期下调至3.5%，这主要反映了就业增长的温和上升。</p>
+ <p>　　高盛表示，预计失业率将在2019年末形成周期底部，为3.3%。</p>
+ <p>　　不过其也指出，更多的财政刺激意味着更大的赤字规模。该行已经上调了赤字预期。</p>
+ <p>　　高盛预计，2018年年末赤字将占GDP的3.7%，而2019年则占GDP的5%。</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：王治强 HF013）
+ </div> 
+</div>]]></html_content>
+</article>
+

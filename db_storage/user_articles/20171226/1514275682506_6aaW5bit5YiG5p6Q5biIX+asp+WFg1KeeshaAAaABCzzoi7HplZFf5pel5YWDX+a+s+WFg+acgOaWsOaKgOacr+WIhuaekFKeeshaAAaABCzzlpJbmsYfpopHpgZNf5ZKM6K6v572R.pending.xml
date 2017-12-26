@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275682506/6aaW5bit5YiG5p6Q5biIX+asp+WFg1KeeshaAAaABCzzoi7HplZFf5pel5YWDX+a+s+WFg+acgOaWsOaKgOacr+WIhuaekFKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275682506/首席分析师_欧元_英镑_日元_澳元最新技术分析_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[首席分析师：欧元、英镑、日元、澳元最新技术分析-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275682506_6aaW5bit5YiG5p6Q5biIX+asp+WFg1KeeshaAAaABCzzoi7HplZFf5pel5YWDX+a+s+WFg+acgOaWsOaKgOacr+WIhuaekFKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 16:08:02.506</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 16:08:02.514</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-11-20/191707929.html</article_from_url>
+  <keywords><![CDATA[技术分析]]></keywords>
+  <description><![CDATA[首席分析师：欧元、英镑、日元、澳元最新技术分析-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　周一(11月20日)，外汇资讯网站FXStreet首席分析师Valeria Bednarik撰文阐述了<a href="http://forex.hexun.com/eur" target="_blank">欧元</a>、<a href="http://forex.hexun.com/gbp" target="_blank">英镑</a>、<a href="http://forex.hexun.com/jpy" target="_blank">日元</a>，以及<a href="http://forex.hexun.com/aud" target="_blank">澳元</a>的技术分析。</p>
+ <p>　　欧元/<a href="http://forex.hexun.com/usd" target="_blank">美元</a>：技术面来看，看涨。日图显示<a href="http://quote.forex.hexun.com/forexrate.aspx" target="_blank">汇价</a>收盘于100日均线下方，若破将确认进一步涨势。近期升势的38.2%斐波那契回撤位位于1.1745，构成关键支撑。4小时图呈中性-看涨信号。</p>
+ <p>　　支撑位：1.1745、1.1700、1.1665</p>
+ <p>　　阻力位：1.1830、1.1860、1.1890</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px" border="1" alt="(欧元/美元4小时图 )" src="http://i1.hexun.com/2017-11-20/191707925.jpg" width="500" height="374">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(欧元/美元4小时图 )</font>
+ </div>
+ <div align="left">
+  <p>　　英镑/美元：技术面来看，日图显示汇价仍呈中性。4小时图汇价上升，技术指标呈温和看涨斜度。汇价接近1.3220/30，构成短期支撑，更强支撑位于上周高位1.3259。</p>
+  <p>　　支撑位：1.3195、1.3160、1.3130</p>　　阻力位：1.3225、1.3260、1.3300
+ </div>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px" border="1" alt="(欧元/美元4小时图 )" src="http://i5.hexun.com/2017-11-20/191707926.jpg" width="500" height="374">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(英镑/美元4小时图 )</font>
+ </div>
+ <div align="left">
+  <p>　　美元/日元：技术面来看，日图显示汇价强烈看跌，若汇价跌破100和200DMA的111.50，汇价将加速下行。4小时图技术指标维持强烈看跌，接近超卖指标，表明汇价长期看跌。</p>
+  <p>　　支撑位：111.95、111.50、111.10</p>　　阻力位：112.30、112.60、113.00
+ </div>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px" border="1" alt="(欧元/美元4小时图 )" src="http://i2.hexun.com/2017-11-20/191707927.jpg" width="500" height="374">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(美元/日元4小时图 )</font>
+ </div>
+ <div align="left">
+  <p>　　澳元/美元：技术面来看，汇价仍有望下跌。日图技术指标表明汇价维持看跌。短期来看，4小时图显示汇价倾向于下行，汇价短期阻力处在0.7580附近。</p>
+  <p>　　支撑位：0.7535、0.7490、0.7450</p>　　阻力位：0.7580、0.7620、0.7660
+ </div>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px" border="1" alt="(欧元/美元4小时图 )" src="http://i3.hexun.com/2017-11-20/191707928.jpg" width="500" height="374">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(澳元/美元4小时图 )</font>
+ </div>
+ <p>　　校对：JOE</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：何美铃 HF117）
+ </div> 
+</div>]]></html_content>
+</article>
+

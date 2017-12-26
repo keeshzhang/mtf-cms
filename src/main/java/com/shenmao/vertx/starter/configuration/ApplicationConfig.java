@@ -37,7 +37,8 @@ public class ApplicationConfig {
   public enum AppConfig {
     APP_ENV,
     APP_PORT,
-    APP_HOST
+    APP_HOST,
+    APP_SSL_ENABLED
   }
 
   private static String _config_file = null;
@@ -87,9 +88,7 @@ public class ApplicationConfig {
     appConfig.put(AppConfig.APP_PORT, appProps.getProperty("app_port"));
     appConfig.put(AppConfig.APP_HOST, appProps.getProperty("app_host"));
     appConfig.put(AppConfig.APP_ENV, appProps.getProperty("app_env"));
-
-    System.out.println(appConfig.get(AppConfig.APP_ENV) + ", AppConfig.APP_ENV 2");
-
+    appConfig.put(AppConfig.APP_SSL_ENABLED, appProps.getProperty("app_ssl_enabled"));
 
   }
 

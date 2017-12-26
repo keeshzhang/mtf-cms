@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275029688/5be05YWL6I6xX+acrOWRqOasp+mTtuS8muiuruaWmeaXoOaWsOaEj1KeeshaAAaABCzzmrKflhYPkvJrorq7liY3msqHmnInlpKrlpKfmk43kvZznqbrpl7Rf5aSW5rGH6aKR6YGTX+WSjOiur+e9kQ</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275029688/巴克莱_本周欧银会议料无新意_欧元会议前没有太大操作空间_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[巴克莱：本周欧银会议料无新意 欧元会议前没有太大操作空间-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275029688_5be05YWL6I6xX+acrOWRqOasp+mTtuS8muiuruaWmeaXoOaWsOaEj1KeeshaAAaABCzzmrKflhYPkvJrorq7liY3msqHmnInlpKrlpKfmk43kvZznqbrpl7Rf5aSW5rGH6aKR6YGTX+WSjOiur+e9kQ.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 15:57:09.688</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 15:57:09.693</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-12-12/191947299.html</article_from_url>
+  <keywords><![CDATA[巴克莱]]></keywords>
+  <description><![CDATA[巴克莱：本周欧银会议料无新意 欧元会议前没有太大操作空间-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　巴克莱资本(Barclays Capital)周一(12月11日)在客户报告中指出，本周<a href="http://forex.hexun.com/ecb" target="_blank">欧洲央行</a>政策会议料无新意，在会议前暂无太大的操作空间。</p>
+ <p>　　巴克莱分析师表示：“我们预期欧洲央行将维持现有的政策和未来指引不变，在10月宣布将购债计划延长至2018年9月底后，欧洲央行预计不会再给出太大变化。有鉴于此，我们并不认为本周会议前会有什么投资操作的风险回报。”</p>
+ <p>　　巴克莱分析师补充道：“尽管市场不断出现的反对意见可能会增加<a href="http://forex.hexun.com/eur" target="_blank">欧元</a>的上行风险，但我们依然认为行长<a href="http://renwu.hexun.com/figure_4421.shtml" target="_blank">德拉基</a>将继续反对过早地开始货币正常化，因此12月欧洲央行政策会议预计不会产生过大影响。”</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：王治强 HF013）
+ </div> 
+</div>]]></html_content>
+</article>
+

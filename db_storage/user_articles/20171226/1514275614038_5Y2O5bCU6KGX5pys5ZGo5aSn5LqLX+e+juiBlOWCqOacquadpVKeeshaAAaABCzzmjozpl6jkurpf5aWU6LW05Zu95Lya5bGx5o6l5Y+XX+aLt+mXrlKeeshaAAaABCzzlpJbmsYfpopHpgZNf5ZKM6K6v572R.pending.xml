@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275614038/5Y2O5bCU6KGX5pys5ZGo5aSn5LqLX+e+juiBlOWCqOacquadpVKeeshaAAaABCzzmjozpl6jkurpf5aWU6LW05Zu95Lya5bGx5o6l5Y+XX+aLt+mXrlKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275614038/华尔街本周大事_美联储未来_掌门人_奔赴国会山接受_拷问_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[华尔街本周大事――美联储未来“掌门人”奔赴国会山接受“拷问”-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275614038_5Y2O5bCU6KGX5pys5ZGo5aSn5LqLX+e+juiBlOWCqOacquadpVKeeshaAAaABCzzmjozpl6jkurpf5aWU6LW05Zu95Lya5bGx5o6l5Y+XX+aLt+mXrlKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 16:06:54.038</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 16:06:54.045</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-11-27/191777105.html</article_from_url>
+  <keywords><![CDATA[国会山]]></keywords>
+  <description><![CDATA[华尔街本周大事――美联储未来“掌门人”奔赴国会山接受“拷问”-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　本周华尔街将有一件大事：被<a href="http://news.hexun.com/usa/index.html" target="_blank">美国</a>总统<a href="http://renwu.hexun.com/figure_3451.shtml" target="_blank">特朗普</a>提名为下一任<a href="http://forex.hexun.com/fed" target="_blank">美联储</a>主席的鲍<a href="http://renwu.hexun.com/figure_4625.shtml" target="_blank">威尔</a>将于周二前往国会山接受参议院的质询。关于美联储下一任“掌门人”计划如何保护美国经济、并为消费者和企业设定借贷成本，投资者将在本周得到他们的首个重大线索。</p>
+ <p>　　凯投宏观(Capital Economics)经济学家Paul Ashworth说道：“这是鲍威尔向参议院银行委员会(Senate Banking Committee)和市场证明他能胜任这份工作的机会。”</p>
+ <p>　　在美联储会议纪要显示，美联储对于低通胀的原因以及可能采取的措施存在分歧之后，市场将高度关注鲍威尔对政策的看法，尤其是他对通胀的看法。</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px; BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid" border="1" alt="(鲍威尔 图片)" src="http://i6.hexun.com/2017-11-27/191777104.jpg" width="500" height="349">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(鲍威尔 图片)</font>
+ </div>
+ <p>　　不过有分析师指出，不要指望本周鲍威尔会带来任何重大冲击。</p>
+ <p>　　外界普遍预计，鲍威尔在货币政策上的观点与<a href="http://renwu.hexun.com/figure_8069.shtml" target="_blank">耶伦</a>相近，但在<a href="http://jingzhi.funds.hexun.com/161121.shtml" target="_blank">银行业</a>监管方面可能会比较宽松。</p>
+ <p>　　鲍威尔很可能会坚持这个由耶伦撰写的脚本：逐步提高美国的利率，但要保持足够宽松的货币政策，以帮助经济增长。</p>
+ <p>　　美联储下一次<a href="http://news.hexun.com/2011/2011jx3/" target="_blank">加息</a>可能很会就会到来。美联储官员们将于12月12日-13日召开2017年最后一次货币政策会议。</p>
+ <p>　　华尔街普遍预计，美联储届时将把联邦基金基准利率上调25个基点，至1.25%-1.50%。许多贷款，如抵押贷款、汽车贷款和商业信用额度都与联邦基金利率的变化有关。</p>
+ <p>　　包括GDP、就业、房屋销售和工业生产在内的一系列指标都表明，美国经济呈现强势复苏态势。这支持美联储再度加息。</p>
+ <p>　　唯一令美联储感到忧心忡忡的是美国意外疲弱的通胀表现。</p>
+ <p>　　不管经济增速有多快、失业率有多低――失业率最近跌至4.1%的17年低点――通胀一直无法持续地达到美联储设定的2%的目标。</p>
+ <p>　　在上周的讲话中，耶伦担心，持续的低通胀会让美联储几乎没有工具来应对下一场衰退――耶伦称之为“非常危险的事态”。</p>
+ <p>　　在美联储12月会议之前，美联储还将关注其偏爱的通胀指标――个人消费支出(PCE)物价指标。10月PCE<a href="http://forex.hexun.com/rmbsj/" target="_blank">数据</a>将于周四出炉。</p>
+ <p>　　美国9月PCE物价指数年率上升1.6%，而核心PCE物价指数年率升幅仅为1.3%。</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：王治强 HF013）
+ </div> 
+</div>]]></html_content>
+</article>
+

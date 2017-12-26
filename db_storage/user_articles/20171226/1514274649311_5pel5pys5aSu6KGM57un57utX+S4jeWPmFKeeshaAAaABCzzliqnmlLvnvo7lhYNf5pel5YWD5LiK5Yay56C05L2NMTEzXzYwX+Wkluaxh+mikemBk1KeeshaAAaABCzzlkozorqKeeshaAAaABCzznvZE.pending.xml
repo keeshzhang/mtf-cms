@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514274649311/5pel5pys5aSu6KGM57un57utX+S4jeWPmFKeeshaAAaABCzzliqnmlLvnvo7lhYNf5pel5YWD5LiK5Yay56C05L2NMTEzXzYwX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514274649311/日本央行继续_不变_助攻美元_日元上冲破位113_60_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[日本央行继续“不变”助攻美元/日元上冲破位113.60-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514274649311_5pel5pys5aSu6KGM57un57utX+S4jeWPmFKeeshaAAaABCzzliqnmlLvnvo7lhYNf5pel5YWD5LiK5Yay56C05L2NMTEzXzYwX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 15:50:49.311</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 15:50:49.316</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-12-21/192045506.html</article_from_url>
+  <keywords><![CDATA[113.60]]></keywords>
+  <description><![CDATA[日本央行继续“不变”助攻美元/日元上冲破位113.60-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　FX168财经报社(香港)讯.01后，价格持续反弹，周四欧盘价格再度攀升截至发稿最高触及113.63，刷新逾一周高点。</p>
+ <p>　　基本面：</p>
+ <p>　　由于亚盘时段<a href="http://forex.hexun.com/boj" target="_blank">日本央行</a>表示继续维持-0.1%的利率空间，且仍维持10年期国债收益率0%的水平，这一声明与市场大部分预期吻合，并未带来乐观情绪，<a href="http://forex.hexun.com/jpy" target="_blank">日元</a>承压，推高<a href="http://forex.hexun.com/usd" target="_blank">美元</a>/日元延续此前反弹之势。</p>
+ <p>　　而此后日本央行行长黑田在新闻发布会上表示的已经准备好再做量化宽松以维持通胀上行动能，日元迎来空头偏好，而就黑田表示的货币政策已经提振了日本经济很多，政府欲开始考虑退出量化宽松的声明，市场并未有所动。</p>
+ <p>　　即便是疲弱的美元也未能抑制当前价格的涨势。后期市场继续关注<a href="http://news.hexun.com/usa/index.html" target="_blank">美国</a>三季度GDP终值，费城联储制造业指数以及上周初请失业金人数情况</p>
+ <p>　　技术面：</p>
+ <p>　　上行阻力：113.75；114.00；114.40</p>
+ <p>　　下行支撑：113.20；113.00；112.40/35</p>
+ <div align="center">
+  <div align="center">
+   <img style="BORDER-TOP: #000 1px solid; BORDER-RIGHT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; BORDER-LEFT: #000 1px solid; MARGIN: 4px" border="1" alt="(美元/日元小时图)" src="http://i1.hexun.com/2017-12-21/192045505.jpg" align="middle">
+  </div>
+ </div>
+ <div align="center">
+  <font style="FONT-SIZE: 12px">(美元/日元小时图)</font>
+ </div>
+ <p>　　北京时间16:42 美元/日元报113.55</p>
+ <p>　　校对：冷静</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：何美铃 HF117）
+ </div> 
+</div>]]></html_content>
+</article>
+

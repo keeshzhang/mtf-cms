@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171226/1514275802242/5YyX5qyn5pav5a6J6ZO26KGMX+WdmuaMgee+juiBlOWCqDEy5pyI5Y2H5oGv55qE6aKE5pyfX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171226/1514275802242/北欧斯安银行_坚持美联储12月升息的预期_外汇频道_和讯网</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[北欧斯安银行：坚持美联储12月升息的预期-外汇频道-和讯网]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514275802242_5YyX5qyn5pav5a6J6ZO26KGMX+WdmuaMgee+juiBlOWCqDEy5pyI5Y2H5oGv55qE6aKE5pyfX+Wkluaxh+mikemBk1KeeshaAAaABCzzlkozorqKeeshaAAaABCzznvZE.pending.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>pending</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-26 16:10:02.242</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-26 16:10:02.254</last_updated>
+  <!-- 发布时间 -->
+  <published_at />
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel />
+  <!-- 文章来源 -->
+  <source_from>hexun</source_from>
+  <!-- 文章原始 url -->
+  <article_from_url>http://forex.hexun.com/2017-11-02/191477201.html</article_from_url>
+  <keywords><![CDATA[美联储]]></keywords>
+  <description><![CDATA[北欧斯安银行：坚持美联储12月升息的预期-外汇频道-和讯网]]></description>
+  <html_content><![CDATA[<div class="art_contextBox"> 
+ <p>　　<a href="http://forex.hexun.com/fed" target="_blank">美联储</a>周三(11月1日)结束为期两天的政策会议后宣布，维持利率不变，并强调<a href="http://news.hexun.com/usa/index.html" target="_blank">美国</a>经济成长稳健，加强了12月升息概率。</p>
+ <p>　　针对上日的FOMC政策声明，北欧斯安银行(SEB)研究团队撰文如下：</p>
+ <p>　　美联储在11月会议上，维持联邦基金利率在1-1.25%的目标区间。投票结果一致。此次会议没有修正预期，也没有召开新闻发布会。市场反应不大。</p>
+ <p>　　美联储预计PCE通胀率将会逐步加快，预期将在2018年末接近目标。</p>
+ <p>　　这足以让FOMC的大多数成员继续采取渐进<a href="http://news.hexun.com/2011/2011jx3/" target="_blank">加息</a>的政策。</p>
+ <p>　　此次声明中并没有暗示美联储今年第三次加息的预期已经偏离轨道，我们坚持美联储将在12月加息的预期。</p>
+ <p>　　我们预计美联储将在2018年(6月、9月和12月)将进一步升息3次，并在2019年升息一次。</p> 
+ <div style="text-align:right;font-size:12px">
+  （责任编辑：王治强 HF013）
+ </div> 
+</div>]]></html_content>
+</article>
+

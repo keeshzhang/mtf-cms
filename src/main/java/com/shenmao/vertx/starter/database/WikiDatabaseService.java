@@ -18,8 +18,8 @@ import java.util.List;
 @ProxyGen
 public interface WikiDatabaseService {
 
-
   public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+  public static final SimpleDateFormat DATE_FORMAT_MONTH = new SimpleDateFormat("yyyyMMdd");
 
   static WikiDatabaseService create(JDBCClient jdbcClient, HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries, Handler<AsyncResult<WikiDatabaseService>> resultHandler) {
     return new WikiDatabaseServiceImpl(jdbcClient, sqlQueries, resultHandler);

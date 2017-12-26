@@ -87,10 +87,10 @@ public class VertxRouter {
 
     router.routeWithRegex("/index(.json|.html|.xml)?").handler(_defaultAction::indexHandler);
 
-    router.get("/articles/:date/:name.html").handler(_defaultAction::pageRenderingHandler);
-    router.get("/articles/:date/:name.json").handler(_defaultAction::pageRenderingHandler);
-    router.get("/articles/:date/:name.xml").handler(_defaultAction::pageRenderingHandler);
-    router.get("/articles/:date/:name").handler(_defaultAction::pageRenderingHandler);    // must be under exetenion router
+    router.get("/articles/:ymd/:date/:name.html").handler(_defaultAction::pageRenderingHandler);
+    router.get("/articles/:ymd/:date/:name.json").handler(_defaultAction::pageRenderingHandler);
+    router.get("/articles/:ymd/:date/:name.xml").handler(_defaultAction::pageRenderingHandler);
+    router.get("/articles/:ymd/:date/:name").handler(_defaultAction::pageRenderingHandler);    // must be under exetenion router
 //    router.get("/articles/:date/:name/c/:behaver").handler(_defaultAction::pageModifyHandler);
 
     // curl -X POST -v -u keesh:keesh -F name=666 http://localhost:9180/create.json
@@ -98,7 +98,7 @@ public class VertxRouter {
     router.post("/articles").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
 
     // curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:9180/save.json
-    router.post("/articles/:date/:name.json").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageUpdateHandler);
+    router.post("/articles/:ymd/:date/:name.json").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageUpdateHandler);
 
 //    router.get("/wiki/:id").handler(_defaultAction::pageRenderingHandler);
 

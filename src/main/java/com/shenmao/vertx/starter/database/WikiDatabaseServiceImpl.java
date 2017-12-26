@@ -81,7 +81,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     try {
 
-      org.jdom.Document doc = builder.build(_USER_ARTICLES_FOLDER + "/" + file_path);
+      org.jdom.Document doc = builder.build(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) + "/" + file_path);
       org.jdom.Element root = doc.getRootElement();
       List<org.jdom.Element> nodelist = root.getChildren();
 
@@ -150,7 +150,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       }
 
       XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-      xmlOutputter.output(doc, new FileOutputStream(_USER_ARTICLES_FOLDER + "/" + file_path));
+      xmlOutputter.output(doc, new FileOutputStream(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) + "/" + file_path));
 
       return true;
 
@@ -262,7 +262,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     List<JsonObject> pages = fetchAllArticleFiles().stream()
       .filter(file -> {
-        String _filename = file.replace(_USER_ARTICLES_FOLDER, "");
+        String _filename = file.replace(_USER_ARTICLES_FOLDER + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) +  "/" , "");
         return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
       }).map( file -> {
 
@@ -379,8 +379,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     String _new_filenpath_base64 = Paths.get(getFileFullName(timestamp, Base64.encode(StringHelper.escape(title)), "pending")).toFile().getPath();
 
-    String articleUrl = "/articles/" + timestamp + "/" + Base64.encode(StringHelper.escape(title));
-    String articleUrlEscape = "/articles/" + timestamp + "/" + StringHelper.escape(title);
+    String articleUrl = "/articles/" +  DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + timestamp + "/" + Base64.encode(StringHelper.escape(title));
+    String articleUrlEscape = "/articles/" +  DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + timestamp + "/" + StringHelper.escape(title);
     String articleTitle = title;
     String articleFilePath = _new_filenpath_base64;
     String articleStatus = "pending";
@@ -400,7 +400,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     JsonObject restult = newArticleObject( articleUrl, articleUrlEscape, articleTitle, articleFilePath, articleStatus, articleType, articleTags, articlePutTop, articleAuthors, articleCreatedAt, articleLastUpdated, articlePublishedAt, articleChannel, articleKeywords, articleDescription, articleHtmlContent, source_from, article_from_url);
 
-    copyFile(_USER_ARTICLES_FOLDER + "/" + "wiki-article-example.pending.xml.simple",_USER_ARTICLES_FOLDER + "/" + restult.getString("file_name"));
+    copyFile(_USER_ARTICLES_FOLDER + "/" + "wiki-article-example.pending.xml.simple",
+             _USER_ARTICLES_FOLDER + "/" +  DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + restult.getString("file_name"));
 
     this.savePage(timestamp, restult.getString("name_base64"), restult, reply -> {
       resultHandler.handle(Future.succeededFuture(reply.result()));
@@ -414,7 +415,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   public String getFileFullName(Long timestamp, String articleFileName) {
 
     Stream<String> fileStream = fetchAllArticleFiles().stream().filter(file -> {
-      return file.replaceAll(_USER_ARTICLES_FOLDER, "").startsWith(timestamp + "_" + articleFileName);
+      return file.replaceAll(_USER_ARTICLES_FOLDER + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/", "").startsWith(timestamp + "_" + articleFileName);
     });
 
     Optional<String> fileOptional = fileStream.findFirst();
@@ -427,7 +428,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
 
   public String getFileFullName(Long timestamp, String articleFileName, String status, Boolean isBase64) {
-    return _USER_ARTICLES_FOLDER + "/" + timestamp + "_" +
+
+    return _USER_ARTICLES_FOLDER + "/" +  DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + timestamp + "_" +
       ((!isBase64 || Base64.isBase64(articleFileName)) ? articleFileName : Base64.encode(articleFileName)) + "." + status + ".xml";
   }
 
@@ -437,19 +439,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   }
 
   public String getArticleUrl(Long timestamp, String articleFileNameBase64) {
-    return "/articles/" + timestamp + "/" + articleFileNameBase64;
-  }
-
-  private String getTimestampFormat(Long timestamp) {
-    return _DATE_FORMAT.format(new Date(timestamp));
-  }
-
-  private Long getTimestampFromDateString(String datestr) {
-    try {
-      return new Date (_DATE_FORMAT.parse(datestr).getTime()).getTime();
-    } catch (ParseException e) {
-      return null;
-    }
+    return "/articles/" +  DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + timestamp + "/" + articleFileNameBase64;
   }
 
   public JsonObject refreshArticleObject(JsonObject article) {
@@ -479,8 +469,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     // update: url, url_escape, title, file_path, name, name_base64
     String article_name = StringHelper.escape(article.getString("title"));
-    String url = "/articles/" + createAtTimestamp + "/" + Base64.encode(article_name);
-    String url_escape = "/articles/" + createAtTimestamp + "/" + article_name;
+    String url = "/articles/" +  DATE_FORMAT_MONTH.format(new Date(createAtTimestamp)) + "/" + createAtTimestamp + "/" + Base64.encode(article_name);
+    String url_escape = "/articles/"  +  DATE_FORMAT_MONTH.format(new Date(createAtTimestamp)) + "/" + createAtTimestamp + "/" + article_name;
 
     result.put("id", url);
     result.put("url", url);
@@ -506,6 +496,11 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private void copyFile(String source, String target) {
 
     try {
+
+      if (!Paths.get(target).getParent().toFile().exists()) {
+        Paths.get(target).getParent().toFile().mkdirs();
+      }
+
       Files.copy(Paths.get(source), Paths.get(target), REPLACE_EXISTING);
     } catch (IOException e) {
       LOGGER.error("WikiDatabaseService savePage##Copy file error", e.getCause());

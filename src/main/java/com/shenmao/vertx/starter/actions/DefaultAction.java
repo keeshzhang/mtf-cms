@@ -20,12 +20,14 @@ import io.vertx.ext.web.codec.BodyCodec;
 import io.vertx.ext.web.templ.FreeMarkerTemplateEngine;
 import org.apache.xpath.operations.Bool;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.shenmao.vertx.starter.database.WikiDatabaseService.DATE_FORMAT_MONTH;
 import static com.shenmao.vertx.starter.database.WikiDatabaseVerticle.EMPTY_PAGE_MARKDOWN;
 
 public class DefaultAction implements Action {
@@ -97,8 +99,6 @@ public class DefaultAction implements Action {
             return a;
           }).collect(Collectors.toList());
 
-//        list.forEach(o -> System.out.println(o.getString("last_updated") + "," + o.getString("title")));
-
         context.put("content", list);
         context.put("canCreatePage", context.user() != null);
 
@@ -151,7 +151,7 @@ public class DefaultAction implements Action {
         artilce.put("published_at", WikiDatabaseService.DATE_FORMAT.format(Calendar.getInstance().getTime()));
 
         dbService.savePage(timestamp, articleName, artilce, res -> {
-          ContextResponse.redirect(context, "/articles/" + timestamp + "/" + articleName, 301);
+          ContextResponse.redirect(context, "/articles/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + timestamp + "/" + articleName, 301);
         });
 
       } else {

@@ -81,66 +81,90 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
     try {
 
-      org.jdom.Document doc = builder.build(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) + "/" + file_path);
+
+      String createAtDate = articleObject.getString("created_at").split(" ")[0].replaceAll("-", "");
+
+      System.out.println(_USER_ARTICLES_FOLDER + "/" + createAtDate + "/" + file_path + ", loading xml");
+
+      org.jdom.Document doc = builder.build(_USER_ARTICLES_FOLDER + "/" + createAtDate + "/" + file_path);
       org.jdom.Element root = doc.getRootElement();
       List<org.jdom.Element> nodelist = root.getChildren();
 
+      System.out.println(1);
       for(org.jdom.Element ele: nodelist) {
 
         switch (ele.getName()) {
 
           case "url":
+            System.out.println(2);
             ele.setContent(new org.jdom.Text(articleObject.getString("url")));
             break;
           case "url_escape":
+            System.out.println(3);
             ele.setContent(new org.jdom.Text(articleObject.getString("url_escape")));
             break;
           case "title":
+            System.out.println(4);
             ele.setContent(new org.jdom.CDATA(articleObject.getString("title")));
             break;
           case "file_path":
+            System.out.println(5);
             ele.setContent(new org.jdom.Text(articleObject.getString("file_path")));
             break;
           case "article_status":
+            System.out.println(6);
             ele.setContent(new org.jdom.Text(articleObject.getString("article_status")));
             break;
           case "type":
+            System.out.println(7);
             ele.setContent(new org.jdom.Text(articleObject.getString("type")));
             break;
           case "tags":
+            System.out.println(8);
             ele.setContent(new org.jdom.Text(articleObject.getString("tags")));
             break;
           case "put_top":
+            System.out.println(9);
             ele.setContent(new org.jdom.Text(articleObject.getString("put_top")));
             break;
           case "authors":
+            System.out.println(10);
             ele.setContent(new org.jdom.Text(articleObject.getString("authors")));
             break;
           case "created_at":
+            System.out.println(11);
             ele.setContent(new org.jdom.Text(articleObject.getString("created_at")));
             break;
           case "last_updated":
+            System.out.println(12);
             ele.setContent(new org.jdom.Text(_DATE_FORMAT.format(Calendar.getInstance().getTime())));
             break;
           case "published_at":
+            System.out.println(13);
             ele.setContent(new org.jdom.Text(articleObject.getString("published_at")));
             break;
           case "channel":
+            System.out.println(14);
             ele.setContent(new org.jdom.Text(articleObject.getString("channel")));
             break;
           case "source_from":
+            System.out.println(15);
             ele.setContent(new org.jdom.Text(articleObject.getString("source_from")));
             break;
           case "article_from_url":
+            System.out.println(16);
             ele.setContent(new org.jdom.Text(articleObject.getString("article_from_url")));
             break;
           case "keywords":
+            System.out.println(17);
             ele.setContent(new org.jdom.CDATA(articleObject.getString("keywords")));
             break;
           case "description":
+            System.out.println(18);
             ele.setContent(new org.jdom.CDATA(articleObject.getString("description")));
             break;
           case "html_content":
+            System.out.println(19);
             ele.setContent(new org.jdom.CDATA(articleObject.getString("html_content")));
             break;
           default:
@@ -149,8 +173,9 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
       }
 
+      System.out.println(20);
       XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-      xmlOutputter.output(doc, new FileOutputStream(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) + "/" + file_path));
+      xmlOutputter.output(doc, new FileOutputStream(_USER_ARTICLES_FOLDER + "/" + createAtDate + "/" + file_path));
 
       return true;
 
@@ -415,6 +440,13 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   public String getFileFullName(Long timestamp, String articleFileName) {
 
+    System.out.println(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/" + ", getFileFullName");
+    System.out.println(articleFileName + ", articleFileName");
+    System.out.println(timestamp + ", timestamp");
+
+    // 5paw6KWKeeshaAAaABCzz5YWw5bel5YWaOeW5tOadpemmluasoee7hOW7uuaUv+W6nFKeeshaAAaABCzznur3lhYPkuIDms7vljYPph4xf5aSW5rGH6aKR6YGT
+    // 5paw6KWKeeshaAAaABCzz5YWw5bel5YWaOeW5tOadpemmluasoee7hOW7uuaUv+W6nFKeeshaAAaABCzznur3lhYPkuIDms7vljYPph4xf5aSW5rGH6aKR6YGTX+WSjOiur+e9kQ,
+
     Stream<String> fileStream = fetchAllArticleFiles().stream().filter(file -> {
       return file.replaceAll(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/", "").startsWith(timestamp + "_" + articleFileName);
     });
@@ -422,6 +454,8 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     Optional<String> fileOptional = fileStream.findFirst();
 
     String fileFullName = fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null;
+
+    System.out.println(fileFullName + ", fileFullName");
 
     return fileFullName;
 

@@ -244,7 +244,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   }
 
-  private List<String> fetchAllArticleFiles() {
+  private List<String> fetchAllArticleFiles(Integer start) {
 
     Path startingDir = Paths.get(_USER_ARTICLES_FOLDER);
     MyFindFileVisitor findJavaVisitor = new MyFindFileVisitor(".xml");
@@ -252,7 +252,14 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     try {
 
       Files.walkFileTree(startingDir, findJavaVisitor);
-      return findJavaVisitor.getFilenameList().stream().limit(_LIMIT_FILE_SIZE).collect(Collectors.toList());
+
+      if (start == -1) {
+        return findJavaVisitor.getFilenameList().stream().collect(Collectors.toList());
+      }
+
+      return findJavaVisitor.getFilenameList().stream()
+            .sorted((f1, f2) -> { return f2.compareTo(f1); })
+            .skip(start).limit(_LIMIT_FILE_SIZE).collect(Collectors.toList());
 
     } catch (IOException e) {
 
@@ -262,10 +269,31 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   }
 
+
   @Override
   public WikiDatabaseService fetchAllPages(Handler<AsyncResult<List<JsonObject>>> resultHandler) {
 
-    List<JsonObject> pages = fetchAllArticleFiles().stream()
+    List<JsonObject> pages = fetchAllArticleFiles(-1).stream()
+      .filter(file -> {
+        String _filename = file.replace(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) +  "/" , "");
+        return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
+      }).map( file -> {
+
+        return readArticleXml(file);
+
+      })
+      .collect(Collectors.toList());
+
+    resultHandler.handle(Future.succeededFuture(pages));
+
+    return this;
+
+  }
+
+  @Override
+  public WikiDatabaseService fetchAllPagesCondition(Integer start, Handler<AsyncResult<List<JsonObject>>> resultHandler) {
+
+    List<JsonObject> pages = fetchAllArticleFiles(start).stream()
       .filter(file -> {
         String _filename = file.replace(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) +  "/" , "");
         return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
@@ -420,7 +448,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   public String getFileFullName(Long timestamp, String articleFileName) {
 
-    Stream<String> fileStream = fetchAllArticleFiles().stream().filter(file -> {
+    Stream<String> fileStream = fetchAllArticleFiles(0).stream().filter(file -> {
       return file.replaceAll(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/", "").startsWith(timestamp + "_" + articleFileName);
     });
 

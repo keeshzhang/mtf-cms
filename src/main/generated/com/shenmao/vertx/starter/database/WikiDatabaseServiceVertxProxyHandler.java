@@ -39,11 +39,11 @@ import io.vertx.serviceproxy.ProxyHelper;
 import io.vertx.serviceproxy.ProxyHandler;
 import io.vertx.serviceproxy.ServiceException;
 import io.vertx.serviceproxy.ServiceExceptionMessageCodec;
+import io.vertx.core.Vertx;
+import java.util.HashMap;
 import java.util.List;
 import io.vertx.ext.jdbc.JDBCClient;
-import io.vertx.core.Vertx;
 import com.shenmao.vertx.starter.database.WikiDatabaseService;
-import java.util.HashMap;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
@@ -124,6 +124,10 @@ public class WikiDatabaseServiceVertxProxyHandler extends ProxyHandler {
 
         case "fetchAllPages": {
           service.fetchAllPages(createListHandler(msg));
+          break;
+        }
+        case "fetchAllPagesCondition": {
+          service.fetchAllPagesCondition(json.getValue("start") == null ? null : (json.getLong("start").intValue()), createListHandler(msg));
           break;
         }
         case "fetchPage": {

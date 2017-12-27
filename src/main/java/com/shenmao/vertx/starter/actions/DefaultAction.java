@@ -56,7 +56,7 @@ public class DefaultAction implements Action {
     context.put("title", "最新咨讯");
     context.put("error", isError);
 
-    dbService.fetchAllPages(indexResponseHandler(context, new ActionView("/index.ftl")));
+    dbService.fetchAllPagesCondition(0, indexResponseHandler(context, new ActionView("/index.ftl")));
 
   }
 

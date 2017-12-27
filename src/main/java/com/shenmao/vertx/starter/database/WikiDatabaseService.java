@@ -29,9 +29,6 @@ public interface WikiDatabaseService {
     return new WikiDatabaseServiceVertxEBProxy(vertx, address);
   }
 
-  @Fluent
-  WikiDatabaseService fetchAllPages(Handler<AsyncResult<List<JsonObject>>> resultHandler);
-
     @Fluent
   WikiDatabaseService fetchAllPagesCondition(Integer start, Handler<AsyncResult<List<JsonObject>>> resultHandler);
 

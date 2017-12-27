@@ -270,25 +270,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   }
 
 
-  @Override
-  public WikiDatabaseService fetchAllPages(Handler<AsyncResult<List<JsonObject>>> resultHandler) {
-
-    List<JsonObject> pages = fetchAllArticleFiles(-1).stream()
-      .filter(file -> {
-        String _filename = file.replace(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) +  "/" , "");
-        return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
-      }).map( file -> {
-
-        return readArticleXml(file);
-
-      })
-      .collect(Collectors.toList());
-
-    resultHandler.handle(Future.succeededFuture(pages));
-
-    return this;
-
-  }
 
   @Override
   public WikiDatabaseService fetchAllPagesCondition(Integer start, Handler<AsyncResult<List<JsonObject>>> resultHandler) {
@@ -384,31 +365,6 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     } else {
       resultHandler.handle(Future.succeededFuture(readArticleXml(targetFile.getAbsolutePath())));
     }
-
-
-
-//    this.fetchAllPages(result -> {
-//
-//      if (result.succeeded()) {
-//
-//        Stream<JsonObject> fileStream = result.result().stream().filter(article -> {
-//          return article.getString("file_name").startsWith(timestamp + "_" + articleNameBase);
-//        });
-//
-//        Optional<JsonObject> fileOptional = fileStream.findFirst();
-//
-//        try {
-//          resultHandler.handle(Future.succeededFuture(fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null));
-//        } catch (Exception e) {
-//          resultHandler.handle(Future.failedFuture(e.getCause()));
-//        }
-//
-//
-//      } else {
-//
-//      }
-//
-//    });
 
     return this;
   }

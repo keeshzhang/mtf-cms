@@ -50,7 +50,9 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final JDBCClient jdbcClient;
 
   public static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+  public static final Integer _LIMIT_FILE_SIZE = 15;
   public static final String _USER_ARTICLE_STORE_FOLDER = "/db_storage/user_articles";
+//  public static final String _USER_ARTICLE_STORE_FOLDER = "/db_storage/user_articles_local";
   private static final String _USER_ARTICLES_FOLDER = (ApplicationConfig.getAppRoot() + _USER_ARTICLE_STORE_FOLDER);
 
   static {
@@ -250,7 +252,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     try {
 
       Files.walkFileTree(startingDir, findJavaVisitor);
-      return findJavaVisitor.getFilenameList().stream().collect(Collectors.toList());
+      return findJavaVisitor.getFilenameList().stream().limit(_LIMIT_FILE_SIZE).collect(Collectors.toList());
 
     } catch (IOException e) {
 

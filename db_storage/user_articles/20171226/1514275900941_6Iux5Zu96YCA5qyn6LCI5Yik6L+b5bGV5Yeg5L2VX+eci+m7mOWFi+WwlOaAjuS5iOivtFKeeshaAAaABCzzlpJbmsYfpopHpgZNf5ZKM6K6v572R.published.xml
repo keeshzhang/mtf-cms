@@ -7,11 +7,11 @@
   <!-- 文章标题 -->
   <title><![CDATA[英国退欧谈判进展几何？看默克尔怎么说-外汇频道-和讯网]]></title>
   <!--  原始文件路径 -->
-  <file_path>1514275900941_6Iux5Zu96YCA5qyn6LCI5Yik6L+b5bGV5Yeg5L2VX+eci+m7mOWFi+WwlOaAjuS5iOivtFKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.pending.xml</file_path>
+  <file_path>1514275900941_6Iux5Zu96YCA5qyn6LCI5Yik6L+b5bGV5Yeg5L2VX+eci+m7mOWFi+WwlOaAjuS5iOivtFKeeshaAAaABCzzlpJbmsYfpopHpgZNf5ZKM6K6v572R.published.xml</file_path>
   <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
-  <article_status>pending</article_status>
+  <article_status>published</article_status>
   <!-- 文章类型 -->
-  <type />
+  <type>出入金问题,交易问题</type>
   <!-- 文章标签 -->
   <tags />
   <!-- 是否置顶: true or false -->
@@ -21,11 +21,11 @@
   <!-- 创建时间 -->
   <created_at>2017-12-26 16:11:40.941</created_at>
   <!-- 最后更新时间 -->
-  <last_updated>2017-12-27 13:50:04.289</last_updated>
+  <last_updated>2017-12-27 17:53:59.603</last_updated>
   <!-- 发布时间 -->
-  <published_at>2017-12-27 13:50:04.242</published_at>
+  <published_at>2017-12-27 17:53:59.583</published_at>
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
-  <channel />
+  <channel>新闻资讯,优惠活动</channel>
   <!-- 文章来源 -->
   <source_from>hexun</source_from>
   <!-- 文章原始 url -->

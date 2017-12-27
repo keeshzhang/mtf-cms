@@ -102,9 +102,11 @@ public class DefaultAction implements Action {
             }
 
             return a;
-          }).sorted((a1, a2) -> {
-            return a2.getString("last_updated").compareTo(a1.getString("last_updated"));
-          }).collect(Collectors.toList());
+          })
+//          .sorted((a1, a2) -> {
+//            return a2.getString("last_updated").compareTo(a1.getString("last_updated"));
+//          })
+          .collect(Collectors.toList());
 
         context.put("content", list);
         context.put("canCreatePage", context.user() != null);

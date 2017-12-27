@@ -258,7 +258,12 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       }
 
       return findJavaVisitor.getFilenameList().stream()
-            .sorted((f1, f2) -> { return f2.compareTo(f1); })
+            .sorted((f1, f2) -> {
+//              JsonObject a1 = readArticleXml(f1);
+//              JsonObject a2 = readArticleXml(f2);
+//              return a2.getString("last_updated").compareTo(a1.getString("last_updated"));
+              return f2.compareTo(f1);
+            })
             .skip(start).limit(_LIMIT_FILE_SIZE).collect(Collectors.toList());
 
     } catch (IOException e) {

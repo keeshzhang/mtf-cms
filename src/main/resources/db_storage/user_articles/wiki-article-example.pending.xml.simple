@@ -10,7 +10,7 @@
   <file_path>1513749666348_5oiR55qEX+esrDJfYXNkZlKeeshaAAaABCzzkuKrmlofnq6AyMw.pending.xml</file_path>
   <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
   <article_status>pending</article_status>
-  <!-- 文章类型 -->
+  <!-- 文章二级分类 -->
   <type>big data, cloud computing, type2</type>
   <!-- 文章标签 -->
   <tags>aws, linux, vagrant, centos</tags>
@@ -25,6 +25,7 @@
   <!-- 发布时间 -->
   <published_at>1970-01-01 00:00:00.000</published_at>
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <!-- 文章一级分类 -->
   <channel>landing_page</channel>
   <!-- 文章来源 -->
   <source_from />

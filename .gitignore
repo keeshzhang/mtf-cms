@@ -1,5 +1,5 @@
 # 不可以直接修改 src/main/resources/assets/ 路径下的内容，请到 mtf-cms-a4 项目下修改
-src/main/resources/assets/
+#src/main/resources/assets/
 
 target/
 pom.xml.tag

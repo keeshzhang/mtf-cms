@@ -49,7 +49,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final HashMap<SqlQueriesConfig.SqlQuery, String> sqlQueries;
   private final JDBCClient jdbcClient;
 
-  public static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//  public static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
   public static final Integer _LIMIT_FILE_SIZE = 15;
   public static final String _USER_ARTICLE_STORE_FOLDER = "/db_storage/user_articles";
 //  public static final String _USER_ARTICLE_STORE_FOLDER = "/db_storage/user_articles_local";
@@ -125,7 +125,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
             ele.setContent(new org.jdom.Text(articleObject.getString("created_at")));
             break;
           case "last_updated":
-            ele.setContent(new org.jdom.Text(_DATE_FORMAT.format(Calendar.getInstance().getTime())));
+            ele.setContent(new org.jdom.Text(DATE_FORMAT.format(Calendar.getInstance().getTime())));
             break;
           case "published_at":
             ele.setContent(new org.jdom.Text(articleObject.getString("published_at")));
@@ -354,32 +354,61 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
 //  private B
 
-  public WikiDatabaseService exists(Long id, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
+  public WikiDatabaseService exists(Long timestamp, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
 
     String articleNameBase = Base64.isBase64(articleName) ? articleName : Base64.encode(articleName);
+    String articleFileName = timestamp + "_" + articleNameBase;
+    String articleCreateDate = DATE_FORMAT_MONTH.format(new Date(timestamp));
+    String articleFullPathNonExt = _USER_ARTICLES_FOLDER + "/" + articleCreateDate + "/" + articleFileName;
 
-    this.fetchAllPages(result -> {
+    Path pathPending = Paths.get(articleFullPathNonExt + ".pending.xml");
+    Path pathPublished = Paths.get(articleFullPathNonExt + ".published.xml");
+    Path pathDeleted = Paths.get(articleFullPathNonExt + ".deleted.xml");
 
-      if (result.succeeded()) {
+    File targetFile = null;
 
-        Stream<JsonObject> fileStream = result.result().stream().filter(article -> {
-          return article.getString("file_name").startsWith(id + "_" + articleNameBase);
-        });
+    if (pathPending.toFile().exists()) {
+      targetFile = pathPending.toFile();
+    }
 
-        Optional<JsonObject> fileOptional = fileStream.findFirst();
+    if (pathPublished.toFile().exists()) {
+      targetFile = pathPublished.toFile();
+    }
 
-        try {
-          resultHandler.handle(Future.succeededFuture(fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null));
-        } catch (Exception e) {
-          resultHandler.handle(Future.failedFuture(e.getCause()));
-        }
+    if (pathDeleted.toFile().exists()) {
+      targetFile = pathDeleted.toFile();
+    }
+
+    if (targetFile == null) {
+      resultHandler.handle(Future.succeededFuture(null));
+    } else {
+      resultHandler.handle(Future.succeededFuture(readArticleXml(targetFile.getAbsolutePath())));
+    }
 
 
-      } else {
 
-      }
-
-    });
+//    this.fetchAllPages(result -> {
+//
+//      if (result.succeeded()) {
+//
+//        Stream<JsonObject> fileStream = result.result().stream().filter(article -> {
+//          return article.getString("file_name").startsWith(timestamp + "_" + articleNameBase);
+//        });
+//
+//        Optional<JsonObject> fileOptional = fileStream.findFirst();
+//
+//        try {
+//          resultHandler.handle(Future.succeededFuture(fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null));
+//        } catch (Exception e) {
+//          resultHandler.handle(Future.failedFuture(e.getCause()));
+//        }
+//
+//
+//      } else {
+//
+//      }
+//
+//    });
 
     return this;
   }
@@ -486,14 +515,14 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     Timestamp createAtTs = null;
 
     try {
-      createAtDate = new java.sql.Date (_DATE_FORMAT.parse(_createAt).getTime());
+      createAtDate = new java.sql.Date (DATE_FORMAT.parse(_createAt).getTime());
       createAtTs = new Timestamp(createAtDate.getTime());
     } catch (ParseException e) {
 
       String defaultDate = "1970-01-01 00:00:00";
 
       try {
-        createAtDate = new java.sql.Date (_DATE_FORMAT.parse(defaultDate).getTime());
+        createAtDate = new java.sql.Date (DATE_FORMAT.parse(defaultDate).getTime());
         createAtTs = new Timestamp(createAtDate.getTime());
       } catch (ParseException e1) { }
 

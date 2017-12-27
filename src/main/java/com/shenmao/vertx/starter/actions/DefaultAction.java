@@ -51,12 +51,16 @@ public class DefaultAction implements Action {
   @Override
   public void indexHandler(RoutingContext context) {
 
+    Integer skip = (context.queryParams().contains("skip")
+                        && context.queryParams().get("skip").replaceAll("\\d+", "").isEmpty())
+                    ? Integer.parseInt(context.queryParams().get("skip")) : 0;
+
     String isError = context.queryParams().contains("error") ? "yes" : "no";
 
     context.put("title", "最新咨讯");
     context.put("error", isError);
 
-    dbService.fetchAllPagesCondition(0, indexResponseHandler(context, new ActionView("/index.ftl")));
+    dbService.fetchAllPagesCondition(skip, indexResponseHandler(context, new ActionView("/index.ftl")));
 
   }
 

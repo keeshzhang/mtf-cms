@@ -7,9 +7,9 @@
   <!-- 文章标题 -->
   <title><![CDATA[美联储新主席悬念终将揭开？大鸽派一唱天下皆“白”-外汇频道]]></title>
   <!--  原始文件路径 -->
-  <file_path>1514275888979_576O6IGU5YKo5paw5Li75bit5oKs5b+157uI5bCG5o+t5byAX+Wkp+m4vea0vuS4gOWUseWkqeS4i+eahlKeeshaAAaABCzznmb1f5aSW5rGH6aKR6YGT.published.xml</file_path>
+  <file_path>1514275888979_576O6IGU5YKo5paw5Li75bit5oKs5b+157uI5bCG5o+t5byAX+Wkp+m4vea0vuS4gOWUseWkqeS4i+eahlKeeshaAAaABCzznmb1f5aSW5rGH6aKR6YGT.deleted.xml</file_path>
   <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
-  <article_status>published</article_status>
+  <article_status>deleted</article_status>
   <!-- 文章类型 -->
   <type />
   <!-- 文章标签 -->
@@ -21,9 +21,9 @@
   <!-- 创建时间 -->
   <created_at>2017-12-26 16:11:28.979</created_at>
   <!-- 最后更新时间 -->
-  <last_updated>2017-12-27 13:24:38.637</last_updated>
+  <last_updated>2017-12-27 13:47:51.946</last_updated>
   <!-- 发布时间 -->
-  <published_at>2017-12-27 13:24:38.625</published_at>
+  <published_at>2017-12-27 13:47:51.919</published_at>
   <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
   <channel />
   <!-- 文章来源 -->

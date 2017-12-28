@@ -21,7 +21,6 @@ public interface Action {
   }
 
   public default Long getLong(String str) {
-    System.out.println(str + ", str");
     return (str != null && str.trim().length() > 0 && str.replaceAll("\\d+", "").isEmpty())
             ? Long.parseLong(str) : -1;
   }

@@ -108,7 +108,6 @@ public class VertxRouter {
 //    router.post("/create.json").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
 //    router.post("/create").handler(BasicAuthHandler.create(_shiroAuth)).handler(_defaultAction::pageCreateHandler);
 
-//    router.post("/delete").handler(_defaultAction::pageDeletionHandler);
 
     router.get("/login").handler(_normalAction::loginHandler);
 

@@ -338,9 +338,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       .put("description", articledescription);
   }
 
-//  private B
-
-  public WikiDatabaseService exists(Long timestamp, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
+  public File getFile(Long timestamp, String articleName) {
 
     String articleNameBase = Base64.isBase64(articleName) ? articleName : Base64.encode(articleName);
     String articleFileName = timestamp + "_" + articleNameBase;
@@ -364,6 +362,13 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
     if (pathDeleted.toFile().exists()) {
       targetFile = pathDeleted.toFile();
     }
+
+    return targetFile;
+  }
+
+  public WikiDatabaseService exists(Long timestamp, String articleName, Handler<AsyncResult<JsonObject>> resultHandler) {
+
+    File targetFile = getFile(timestamp, articleName);
 
     if (targetFile == null) {
       resultHandler.handle(Future.succeededFuture(null));
@@ -587,18 +592,15 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
 
   @Override
-  public WikiDatabaseService deletePage(Long id, Handler<AsyncResult<Void>> resultHandler) {
+  public WikiDatabaseService deletePage(Long timestamp, String articleName, Handler<AsyncResult<Void>> resultHandler) {
 
-    JsonArray data = new JsonArray().add(id);
+    File targetFile = getFile(timestamp, articleName);
 
-    jdbcClient.updateWithParams(sqlQueries.get(SqlQueriesConfig.SqlQuery.DELETE_PAGE), data, res -> {
-      if (res.succeeded()) {
-        resultHandler.handle(Future.succeededFuture());
-      } else {
-        LOGGER.error("Database delete error", res.cause());
-        resultHandler.handle(Future.failedFuture(res.cause()));
-      }
-    });
+    if (targetFile.exists()) {
+      targetFile.delete();
+    }
+
+    resultHandler.handle(Future.succeededFuture());
 
     return this;
   }

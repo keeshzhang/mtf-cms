@@ -139,7 +139,7 @@ public class WikiDatabaseServiceVertxProxyHandler extends ProxyHandler {
           break;
         }
         case "deletePage": {
-          service.deletePage(json.getValue("id") == null ? null : (json.getLong("id").longValue()), createHandler(msg));
+          service.deletePage(json.getValue("timestamp") == null ? null : (json.getLong("timestamp").longValue()), (java.lang.String)json.getValue("articleFileName"), createHandler(msg));
           break;
         }
         case "fetchLastIncrementId": {

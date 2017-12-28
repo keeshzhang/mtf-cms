@@ -43,7 +43,7 @@ public interface WikiDatabaseService {
   WikiDatabaseService savePage(Long timestamp, String articleFileName, JsonObject data, Handler<AsyncResult<JsonObject>> resultHandler);
 
   @Fluent
-  WikiDatabaseService deletePage(Long id, Handler<AsyncResult<Void>> resultHandler);
+  WikiDatabaseService deletePage(Long timestamp, String articleFileName, Handler<AsyncResult<Void>> resultHandler);
 
   @Fluent
   WikiDatabaseService fetchLastIncrementId(Handler<AsyncResult<Long>> resultHandler);

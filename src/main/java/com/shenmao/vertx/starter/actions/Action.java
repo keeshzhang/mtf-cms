@@ -15,6 +15,17 @@ public interface Action {
   public void pageCreateHandler(RoutingContext context);
   public void pageRenderingHandler(RoutingContext context);
 
+  public default Integer getInt(String str) {
+    return (str != null && str.trim().length() > 0 && str.replaceAll("\\d+", "").isEmpty())
+      ? Integer.parseInt(str) : -1;
+  }
+
+  public default Long getLong(String str) {
+    System.out.println(str + ", str");
+    return (str != null && str.trim().length() > 0 && str.replaceAll("\\d+", "").isEmpty())
+            ? Long.parseLong(str) : -1;
+  }
+
   public Vertx getVertx();
 
 }

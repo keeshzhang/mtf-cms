@@ -51,10 +51,7 @@ public class DefaultAction implements Action {
   @Override
   public void indexHandler(RoutingContext context) {
 
-    Integer skip = (context.queryParams().contains("skip")
-                        && context.queryParams().get("skip").replaceAll("\\d+", "").isEmpty())
-                    ? Integer.parseInt(context.queryParams().get("skip")) : 0;
-
+    Integer skip = getInt(context.queryParams().get("skip")) == -1 ? 0 : getInt(context.queryParams().get("skip"));
     String isError = context.queryParams().contains("error") ? "yes" : "no";
 
     context.put("title", "最新咨讯");
@@ -212,12 +209,15 @@ public class DefaultAction implements Action {
   @Override
   public void pageDeletionHandler(RoutingContext context) {
 
-    Long id = Long.parseLong(context.request().getParam("id"));
 
-    dbService.deletePage(id, reply -> {
+    final Long timestamp = Long.parseLong(context.request().getParam("date"));
+    final String articleName = context.request().getParam("name");
+
+
+    dbService.deletePage(timestamp, articleName, reply -> {
 
       if (reply.succeeded()) {
-        ContextResponse.write(context, "/", id, 301);
+        ContextResponse.redirect(context, "/", 301);
       } else {
         context.fail(reply.cause());
       }
@@ -264,31 +264,32 @@ public class DefaultAction implements Action {
   @Override
   public void pageRenderingHandler(RoutingContext context) {
 
-    Long timestamp = null;
-    String articleFileName = null;
+    Long timestamp = getLong(context.request().getParam("date"));
+    String articleFileName = context.request().getParam("name");
+
+
+    if (timestamp == -1) {
+      ContextResponse.notFound(context);
+      return;
+    }
 
     String action = context.queryParams().contains("action") ? context.queryParams().get("action") : null;   // preview, pub, draft, del
 
-    if (action != null && !action.equals("preview")) {
+    if ("delete".equals(action)) {
+      this.pageDeletionHandler(context);
+      return;
+    }
+
+    if (action != null && !"preview".equals(action)) {
       this.pageModifyHandler(context, action);
       return;
     }
 
     context.put("isArticlePreview", action != null && action.equals("preview") ? "yes" : "no");
 
-    try {
-      timestamp = Long.parseLong(context.request().getParam("date"));
-      articleFileName = context.request().getParam("name");
-
-    } catch (Exception e) {
-      ContextResponse.notFound(context);
-      return;
-    }
-
     dbService.fetchPage(timestamp, articleFileName, reply -> {
 
       if (!reply.succeeded() || reply.result() == null) {
-//        context.fail(reply.cause());
         ContextResponse.notFound(context);
         return;
       }

@@ -1,6 +1,5 @@
 <#include "header.ftl">
 
-<app-root></app-root>
 
 <div style="margin-top: 1em !important;width:100%;">
 
@@ -30,6 +29,9 @@
 
 <div style="width:100%;">
 
+  <input type="hidden" id="hidArticlePageSize" value="2" />
+  <input type="hidden" id="hidArticleListSize" value="${context.content?size}" />
+
   <#list context.content>
     <ul>
       <#items as page>
@@ -50,8 +52,13 @@
         <p style="color:dimgray;">${page["description"]}</p>
       </li>
       </#items>
+
+
+      <app-root></app-root>
+
     </ul>
-    <#else>
+  <#else>
+    <app-root></app-root>
     <p style="color: darkorchid">The wiki is currently empty!</p>
   </#list>
 

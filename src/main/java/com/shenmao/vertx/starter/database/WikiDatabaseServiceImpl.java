@@ -50,7 +50,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
   private final JDBCClient jdbcClient;
 
 //  public static final SimpleDateFormat _DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-  public static final Integer _LIMIT_FILE_SIZE = 150;
+  public static final Integer _LIMIT_FILE_SIZE = 2;
   public static final String _USER_ARTICLE_STORE_FOLDER = "/db_storage/user_articles";
 //  public static final String _USER_ARTICLE_STORE_FOLDER = "/db_storage/user_articles_local";
   private static final String _USER_ARTICLES_FOLDER = (ApplicationConfig.getAppRoot() + _USER_ARTICLE_STORE_FOLDER);
@@ -244,7 +244,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   }
 
-  private List<String> fetchAllArticleFiles(Integer start) {
+  private List<String> fetchAllArticleFiles(Integer start, String articleStatus) {
 
     Path startingDir = Paths.get(_USER_ARTICLES_FOLDER);
     MyFindFileVisitor findJavaVisitor = new MyFindFileVisitor(".xml");
@@ -258,6 +258,7 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
       }
 
       return findJavaVisitor.getFilenameList().stream()
+            .filter(a -> articleStatus == null || a.endsWith("." + articleStatus + ".xml"))
             .sorted((f1, f2) -> {
 //              JsonObject a1 = readArticleXml(f1);
 //              JsonObject a2 = readArticleXml(f2);
@@ -277,9 +278,9 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
 
   @Override
-  public WikiDatabaseService fetchAllPagesCondition(Integer start, Handler<AsyncResult<List<JsonObject>>> resultHandler) {
+  public WikiDatabaseService fetchAllPagesCondition(Integer start, String articleStatus, Handler<AsyncResult<List<JsonObject>>> resultHandler) {
 
-    List<JsonObject> pages = fetchAllArticleFiles(start).stream()
+    List<JsonObject> pages = fetchAllArticleFiles(start, articleStatus).stream()
       .filter(file -> {
         String _filename = file.replace(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(Calendar.getInstance().getTime()) +  "/" , "");
         return _filename.indexOf('_') != -1 && _filename.indexOf('.') != -1;
@@ -443,15 +444,18 @@ public class WikiDatabaseServiceImpl implements WikiDatabaseService {
 
   public String getFileFullName(Long timestamp, String articleFileName) {
 
-    Stream<String> fileStream = fetchAllArticleFiles(0).stream().filter(file -> {
-      return file.replaceAll(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/", "").startsWith(timestamp + "_" + articleFileName);
-    });
 
-    Optional<String> fileOptional = fileStream.findFirst();
+    File targetFile = getFile(timestamp, articleFileName);
 
-    String fileFullName = fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null;
+//    Stream<String> fileStream = fetchAllArticleFiles(0, null).stream().filter(file -> {
+//      return file.replaceAll(_USER_ARTICLES_FOLDER + "/" + DATE_FORMAT_MONTH.format(new Date(timestamp)) + "/", "").startsWith(timestamp + "_" + articleFileName);
+//    });
+//
+//    Optional<String> fileOptional = fileStream.findFirst();
+//
+//    String fileFullName = fileOptional != null && fileOptional.isPresent() ? fileOptional.get() : null;
 
-    return fileFullName;
+    return targetFile.getAbsolutePath();
 
   }
 

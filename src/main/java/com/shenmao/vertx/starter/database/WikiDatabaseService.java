@@ -30,7 +30,7 @@ public interface WikiDatabaseService {
   }
 
     @Fluent
-  WikiDatabaseService fetchAllPagesCondition(Integer start, Handler<AsyncResult<List<JsonObject>>> resultHandler);
+  WikiDatabaseService fetchAllPagesCondition(Integer start, String articleStatus, Handler<AsyncResult<List<JsonObject>>> resultHandler);
 
 
   @Fluent

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514432357530/5q+P5aSp5LuA5LmI5pe26Ze06L+b6KGM5Lqk5piT57uT566X</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514432357530/每天什么时间进行交易结算</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[每天什么时间进行交易结算？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514432357530_5q+P5aSp5LuA5LmI5pe26Ze06L+b6KGM5Lqk5piT57uT566X.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>交易问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 11:39:17.530</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 15:31:24.498</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 15:31:24.495</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答：</p><p><strong>夏令时: </strong>于香港时间每天早上5:00（GMT 21:00）进行日结算。</p><p><strong>冬令时: </strong>于香港时间每天早上6:00（GMT 22:00）进行日结算。</p>]]></html_content>
+</article>
+

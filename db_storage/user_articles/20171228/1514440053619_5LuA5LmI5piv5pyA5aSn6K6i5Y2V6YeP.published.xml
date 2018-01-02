@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514440053619/5LuA5LmI5piv5pyA5aSn6K6i5Y2V6YeP</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514440053619/什么是最大订单量</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[什么是最大订单量？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514440053619_5LuA5LmI5piv5pyA5aSn6K6i5Y2V6YeP.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>交易问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 13:47:33.619</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 14:53:15.478</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 14:53:15.475</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答：最大订单量为每一个账户类型中，可以持有的最大开户及挂单数量。迷你账户最大订单量为50个，而标准及尊贵账户的最大订单量则为100个。</p>]]></html_content>
+</article>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514431279490/5YWl6YeR5ZKM5Ye66YeR5piv5ZCm5pS25Y+W5omL57ut6LS5</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514431279490/入金和出金是否收取手续费</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[入金和出金是否收取手续费？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514431279490_5YWl6YeR5ZKM5Ye66YeR5piv5ZCm5pS25Y+W5omL57ut6LS5.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>出入金问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 11:21:19.490</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 15:35:37.928</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 15:35:37.925</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答：</p><p><strong>&middot;</strong>入金免手续费；</p><p><strong>&middot;</strong>一般情况下出金是免除手续费用。需要收取手续费的特殊情况如下：</p><p>（1）每日取款超过3笔，将从第4笔开始扣取款金额的5%作为手续费，费用会在取款金额中扣除。</p><p>（2）交易额（即交易占用保证金）不足存款额的50%，公司将收取取款金额的6%为手续费。</p><p>（3）另外如果您的取款金额低于50美元将会固定收取3美元手续费用。</p>]]></html_content>
+</article>
+

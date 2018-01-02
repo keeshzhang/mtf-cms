@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514439482757/5LuA5LmI5pivX+atouebiOWNlVKeeshaAAaABCzzlj4pf5q2i5o2f5Y2V</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514439482757/什么是_止盈单_及_止损单</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[什么是“止盈单”及“止损单”？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514439482757_5LuA5LmI5pivX+atouebiOWNlVKeeshaAAaABCzzlj4pf5q2i5o2f5Y2V.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>交易问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 13:38:02.757</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 14:54:37.722</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 14:54:37.720</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答：</p><p>止盈单可以帮助投资者锁定利润。</p><p>投资者预设一个获取利润的订单后，如市场价格达到投资者设定的触发价格时，止盈单将会成为市价单，并以当时可执行的最优市场价格成交，投资者将有机会获取比正常情况更大的利润。&nbsp;</p><p>止损单可以帮助投资者减少损失。</p><p>投资者预设一个止损单后，如市场价格达到投资者设定的触发价格时，止损单将会成为市价单，并以当时可执行的最优市场价格成交。注：请留意，任何订单（包括止盈、止损等）均可能因市况波动，受跳空的影响，未能在预设的价格执行。如遇上此情况，订单将会按照市场下一个最有利的价格执行。此外，投资者可以在订单被执行之前的交易时间内，随时修改或取消各种订单，但仍需符合本公司对设定订单的要求。</p>]]></html_content>
+</article>
+

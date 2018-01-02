@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514430784121/5ZGo5pyr5Y+K5YGH5pel55qE6L+H5aSc5Yip5oGv5aaC5L2V6K6h566X</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514430784121/周末及假日的过夜利息如何计算</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[周末及假日的过夜利息如何计算？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514430784121_5ZGo5pyr5Y+K5YGH5pel55qE6L+H5aSc5Yip5oGv5aaC5L2V6K6h566X.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>账户问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 11:13:04.121</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 15:26:04.566</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 15:26:04.562</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答：一般来说，星期六及星期日为银行间休息日，单大部分银行仍然计算这两天的利息。</p><p>而外汇是一个两日交付的市场，即代表持仓会在建立后两日才会交收。若开仓部位在香港时间星期四早上05：00（夏令时间）前仍未平仓，技术上来说，这些持仓将会星期六交收。银行在星期六休息，因此，持仓将会经过周末转仓至星期一，则当日的利息会收取约叁天利息。</p><p>如开仓部位在香港时间星期六早上04：45（夏令时间）前仍未平仓，则当日利息收支会以一天利息计算，因为前述的三天开仓部位延展已经包括了周末的利息。同样地，假日没有过夜利息，但假日前两个工作天计算额外一天的过夜利息。一般而言，交易涉及的货币遇上所属国家的重要假日会就计算假日过夜利息。</p>]]></html_content>
+</article>
+

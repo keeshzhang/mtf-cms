@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20180101/1514815402531/5aSW5rGH5Lqk5piT5pe26Ze0</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20180101/1514815402531/外汇交易时间</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[外汇交易时间？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514815402531_5aSW5rGH5Lqk5piT5pe26Ze0.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type />
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2018-01-01 22:03:22.531</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2018-01-01 22:14:54.444</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2018-01-01 22:14:54.442</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>发现底部</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>外汇市场周一至周五，24小时全天候开放。周一，00:00 EET至周五，23:59:59 EET。</p><p>外汇市场没有具体的时间表，国际上主要的外汇市场有：悉尼、东京、新加坡、香港、法兰克福、苏黎世、伦敦、纽约，由于以上各个城市地跨多个时区，工作时间基本上为当地时间的早9点到下午4点，因此可以将一天24小时覆盖。下面我们将以不同时间格式来列出主要市场的开闭市时间。注：GMT（格林尼治时间），EET（东欧时间）。</p><p><strong>夏令时</strong></p><table style="width: 100%;"><tbody><tr><td style="width: 25.0000%;">交易时段<br></td><td style="width: 25.0000%;">城市<br></td><td style="width: 25.0000%;">GMT<br></td><td style="width: 25.0000%;">EET<br></td></tr><tr><td style="width: 25.0000%;">亚洲<br></td><td style="width: 25.0000%;">东京<br>新加坡<br>上海<br></td><td style="width: 25.0000%;">00:00&minus;06:00<br>01:00&minus;09:00<br>01:30&minus;07:00<br></td><td style="width: 25.0000%;">03:00&minus;09:00<br>04:00&minus;12:00<br>04:30&minus;10:00<br></td></tr><tr><td style="width: 25.0000%;">欧洲<br></td><td style="width: 25.0000%;">伦敦<br>法兰克福<br></td><td style="width: 25.0000%;">07:00&minus;15:30<br>07:00&minus;15:30<br></td><td style="width: 25.0000%;">10:00&minus;18:30<br>10:00&minus;18:30<br></td></tr><tr><td style="width: 25.0000%;">美国<br></td><td style="width: 25.0000%;">纽约<br>芝加哥<br></td><td style="width: 25.0000%;">13:30&minus;20:00<br>13:30&minus;20:00<br></td><td style="width: 25.0000%;">16:30&minus;23:00<br>16:30&minus;23:00<br></td></tr><tr><td style="width: 25.0000%;">大洋洲<br></td><td style="width: 25.0000%;">惠灵顿<br>悉尼<br></td><td style="width: 25.0000%;">21:00&minus;03:45<br>23:00&minus;05:00<br></td><td style="width: 25.0000%;">00:00&minus;06:45<br>02:00&minus;08:00<br></td></tr></tbody></table><p><br></p><p><strong>冬令时</strong></p><table style="width: 100%;"><tbody><tr><td style="width: 25.0000%;">交易时段<br></td><td style="width: 25.0000%;">城市<br></td><td style="width: 25.0000%;">GMT<br></td><td style="width: 25.0000%;">EET<br></td></tr><tr><td style="width: 25.0000%;">亚洲<br></td><td style="width: 25.0000%;">东京<br>新加坡<br>上海<br></td><td style="width: 25.0000%;">00:00&minus;06:00<br>01:00&minus;09:00<br>01:30&minus;07:00<br></td><td style="width: 25.0000%;">02:00&minus;08:00<br>03:00&minus;11:00<br>03:30&minus;9:00<br></td></tr><tr><td style="width: 25.0000%;">欧洲<br></td><td style="width: 25.0000%;">伦敦<br>法兰克福<br></td><td style="width: 25.0000%;">07:00&minus;15:30<br>07:00&minus;15:30<br></td><td style="width: 25.0000%;">09:00&minus;17:30<br>09:00&minus;17:30<br></td></tr><tr><td style="width: 25.0000%;">美国<br></td><td style="width: 25.0000%;">纽约<br>芝加哥<br></td><td style="width: 25.0000%;">13:30&minus;20:00<br>13:30&minus;20:00<br></td><td style="width: 25.0000%;">15:30&minus;22:00<br>15:30&minus;22:00<br></td></tr><tr><td style="width: 25.0000%;">大洋洲<br></td><td style="width: 25.0000%;">惠灵顿<br>悉尼<br></td><td style="width: 25.0000%;">21:00&minus;03:45<br>23:00&minus;05:00<br></td><td style="width: 25.0000%;">23:00&minus;05:45<br>01:00&minus;07:00<br></td></tr></tbody></table>]]></html_content>
+</article>
+

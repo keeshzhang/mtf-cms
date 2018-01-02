@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514439275128/6ZSB5LuT5pe25L+d6K+B6YeR5oCO5LmI5pS25Y+W</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514439275128/锁仓时保证金怎么收取</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[锁仓时保证金怎么收取？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514439275128_6ZSB5LuT5pe25L+d6K+B6YeR5oCO5LmI5pS25Y+W.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>交易问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 13:34:35.128</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 14:55:54.356</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 14:55:54.352</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>锁仓保证金为锁仓订单保证金总数的25%。例如,当客户买入3手USDJPY及卖出3手USDJPY, USDJPY每手保证金是200美元，买入及卖出USDJPY的保证金总数是1,200美元, 锁仓保证金为1,200美元的25%, 即300美元。</p>]]></html_content>
+</article>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514439958367/6L+H5aSc5Yip5oGv5Zyo5LuA5LmI5pe26Ze05omj6Zmk</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514439958367/过夜利息在什么时间扣除</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[过夜利息在什么时间扣除？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514439958367_6L+H5aSc5Yip5oGv5Zyo5LuA5LmI5pe26Ze05omj6Zmk.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>交易问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 13:45:58.367</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 14:49:12.005</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 14:49:12.002</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答：EFu平台过夜利息每日都会计算，并显示在&quot;库存费&quot;栏位中（同时会反映在&quot;净值&quot;中）；平仓后会在&quot;余额&quot;中增加或扣除。</p>]]></html_content>
+</article>
+

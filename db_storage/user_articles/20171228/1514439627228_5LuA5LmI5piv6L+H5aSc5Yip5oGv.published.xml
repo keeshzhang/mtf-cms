@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514439627228/5LuA5LmI5piv6L+H5aSc5Yip5oGv</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514439627228/什么是过夜利息</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[什么是过夜利息？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514439627228_5LuA5LmI5piv6L+H5aSc5Yip5oGv.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>交易问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 13:40:27.228</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 14:52:21.352</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 14:52:21.349</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答： 当客户持有仓位，穿越北京时间上午05:00 GMT 21:00 (夏令时间) 或上午06:00 GMT 22:00 (冬令时间)，客户的仓位便会有收取或付出过夜利息的情况。一般情况下，当客户买入货币的利率高的时候，客户便会付出过夜利息；相反地，客户买入货币的利率比卖的利率低的时候，客户便会出过夜利利率，各种货币对的过夜利息会随着率差距而变化。</p>]]></html_content>
+</article>
+

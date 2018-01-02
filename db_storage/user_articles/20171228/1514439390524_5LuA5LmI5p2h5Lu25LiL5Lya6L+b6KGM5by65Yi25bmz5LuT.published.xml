@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <!-- base 64 编码后的 url -->
+  <url>/articles/20171228/1514439390524/5LuA5LmI5p2h5Lu25LiL5Lya6L+b6KGM5by65Yi25bmz5LuT</url>
+  <!-- 解码后的 url, [^ a-zA-Z0-9\u4e00-\u9fa5]+ -->
+  <url_escape>/articles/20171228/1514439390524/什么条件下会进行强制平仓</url_escape>
+  <!-- 文章标题 -->
+  <title><![CDATA[什么条件下会进行强制平仓？]]></title>
+  <!--  原始文件路径 -->
+  <file_path>1514439390524_5LuA5LmI5p2h5Lu25LiL5Lya6L+b6KGM5by65Yi25bmz5LuT.published.xml</file_path>
+  <!-- 文章状态: published (已发布), pending (待发布), staging, drafted(已撤回), deleted (已删除)-->
+  <article_status>published</article_status>
+  <!-- 文章类型 -->
+  <type>交易问题</type>
+  <!-- 文章标签 -->
+  <tags />
+  <!-- 是否置顶: true or false -->
+  <put_top>false</put_top>
+  <!-- 是否置顶 -->
+  <authors />
+  <!-- 创建时间 -->
+  <created_at>2017-12-28 13:36:30.524</created_at>
+  <!-- 最后更新时间 -->
+  <last_updated>2017-12-28 14:55:13.773</last_updated>
+  <!-- 发布时间 -->
+  <published_at>2017-12-28 14:55:13.770</published_at>
+  <!-- 所属频道(用于定义显示位置): landing_page(首页), ad (广告) -->
+  <channel>帮助中心</channel>
+  <!-- 文章来源 -->
+  <source_from />
+  <!-- 文章原始 url -->
+  <article_from_url />
+  <keywords />
+  <description />
+  <html_content><![CDATA[<p>答：当账户净值低于强制平仓保证金要求时，系统会进行强制平仓；周末过市或节假日过市，净值必须保持在每手不少于过市保证金金额，如不足又未能及时存入资金，则进行全部平仓。锁仓并不能完全免却强制平仓的风险，其账户余额可能因利息开支及买卖差价改变而触发强制平仓，因此客户在进行锁仓后仍须不时留意其户口结余及维持保证金。</p>]]></html_content>
+</article>
+
